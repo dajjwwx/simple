@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="demo.css">	
+<link href="uploadfile.css" rel="stylesheet">
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script src="jquery.uploadfile.min.js"></script>
+<title>php jquery 多文件上传</title></head>
+<body>
+
+<div id="main_demo">
+
+<div id="mulitplefileuploader">Upload</div>
+
+<div id="status"></div>
+<script>
+
+$(document).ready(function()
+{
+
+var settings = {
+	url: "upload.php",
+	method: "POST",
+	allowedTypes:"jpg,png,gif,doc,pdf,zip",
+	fileName: "myfile",
+	multiple: true,
+	onSuccess:function(files,data,xhr)
+	{
+		$("#status").html("<font color='green'>Upload is success</font>");
+		
+	},
+	onError: function(files,status,errMsg)
+	{		
+		$("#status").html("<font color='red'>Upload is Failed</font>");
+	}
+}
+$("#mulitplefileuploader").uploadFile(settings);
+
+});
+</script>
+<div style="height:20px;"></div>
+<div align="center"></div>
+</div>
+</body>
+</html>
+</body>

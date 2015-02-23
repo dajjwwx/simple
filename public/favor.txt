@@ -1,0 +1,1045 @@
+[Datetime]14-08-24 01:40:15	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,日本菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:41:30	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,日本菜,
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:45:47	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,日本菜,干锅,烤鱼,
+            [movie] => 超人,东成西就,
+            [music] => 巴洛克,说唱,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:45:55	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 超人,东成西就,
+            [music] => 巴洛克,说唱,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:48:19	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,面点,
+            [movie] => 超人,东成西就,
+            [music] => 巴洛克,说唱,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:48:34	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 超人,东成西就,
+            [music] => 巴洛克,说唱,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:48:55	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,日本菜,
+            [movie] => 超人,东成西就,
+            [music] => 巴洛克,说唱,
+            [tourism] => 
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:51:29	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:52:06	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:52:16	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:52:24	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:53:24	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,面点,
+            [movie] => 丑女贝蒂,
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:54:05	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,韩国菜,中餐,
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:54:18	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,韩国菜,中餐,鲁菜,
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:54:26	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:55:26	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,牛排,江浙菜,
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:55:55	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:56:07	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 烤鱼,
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:56:24	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:59:26	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,
+            [movie] => 丑女贝蒂,
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:59:34	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,
+            [movie] => 丑女贝蒂,超人,
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 01:59:40	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,
+            [movie] => 
+            [music] => 
+            [tourism] => 四川,
+            [books] => 青年文摘,诛仙,
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 02:14:01	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 你喜欢哪些电影？哪种类型？武侠，美国大片，还是……
+            [music] => 你丫喜欢什么类型的音乐？R&B，乡村民乐，还是……
+            [tourism] => 每一个人都有一个向往的圣地，你的圣地在何方？
+            [books] => 你平时看书吗？不管生活节奏有多快，平时有多忙，一定要多看一点书噢～
+            [sports] => 你平时喜欢一些什么样的运动？蓝球，乒乓球，游泳……
+            [stars] => 你是大米，玉米？是凉粉还是冰粉？你丫喜欢啥星？
+            [games] => 你平时玩网游，单机版的小游戏？
+            [digital] => 你喜欢摄影吗？想要一款好的手机吗？你会特别想要什么品牌的数码产品呢？
+            [others] => 你还有其他的什么爱好吗？与大家分享一下呸
+        )
+
+)
+
+[Datetime]14-08-24 02:14:32	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 02:14:42	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 02:44:10	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 
+            [music] => 中国风,拉丁,管弦乐,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 02:44:18	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:02:09	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 蓝调,中国风,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:02:39	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:03:11	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 中国风,说唱,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:03:20	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:04:41	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 流行,管弦乐,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:04:50	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:05:02	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 中国风,说唱,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:10:03	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:11:09	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 流行,电子音乐,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:11:34	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 流行,电子音乐,爵士,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:11:41	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:11:56	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 流行,爵士,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 03:12:06	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 09:41:25	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 中餐,回锅肉,火锅,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 09:41:35	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:00:41	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,面点,牛排,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:05:12	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:05:24	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:17:31	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:17:41	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:17:53	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:21:11	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:22:28	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,回锅肉,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:22:33	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,回锅肉,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:31:31	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 粤菜,烤鱼,日本菜,回锅肉,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:46:04	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 干锅,韩国菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:48:35	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 干锅,韩国菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 朋克,拉丁,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
+[Datetime]14-08-24 10:48:59	[File]E:\www\simplebase\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 干锅,韩国菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 乡村音乐,巴洛克,钢琴曲,
+            [tourism] => 
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+
