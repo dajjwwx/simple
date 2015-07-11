@@ -1,0 +1,56 @@
+如何SimpleBase新建一个新模块（GaokaoModule)
+
+1.利用Gii生成一个新模块-GaokaoModule
+2.首先在首页导航栏和快捷下拉菜单中添加链接-【历年高考】和<a href="">高考真题库</a>
+创建方法：
+i)在新建的模块gaokao下新建文件，路径如：/protected/modules/gaokao/config/(main|nav|quickmenu).php
+ii)在nav.php中加入如下代码，即可在导航栏中加入<a href="/gaokao.html">历年高考</a>：
+<?php
+return array(
+	array(
+		'module'=>'gaokao',
+		'link'=>'/gaokao',
+		'name'=>'历年高考'
+	)	
+);
+?>
+iii)在quickmenu.php中加入如下代码，即可在导航栏中加入<a href="/gaokao/space/index.html">高考真题库</a>：
+<?php
+return array(
+		array(
+			'link'=>'/gaokao/space/index',
+			'name'=>'高考真题库'		
+		)
+);
+?>
+3.如何实现本地化，方法很简单，
+i)打开GaokaoModule.php加入如下代码即可
+<?php
+	/**
+	 * ********************************************************
+	 * 此处重新实现不带参数的tranlate方法
+	 * ***********************************************************
+	 * @param string $category
+	 * @param string $message
+	 * @return Ambigous <string, string>
+	 */
+	public function t($category, $message)
+	{
+	
+		$t = new CPhpMessageSource();
+		$t->basePath = Yii::getPathOfAlias('gaokao.messages');
+		return $t->translate($category, $message);
+	
+	}
+?>
+ii)在gaokao模块下新建messages文件夹，并加入对应的本地化翻译文件（如新建/protected/modules/gaokao/messages/zh_cn/gaokao.php)
+<?php
+return array(
+	'College Entrance Examination'=>'高考真题',
+);
+?>
+iii)如何使用呢？
+<?php echo Yii::app()->getModule('gaokao')->t('gaokao','College Entrance Examination');?>
+
+
+

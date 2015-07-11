@@ -14,8 +14,9 @@
             <li <?php echo ($this->id=='site'&&$this->action->id=='index')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/index');?>"><?php echo Yii::t("basic","Home");?></a></li>
             <?php $navitems = Config::mergeConfig('nav');?>
             <?php if ($navitems):?>
+			<?php $module = isset($this->module)?$this->module->id:'';?>
             <?php foreach ($navitems as $item):?>
-            <li <?php echo ($this->module->id==$item['module'])?'class="active"':'';?>><a href="<?php echo $this->createUrl($item['link']);?>"><?php echo $item['name'];?></a></li>
+            <li <?php echo ($module==$item['module'])?'class="active"':'';?>><a href="<?php echo $this->createUrl($item['link']);?>"><?php echo $item['name'];?></a></li>
             <?php endforeach;?>
             <?php endif;?>
             <li <?php echo ($this->id=='site'&&$this->action->id=='page')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>"><?php echo Yii::t("basic","About");?></a></li>    
