@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Books'=>array('index'),
-	$model->title=>array('view','id'=>$model->id),
+	$model->info->title=>array('view','id'=>$model->id),
 	'Update',
 );
 
@@ -19,5 +19,5 @@ $this->menu=array(
 <div class="panel panel-default">
 	<div class="panel-heading"><h4><span class="glyphicon glyphicon-pencil"></span> Update Books <?php echo $model->id; ?></div>
 	<div class="panel-body">
-		<?php $this->renderPartial('_form', array('model'=>$model)); ?>	</div>
+		<?php $this->renderPartial('_form', array('model'=>$model->info)); ?>	</div>
 <div>

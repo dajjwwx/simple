@@ -1043,3 +1043,22 @@ Array
 
 )
 
+[Datetime]15-05-31 03:30:49	[File]E:\www\simplelibaray\protected\controllers\ProfileController.php(309)
+Array
+(
+    [Favor] => Array
+        (
+            [food] => 干锅,韩国菜,
+            [movie] => 婚姻保卫战,东成西就,
+            [music] => 乡村音乐,巴洛克,钢琴曲,
+            [tourism] => 四川,乌镇,
+            [books] => 
+            [sports] => 
+            [stars] => 
+            [games] => 
+            [digital] => 
+            [others] => 
+        )
+
+)
+

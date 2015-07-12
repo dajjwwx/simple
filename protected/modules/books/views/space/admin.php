@@ -36,38 +36,44 @@ $('.search-form form').submit(function(){
 		'model'=>$model,
 	)); ?>
 	</div><!-- search-form -->
-
-	<?php $this->widget('zii.widgets.grid.CGridView', array(
+	
+	<?php $this->widget('application.components.bootstrap.BootGridView', array('data'=>array(
 		'id'=>'books-grid',
 		'dataProvider'=>$model->search(),
 		'filter'=>$model,
 		'columns'=>array(
-			'id',
+		// 'id',
+		array(
+			'name'=>'image',
+			'type'=>'raw',
+			'value'=>'CHtml::image($data->image)'
+		),
 		'title',
-		'origin_title',
-		'subtitle',
-		'pubdate',
-		'isbn10',
-		/*
-		'isbn13',
-		'author',
-		'image',
-		'summary',
+		// 'origin_title',
+		// 'subtitle',
+		// 'pubdate',
+		// 'isbn10',
+
+		// 'isbn13',
+		// 'author',		
+		// 'summary',
 		'tags',
-		'catelog',
+		// 'catelog',
 		'binding',
-		'translator',
+		// array(
+			// 'name'=>'translator',
+			// 'value'=>'is_array($data->translator)?implode(",", $data->translator):$data->translator'
+		// ),
 		'pages',
 		'publisher',
-		'alt_title',
-		'author_intro',
+		// 'alt_title',
+		// 'author_intro',
 		'price',
-		*/
-			array(
+		array(
 				'class'=>'CButtonColumn',
 			),
 		),
-	)); ?>
+	))); ?>
 	<div class="panel-footer">
 		<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>		<p>
 		You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

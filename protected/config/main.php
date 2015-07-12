@@ -19,6 +19,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.helpers.*',
 		'application.modules.srbac.controllers.SBaseController',
 	),
 
@@ -61,7 +62,10 @@ return array(
 		),
 		'books'=>array(
 		
-		)
+		),
+		'gaokao'=>array(
+		
+		),
 	),
 
 	// application components

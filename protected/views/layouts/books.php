@@ -4,25 +4,30 @@
 	
 		<div class="row" style="margin-top:90px;opacity:0.9;">
 			<?php 
+			
+				$id = isset($_GET['id'])?$_GET['id']:1;				
+							
 				if ($this->action->id == 'view') {
-					$image = BookShelfInfo::model()->getBookShelfFolderByBookId(intval($_GET['id']),120);
+					$image = BookShelfInfo::model()->getBookShelfFolderByBookId(intval($id),120);
 					$shelf = Books::model()->findByPk($_GET['id'])->shelf;
 				} elseif ($this->action->id == 'home') {
-					$image = BookShelfInfo::model()->getBookShelfFolder(intval($_GET['id']),120);
-					$shelf = BookShelf::model()->findByPk(intval($_GET['id']));
+					$image = BookShelfInfo::model()->getBookShelfFolder(intval($id),120);
+					$shelf = BookShelf::model()->findByPk(intval($id));
 				}				
 			?>
+			
 			<div class="col-md-6 ">			
-				<div class="img-circle pull-left" style="background:url('<?php echo $image;?>') no-repeat center center;width:80px;height:80px;margin:auto;"></div>
-				<h3 style="margin-left:100px;"><?php echo CHtml::link($shelf->name,array('/books/bookshelf/home/','id'=>$shelf->id));?></h3>
+				<div class="img-circle pull-left" style="background:url('<?php //echo $image;?>') no-repeat center center;width:80px;height:80px;margin:auto;"></div>
+				<h3 style="margin-left:100px;"><?php //echo CHtml::link($shelf->name,array('/books/bookshelf/home/','id'=>$shelf->id));?></h3>
 			</div>
+	
 		</div>
 	
 		<div class="row" style="margin-top:30px;opacity:0.9;">
 			<div class="col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<span class="glyphicon glyphicon-paperclip"></span> View Profile #<?php echo $model->id; ?>
+						<span class="glyphicon glyphicon-paperclip"></span> View Profile 
 					</div>
 					<div class="panel-body">
 										

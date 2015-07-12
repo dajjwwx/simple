@@ -17,7 +17,5 @@ You may customize this page by editing <tt><?php echo __FILE__; ?></tt>
 </p>
 
 <p>
-<?php $this->widget('gaokao.components.gaokaomenu.GaoKaoMenu',array(
-	'view'=>'courseslist'
-)); ?>
+
 </p>

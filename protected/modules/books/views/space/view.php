@@ -38,7 +38,20 @@ $this->menu=array(
 						<p>作者：<span id="author"><?php echo $model->info->author;?></span></p>
 						<p>价格：&yen;<span id="price"><?php echo $model->info->price;?></span>元</p>
 						<p>出版社：<span id="publisher"><?php echo $model->info->publisher;?></span></p>
+						<p>书籍分类：<span id="bookcategory" class="editable" contenteditable="true" onclick="showCategories($(this));return false;" data-href="<?php echo $this->createUrl('bookcategory',);?>">分类</span></p>
+						<hr />
+						<div id="categoryList"></div>
 				</div>
+<script type="text/javascript">
+					
+	function showCategories(object)
+	{
+		var href=object.attr('data-href');
+		$('#categoryList').load(href);
+		return false;
+	}
+					
+</script>
 
 				<div class="col-md-12">
 					<br />
@@ -59,7 +72,10 @@ $this->menu=array(
 						)); ?> 
 					  </div>
 					  <div role="tabpanel" class="tab-pane" id="catelog"><?php echo is_null($model->info->catelog)?'没有目录':$model->info->catelog;?></div>
-					  <div role="tabpanel" class="tab-pane" id="summary"><?php echo $model->info->summary;?></div>
+					  <div role="tabpanel" class="tab-pane" id="summary">
+
+					  	
+					  	</div>
 					</div>	
 				</div>
 			</div>

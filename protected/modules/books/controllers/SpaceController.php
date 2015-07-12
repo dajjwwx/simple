@@ -32,7 +32,7 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','addbooks','mybookshelf','cshelf','ushelf','dshelf','home'),
+				'actions'=>array('create','update','addbooks','mybookshelf','cshelf','ushelf','dshelf','home','bookcategory'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -43,6 +43,19 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+	
+	public function actionBookCategory()
+	{
+		$this->layout = '//layouts/blank';
+		
+		$model = self::loadModel($_GET['id']);
+	
+		$this->performAjaxValidation($model);
+		
+		$this->render('book_category', array(
+			'model'=>$model
+		));
 	}
 	
 	public function actionMyBookShelf()
@@ -324,7 +337,7 @@ class SpaceController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Books('search');
+		$model=new BookInfo('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Books']))
 			$model->attributes=$_GET['Books'];

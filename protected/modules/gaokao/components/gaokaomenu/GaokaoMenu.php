@@ -12,7 +12,6 @@ class GaokaoMenu extends CWidget
 		$this->courses = $this->getCourses();	
 		
 		$this->provinces = Region::model()->generateProvince(0);	
-		
 	}
 	
 	private function getCourses()

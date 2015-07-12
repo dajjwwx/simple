@@ -1,6 +1,6 @@
 <style type="text/css">
 	#regionContent{
-		margin-top:400px;
+		margin-top:0px;
 	}
 	#regionContent #regionNav{
 
@@ -21,15 +21,16 @@
 		margin:2px;
 	}
 </style>
+<?php UtilHelper::dump($model->attributes);?>
 <div id="regionContent">
 	<div id="regionNav">
-		<a href="<?php echo $this->createUrl('/profile/regioninfo',array('id'=>0));?>" onclick="eaddress($(this));return false;">现居地</a>
+		<a href="<?php echo $this->createUrl('space/bookcategory',array('id'=>0));?>" onclick="eaddress($(this));return false;">书籍分类</a>
 	</div>
 	<div id="regionNode">
-		<?php echo Region::model()->generateRegionLinks(0, '/profile/regioninfo',array('onclick'=>'eaddress($(this));return false;'),true)?>
+		<?php echo Category::model()->generateCategoryLinks(0, Category::CATEGORY_BOOKS, '/space/bookcategory',array('onclick'=>'eaddress($(this));return false;'),true)?>
 	</div>
 	<div id="regionAdd" class="row hide">
-		<label>新添地区</label>
+		<label>新添分类</label>
 		<input type="text" id="regionField">
 		<span class="button"><a href="javascript:void();" onclick="regionAdd();">提交</a></span>
 		<a href="javascript:void();" onclick="$(this).parent().hide();">收起</a>
@@ -55,12 +56,11 @@ function eaddress(object)
 	}
 
 	$("#lastInputRegion").val(object.attr("id"));
-
-
 	
 	$("#regionNav>a:gt(0)").each(function(i){
 		result += $(this).attr("id")+"-";
 	});
+	
 	$("#Profile_addressdetail").val(result);
 
 	$("#regionNav>a:gt(0)").each(function(i){

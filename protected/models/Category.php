@@ -422,6 +422,70 @@ class Category extends CActiveRecord
 		return $pagetitle;
 	}
 	
+	/**
+	 * *****************************************************
+	 * 获取所有分类，此方法用于生成图书分类浏览
+	 * @link books/space/bookcategory
+	 * ****************************************************
+	 * @param int $pid
+	 * @created 2015/5/31
+	 * @return multitype:NULL
+	 */
+	public function generateCategories($pid,$type=Category::CATEGORY_BOOKS)
+	{		
+		
+		$result = array();
+	
+		$categories = Category::model()->findAll(array(
+				'condition'=>'pid = :pid AND type = :type',
+				'params'=>array(
+					':pid'=>$pid,
+					':type'=>60
+				)
+		));
+	
+		foreach ($categories as $data)
+		{
+			$result[$data->id] = $data->name;
+		}
+	
+		return $result;
+	}
+	
+	/**
+	 * *********************************************************************
+	 * 生成分类连接,此方法用于生成图书分类浏览
+	 * @link books/space/bookcategory
+	 * *******************************************************
+	 * @param int $id
+	 * @param string $link
+	 * @param array $htmlOptions
+	 * @param string $addMore
+	 * @return string
+	 */
+	public function generateCategoryLinks($pid, $type=Category::CATEGORY_BOOKS, $link=null,$htmlOptions=array(),$addMore=true)
+	{
+		$links = '';
+	
+		$result = array();
+	
+		$result = self::generateCategories($pid,$type);
+	
+		foreach ($result as $key=>$value)
+		{
+			$htmlOptions['id'] = $key;
+			$links .= CHtml::link($value,array($link,'id'=>$key), $htmlOptions);
+		}
+	
+		//		UtilHelper::writeToFile($links);
+		if ($addMore)
+			$links .= '<br />如果这里没有你需要的分类，点这里'.CHtml::link('添加','javascript:void();',array('style'=>'border:none;','onclick'=>'addRegion();return false;') );
+			
+		return $links;
+	
+	
+	}
+	
 	
 	public function beforeSave()
 	{

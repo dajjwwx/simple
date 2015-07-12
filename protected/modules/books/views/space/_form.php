@@ -65,7 +65,8 @@
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>60,'maxlength'=>256,'class'=>'form-control','placeholder'=>'image')); ?>
+		<?php //echo $form->textField($model,'image',array('size'=>60,'maxlength'=>256,'class'=>'form-control','placeholder'=>'image')); ?>
+		<?php echo CHtml::image($model->image);?>
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
