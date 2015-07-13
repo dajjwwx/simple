@@ -6,9 +6,12 @@ class DefaultController extends Controller
 	
 	public function actionTest()
 	{
-		$models = Books::model()->findAll();
 		
-		UtilHelper::dump($models);
+		$model = BookInfo2::model()->find();
+		
+		UtilHelper::dump($model);
+		
+
 	}
 	
 	public function actionIndex()

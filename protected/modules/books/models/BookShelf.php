@@ -10,7 +10,7 @@
  * @property integer $owner
  *
  * The followings are the available model relations:
- * @property SbUser $owner
+ * @property User $owner
  * @property BookShelfInfo $info
  * @property Books[] $books
  */
@@ -50,7 +50,7 @@ class BookShelf extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'owner' => array(self::BELONGS_TO, 'SbUser', 'owner'),
+			'owner' => array(self::BELONGS_TO, 'User', 'owner'),
 			'info'=>array(self::HAS_ONE,'BookShelfInfo','sid'),
 			'books' => array(self::HAS_MANY, 'Books', 'sid'),
 		);

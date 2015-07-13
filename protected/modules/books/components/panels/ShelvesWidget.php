@@ -19,7 +19,7 @@ class ShelvesWidget extends CWidget
 		}
 
 		$this->data=new CActiveDataProvider('BookShelf',array(
-				'criteria'=>$criteria
+			'criteria'=>$criteria
 		));
 
 	}
@@ -27,7 +27,7 @@ class ShelvesWidget extends CWidget
 	public function run()
 	{
 		$this->render('shelves',array(
-				'data'=>$this->data
+			'data'=>$this->data
 
 		));
 	}

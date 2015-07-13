@@ -13,7 +13,7 @@
  * The followings are the available model relations:
  * @property BookShelf $shelf
  * @property User $owner
- * @property BookInfo $info
+ * @property BookDetailInfo $info
  */
 class Books extends CActiveRecord
 {
@@ -51,7 +51,7 @@ class Books extends CActiveRecord
 		return array(
 			'shelf' => array(self::BELONGS_TO, 'BookShelf', 'sid'),
 			'owner' => array(self::BELONGS_TO, 'User', 'owner'),
-			'info' => array(self::BELONGS_TO, 'BookInfo', 'bid'),
+			'info' => array(self::BELONGS_TO, 'BookDetailInfo', 'bid'),
 		);
 	}
 

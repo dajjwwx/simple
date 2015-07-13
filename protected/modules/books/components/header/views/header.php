@@ -1,5 +1,4 @@
-<?php if ($Y->action->id == 'view'):?>
-	<div class="col-md-2 ">
-		<div class="img-circle" style="background:url('<?php echo BookShelfInfo::model()->getBookShelfFolderByBookId(intval($_GET['id']),80);?>') no-repeat center center;width:80px;height:80px;margin:auto;"></div>
-	</div>
-<?php endif;?>
+<div class="col-md-6">			
+	<div class="img-circle pull-left" style="background:url('<?php echo $image;?>') no-repeat center center;width:80px;height:80px;margin:auto;"></div>
+	<h3 style="margin-left:100px;"><?php echo CHtml::link($shelf->name,array('/books/bookshelf/home/','id'=>$shelf->id));?></h3>
+</div>

@@ -22,9 +22,12 @@
  * @property string $publisher
  * @property string $alt_title
  * @property string $author_intro
- * @property string $price
+ * @property string $price 
+ *
+ * The followings are the available model relations:
+ * @property Books[] $books
  */
-class BookInfo extends CActiveRecord
+class BookDetailInfo extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -64,6 +67,7 @@ class BookInfo extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'books' => array(self::HAS_MANY, 'Books', 'bid'),
 		);
 	}
 
@@ -161,7 +165,7 @@ class BookInfo extends CActiveRecord
 	{
 		$bookinfo = new DouBanBookInfo($isbn);	
 
-		$model = BookInfo::model()->find(array(
+		$model = BookInformation::model()->find(array(
 				'condition'=>'isbn13 = :isbn13',
 				'params'=>array(
 					':isbn13'=>$isbn		
