@@ -2,3 +2,6 @@
 /assets
 /_bak
 /protected/runtime
+/*.project
+/*.buildpath
+/.settings

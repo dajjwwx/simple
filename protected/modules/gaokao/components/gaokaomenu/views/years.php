@@ -1,0 +1,3 @@
+<?php for($i=0; $i < sizeof($years); $i++):?>
+	<span class="item"><?php echo CHtml::link($years[$i],array('year','id'=>$years[$i]));?></span> | 
+<?php endfor;?>

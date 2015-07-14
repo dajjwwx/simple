@@ -41,6 +41,28 @@
 						)); ?>
 					</div>
 				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="glyphicon glyphicon-paperclip"></span> 年份
+					</div>
+					<div class="panel-body">
+						<?php $this->widget('gaokao.components.gaokaomenu.GaoKaoMenu',array(
+							'view'=>'years'
+						)); ?>
+					</div>
+				</div>
+								
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="glyphicon glyphicon-paperclip"></span> 省份
+					</div>
+					<div class="panel-body">
+						<?php $this->widget('gaokao.components.gaokaomenu.GaoKaoMenu',array(
+							'view'=>'province'
+						)); ?>
+					</div>
+				</div>
 			
 				<div class="panel panel-default">
 					<div class="panel-heading"><?php echo Yii::app()->getModule('gaokao')->t('gaokao','College Entrance Examination');?></div>
