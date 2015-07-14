@@ -44,11 +44,12 @@ return array(
 		'uploadVideoPath'		=>	'/public/upload/Video/',
 		'uploadCategoryPath'	=> 	'/public/upload/Category/',
 		'uploadAvatarPath'	=>	'/public/upload/Avatar/',
-		'uploadEditorPath'		=>  '/public/upload/Editor/',	//从编辑器中上传的文件
+		'uploadEditorPath'		=>  '/public/upload/Editor/',	//从编辑器中上传的文件	
 		
-		/****************Books自定义********************/
-		
+		/****************Books自定义********************/		
 		'uploadBooksPath'		=>	'/public/upload/Books/',
+		//GaoKao文件上传路径
+		'uploadGaoKaoPath'		=>	'/public/upload/GaoKao/',
 		
 		/*********************************/
 
