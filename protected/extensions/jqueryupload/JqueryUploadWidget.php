@@ -1,4 +1,7 @@
 <?php
+/**
+ *@use 
+ */
 class JqueryUploadWidget extends CWidget
 {
 	public $clientScript;

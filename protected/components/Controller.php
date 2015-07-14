@@ -35,11 +35,13 @@ class Controller extends CController
 				foreach ($script as $dir=>$libs){
 					if($dir == 'core'){
 						foreach ($libs as $core){
-							Yii::app()->getClientScript()->registerScriptFile('http://www.simplecdn.com/YKG/1.1/core/yuekegu.'.$core.'.js',CClientScript::POS_HEAD);
+							//Yii::app()->getClientScript()->registerScriptFile('http://www.simplecdn.com/YKG/1.1/core/yuekegu.'.$core.'.js',CClientScript::POS_HEAD);
+							Yii::app()->getClientScript()->registerScriptFile('/public/js/YKG/1.1/core/yuekegu.'.$core.'.js',CClientScript::POS_HEAD);
 						}
 					}else{
 						foreach ($libs as $plugin){
-							Yii::app()->getClientScript()->registerScriptFile('http://www.simplecdn.com/YKG/1.1/plugins/'.$plugin,CClientScript::POS_HEAD);
+							//Yii::app()->getClientScript()->registerScriptFile('http://www.simplecdn.com/YKG/1.1/plugins/'.$plugin,CClientScript::POS_HEAD);
+							Yii::app()->getClientScript()->registerScriptFile('/public/js/YKG/1.1/plugins/'.$plugin,CClientScript::POS_HEAD);
 						}
 					}
 		

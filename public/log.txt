@@ -1,4 +1,4 @@
-[Datetime]15-07-14 08:49:41	[File]E:\PHP\Common\Util\UtilHelper.php(362)
+[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Util\UtilHelper.php(362)
 Array
 (
     [width] => 210
@@ -11,10 +11,10 @@ Array
     [onlyPath] => 
 )
 
-[Datetime]15-07-14 08:49:41	[File]E:\PHP\Common\Util\UtilHelper.php(362)
+[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Util\UtilHelper.php(362)
 Array
 (
-    [width] => 232
+    [width] => 120
     [height] => 2000
     [border] => 1
     [isMask] => 
@@ -24,11 +24,11 @@ Array
     [onlyPath] => 
 )
 
-[Datetime]15-07-14 08:49:41	[File]E:\PHP\Common\Models\FileModel.php(199)
-/public/upload/Books/2014/11/21/0e449d04f4c55dacec4d6abecefd42b3
-[Datetime]15-07-14 08:49:41	[File]E:\PHP\Common\Models\FileModel.php(199)
-/public/upload/Books/2014/11/21/0e449d04f4c55dacec4d6abecefd42b3
-[Datetime]15-07-14 08:49:41	[File]E:\PHP\Common\Util\UtilHelper.php(362)
-./public/upload/Books/2014/11/21/0e449d04f4c55dacec4d6abecefd42b3_thumb_232.jpg
-[Datetime]15-07-14 08:49:41	[File]E:\PHP\Common\Models\FileModel.php(199)
-/public/upload/Books/2014/11/21/0e449d04f4c55dacec4d6abecefd42b3
+[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Models\FileModel.php(199)
+/public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f
+[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Models\FileModel.php(199)
+/public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f
+[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Util\UtilHelper.php(362)
+./public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f_thumb_120.jpg
+[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Models\FileModel.php(199)
+/public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f
