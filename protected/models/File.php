@@ -48,6 +48,7 @@ class File extends CActiveRecord
 	const FILE_TYPE_BRAINSTROMING = 50;		//头脑风暴分类
 	const FILE_TYPE_AVATAR = 60;			//头像分类
 	const FILE_TYPE_BOOKS = 70;			//图书共享
+	const FILE_TYPE_GAOKAO = 80;		//高考模块
 	
 	//file status
 	const FILE_STATUS_RECYCLING = 0;	//放入回收站
