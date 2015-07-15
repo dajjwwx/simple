@@ -8,7 +8,7 @@ Yii::setPathOfAlias('common',dirname(dirname(dirname(dirname(__FILE__)))).'\Comm
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Simple Libaray',
+	'name'=>'悦珂谷',
 		
 	'language'=>'zh_cn',
 
@@ -131,6 +131,17 @@ return array(
 		'dbBlog'=>array(
 				'class'=> 'CDbConnection',
 				'connectionString' => 'mysql:host=localhost;dbname=simpleblog',
+				'emulatePrepare' => true,
+				'username' => 'root',
+				'password' => 'blueidea',
+				'charset' => 'utf8',
+				'tablePrefix'=>'sbg_',
+				'enableProfiling'=>true,
+				'schemaCachingDuration'=>3600,
+		),
+		'dbGaokao'=>array(
+				'class'=> 'CDbConnection',
+				'connectionString' => 'mysql:host=localhost;dbname=simplegaokao',
 				'emulatePrepare' => true,
 				'username' => 'root',
 				'password' => 'blueidea',
