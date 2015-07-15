@@ -15,11 +15,7 @@ class GaokaoMenu extends CWidget
 	
 	private function getCourses()
 	{
-		$config =  Yii::getPathOfAlias($name.'.config.'.$item).'.php';		
-		$this->courses = require_once $config;
-		
-		
-		return json_decode(json_encode($this->courses));
+
 	}
 	
 	public function run()

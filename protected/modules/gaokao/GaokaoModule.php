@@ -11,6 +11,7 @@ class GaokaoModule extends CWebModule
 		$this->setImport(array(
 			'gaokao.models.*',
 			'gaokao.components.*',
+			'gaokao.models.*',
 		));
 	}	
 		

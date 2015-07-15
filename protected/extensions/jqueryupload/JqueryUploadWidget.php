@@ -13,7 +13,7 @@ class JqueryUploadWidget extends CWidget
     public $needCore = false;
     
 	private $_options = array(
-
+		sizeErrorStr=>'只能16M'
     );
 
 

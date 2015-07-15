@@ -1,4 +1,4 @@
-[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Util\UtilHelper.php(362)
+[Datetime]15-07-15 05:38:36	[File]E:\PHP\Common\Util\UtilHelper.php(362)
 Array
 (
     [width] => 210
@@ -11,10 +11,10 @@ Array
     [onlyPath] => 
 )
 
-[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Util\UtilHelper.php(362)
+[Datetime]15-07-15 05:38:36	[File]E:\PHP\Common\Util\UtilHelper.php(362)
 Array
 (
-    [width] => 120
+    [width] => 210
     [height] => 2000
     [border] => 1
     [isMask] => 
@@ -24,11 +24,92 @@ Array
     [onlyPath] => 
 )
 
-[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Models\FileModel.php(199)
-/public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f
-[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Models\FileModel.php(199)
-/public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f
-[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Util\UtilHelper.php(362)
-./public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f_thumb_120.jpg
-[Datetime]15-07-14 09:22:13	[File]E:\PHP\Common\Models\FileModel.php(199)
-/public/upload/Avatar/2014/11/02/3bf242a105583acb40aa2fa3692de54f
+[Datetime]15-07-15 05:38:36	[File]E:\PHP\Common\Models\FileModel.php(199)
+/public/upload/GaoKao/2015/07/15/fbcf6333969a383d6e913788e4132f9a
+[Datetime]15-07-15 05:38:36	[File]E:\PHP\Common\Util\UtilHelper.php(362)
+Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [FILES] => Array
+        (
+            [Filedata] => Array
+                (
+                    [name] => MongoDB-crud-guide.pdf
+                    [type] => 
+                    [tmp_name] => 
+                    [error] => 1
+                    [size] => 0
+                )
+
+        )
+
+    [Ext] => Array
+        (
+            [0] => *.pdf
+        )
+
+    [dataArray] => Array
+        (
+            [pid] => 
+            [created] => 1436974715
+            [extension] => pdf
+            [name] => MongoDB-crud-guide.pdf
+            [size] => 0
+            [mine] => application/pdf
+            [links] => fbcf6333969a383d6e913788e4132f9a
+            [owner] => 1
+            [isfolder] => 0
+            [hits] => 0
+            [filetype] => 80
+            [status] => 2
+            [islocal] => 1
+            [server] => local
+        )
+
+    [Model] => Array
+        (
+            [iscomment] => 1
+            [server] => local
+            [pid] => 
+            [created] => 1436974715
+            [extension] => pdf
+            [name] => MongoDB-crud-guide.pdf
+            [size] => 0
+            [mine] => application/pdf
+            [links] => fbcf6333969a383d6e913788e4132f9a
+            [owner] => 1
+            [hits] => 0
+            [filetype] => 80
+            [status] => 2
+            [islocal] => 1
+            [id] => 
+            [tag] => 
+            [remark] => 
+        )
+
+    [Path] => Array
+        (
+            [tempName] => 
+            [targetFile] => ./public/upload/GaoKao/2015/07/15/fbcf6333969a383d6e913788e4132f9a.pdf
+        )
+
+    [ERROR] => #0 E:\PHP\SimpleBase\protected\modules\gaokao\controllers\SpaceController.php(96): UtilUploader2::uploadNormal('Filedata', 80, '/public/upload/...', NULL, '*.pdf')
+#1 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(49): SpaceController->actionUpload()
+#2 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#4 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#6 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#7 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\CController.php(291): CFilterChain->run()
+#9 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('upload')
+#11 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('gaokao/space/up...')
+#12 E:\PHP\Common\Libaray\yii-1.1.14.f0fee9\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#13 E:\PHP\SimpleBase\index.php(18): CApplication->run()
+#14 {main}
+)
+
