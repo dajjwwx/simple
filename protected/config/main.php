@@ -146,7 +146,7 @@ return array(
 				'username' => 'root',
 				'password' => 'blueidea',
 				'charset' => 'utf8',
-				'tablePrefix'=>'sbg_',
+				'tablePrefix'=>'gk_',
 				'enableProfiling'=>true,
 				'schemaCachingDuration'=>3600,
 		),
