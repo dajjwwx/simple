@@ -31,6 +31,9 @@
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'province'); ?>
+		<?php foreach(Region::model()->generateProvince(0) as $k=>$province):?>
+			<span class="item"><a href="javascript:void(0);" class="provinceItem" onclick="addIds($(this));" id="<?php echo $k; ?>"><?php echo $province; ?></a></span> | 
+		<?php endforeach;?>
 		<?php echo $form->textField($model,'province',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
 		<?php echo $form->error($model,'province'); ?>
 	</div>
@@ -54,14 +57,20 @@
 			'extErrorStr'=>'允许上传的文件格式为：',
 			'sizeErrorStr'=>'您的文件太大了，最大只能上传',
 			'onLoad'=>'js:function(obj){
-				alert("Hello");
+				console.log($("#gaokao_form").serializeArray());
+				
 				return ;
 			}',
 			'onSuccess'=>'js:function(files,data,xhr)
 			{	
 				$("#status").html("<font color=\'green\'>Upload is success</font>").fadeOut(1000);
 				console.log(data);
-				console.log(files);			
+				console.log(files);	
+				
+				$("#Gaokao_fid").val(data.id);
+
+				
+				
 			}',
 			'onError'=>'js:function(files,status,errMsg){		
 				console.log(errMsg);	
@@ -80,3 +89,24 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<script type="text/javascript">
+function addIds(object){
+	if(object.parent().hasClass('selected')){
+		object.parent().removeClass('selected');
+		object.parent().css({border:'none'});
+	}else{
+		object.parent().addClass('selected');
+		object.parent().css({border:'1px solid grey'});
+	}
+	var result = '';
+	$('.selected a').each(function(i){
+		result = result + $(this).attr('id') + ',';
+	});
+	
+	result = result.substring(0,result.length-1);
+	
+	$("#Gaokao_province").val(result);
+	
+
+}
+</script>

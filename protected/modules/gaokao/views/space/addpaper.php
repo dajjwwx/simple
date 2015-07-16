@@ -13,8 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo $this->module->t('gaokao','Add Paper'); ?></h1>
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<span class="glyphicon glyphicon-paperclip"></span> 上传试卷
