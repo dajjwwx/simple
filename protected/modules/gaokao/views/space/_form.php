@@ -15,15 +15,17 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+		
 	<div class="form-group">
+		<?php //UtilHelper::dump(Gaokao::model()->getCoursesList()); ?>
 		<?php echo $form->labelEx($model,'course'); ?>
-		<?php echo $form->textField($model,'course',array('class'=>"form-control",'placeholder'=>$this->module->t('gaokao','Course'))); ?>
+		<?php echo $form->dropDownList($model,'course',Gaokao::model()->getCoursesList(),array('class'=>"form-control",'placeholder'=>$this->module->t('gaokao','Course'))); ?>
 		<?php echo $form->error($model,'course'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'year'); ?>
-		<?php echo $form->textField($model,'year',array('size'=>4,'maxlength'=>4,'class'=>"form-control",'placeholder'=>$this->module->t('gaokao','Year'))); ?>
+		<?php echo $form->dropDownList($model,'year',Gaokao::model()->getYearsList(),array('size'=>4,'maxlength'=>4,'class'=>"form-control",'placeholder'=>$this->module->t('gaokao','Year'))); ?>
 		<?php echo $form->error($model,'year'); ?>
 	</div>
 
@@ -38,7 +40,8 @@
 		<?php echo $form->textField($model,'fid'); ?>
 		<?php echo $form->error($model,'fid'); ?>
 	</div>
-	
+
+	<div class="form-group">
 	<?php
 		$this->widget('ext.jqueryupload.JqueryUploadWidget',array(
 			'url'=>Yii::app()->createUrl('/gaokao/space/upload'),
@@ -50,7 +53,7 @@
 			'multiple'=>false,
 			'extErrorStr'=>'允许上传的文件格式为：',
 			'sizeErrorStr'=>'您的文件太大了，最大只能上传',
-			'onLoad'=>'js:function(){
+			'onLoad'=>'js:function(obj){
 				alert("Hello");
 				return ;
 			}',
@@ -68,8 +71,9 @@
 	?>
 		<div id="mulitplefileuploader">上传试卷</div>  
 		<div id="status"></div> 
-
-	<div class="row buttons">
+	</div>
+	
+	<div class="form-group buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 

@@ -107,20 +107,45 @@ class Gaokao extends CActiveRecord
 		));
 	}
 	
+	public function getCoursesList()
+	{
+		$courses = $this->getCourses();
+		
+		$list = array(
+			''=>'科目'
+		);		
+		
+		for($i=0; $i < sizeof($courses); $i++)
+		{
+			$list[$courses[$i]['id']] = $courses[$i]['course'];
+		}
+		
+		return $list;
+	}
+	
 	public function getCourses()
 	{
-		$config =  Yii::getPathOfAlias($name.'.config.'.$item).'.php';		
-		$courses = require_once $config;
+		$config =  Yii::getPathOfAlias('gaokao.config.courses').'.php';		
+		$courses = require_once $config;	
+		return $courses;				
+	}
+	
+	public function getYearsList()
+	{
+		$list = array();
+		$years = $this->getYears();
+		foreach($years as $K=>$year)
+		{
+			$list[$year] = $year;
+		}
 		
-		return $courses;
-		
-		
-				
+		return $list;
 	}
 	
 	public function getYears()
 	{
-		
+		$years = array_reverse(range(2006,date('Y')));
+		return $years;
 	}
 	
 	
