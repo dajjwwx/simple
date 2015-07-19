@@ -36,7 +36,7 @@
 						<span class="glyphicon glyphicon-paperclip"></span> 科目
 					</div>
 					<div class="panel-body">
-						<?php $this->widget('gaokao.components.gaokaomenu.GaoKaoMenu',array(
+						<?php $this->widget('gaokao.components.gaokaomenu.GaokaoMenu',array(
 							'view'=>'courseslist'
 						)); ?>
 					</div>
@@ -47,7 +47,7 @@
 						<span class="glyphicon glyphicon-paperclip"></span> 年份
 					</div>
 					<div class="panel-body">
-						<?php $this->widget('gaokao.components.gaokaomenu.GaoKaoMenu',array(
+						<?php $this->widget('gaokao.components.gaokaomenu.GaokaoMenu',array(
 							'view'=>'years'
 						)); ?>
 					</div>
@@ -58,7 +58,7 @@
 						<span class="glyphicon glyphicon-paperclip"></span> 省份
 					</div>
 					<div class="panel-body">
-						<?php $this->widget('gaokao.components.gaokaomenu.GaoKaoMenu',array(
+						<?php $this->widget('gaokao.components.gaokaomenu.GaokaoMenu',array(
 							'view'=>'province'
 						)); ?>
 					</div>
