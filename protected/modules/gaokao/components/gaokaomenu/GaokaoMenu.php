@@ -3,7 +3,6 @@ class GaokaoMenu extends CWidget
 {
 	private $baseUrl;
 	
-	
 	public $view = 'courses';	//year
 	
 	public $courses;
@@ -21,15 +20,16 @@ class GaokaoMenu extends CWidget
 	
 	public function getYears()
 	{
-		$years = array_reverse(range(2006,date('Y')));
-		
+		$years = array_reverse(range(2006,date('Y')));	
 		return $years;
 	}
 	
 	private function getCourses()
 	{
-		$config =  Yii::getPathOfAlias('gaokao.config.courses').'.php';		
-		$this->courses = require_once $config;		
+		// $config =  Yii::getPathOfAlias('gaokao.config.courses').'.php';		
+		// $this->courses = require_once $config;	
+
+		$this->courses = Gaokao::model()->getCourses();
 		return $this->courses;
 	}
 	

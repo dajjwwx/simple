@@ -126,13 +126,13 @@ class Gaokao extends CActiveRecord
 	public function getCourses()
 	{
 		$config =  Yii::getPathOfAlias('gaokao.config.courses').'.php';		
-		$courses = require_once $config;	
+		$courses = require $config;	
 		return $courses;				
 	}
 	
 	public function getYearsList()
 	{
-		$list = array();
+		$list = array(''=>'年份');
 		$years = $this->getYears();
 		foreach($years as $K=>$year)
 		{
