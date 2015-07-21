@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--
 Copyright 2012 Mozilla Foundation
 
@@ -25,21 +25,21 @@ http://sourceforge.net/adobe/cmap/wiki/License/
     <title>PDF.js viewer</title>
 
 
-    <link rel="stylesheet" href="viewer.css"/>
+    <link rel="stylesheet" href="<?php echo $this->baseUrl;?>/web/viewer.css"/>
 
-    <script src="compatibility.js"></script>
+    <script src="<?php echo $this->baseUrl;?>/web/compatibility.js"></script>
 
 
 
 <!-- This snippet is used in production (included from viewer.html) -->
-<link rel="resource" type="application/l10n" href="locale/locale.properties"/>
-<script src="l10n.js"></script>
-<script src="../build/pdf.js"></script>
+<link rel="resource" type="application/l10n" href="<?php echo $this->baseUrl;?>/web/locale/locale.properties"/>
+<script src="<?php echo $this->baseUrl;?>/web/l10n.js"></script>
+<script src="<?php echo $this->baseUrl;?>/build/pdf.js"></script>
 
 
 
-    <script src="debugger.js"></script>
-    <script src="viewer.js"></script>
+    <script src="<?php echo $this->baseUrl;?>/web/debugger.js"></script>
+    <script src="<?php echo $this->baseUrl;?>/web/viewer.js"></script>
 
   </head>
 
