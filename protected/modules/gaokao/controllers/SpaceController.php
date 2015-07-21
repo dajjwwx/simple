@@ -24,7 +24,7 @@ class SpaceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','list'),
+				'actions'=>array('index','view','list','viewsingle'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -57,6 +57,13 @@ class SpaceController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+	
+	public function actionViewSingle()
+	{
+		$this->layout = '/layouts/blank';
+		
+		$this->render('view_single');
+	}
 
 	/**
 	 * Creates a new model.
@@ -67,13 +74,18 @@ class SpaceController extends Controller
 		$model=new Gaokao;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Gaokao']))
 		{
 			$model->attributes=$_POST['Gaokao'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			{
+				//$this->redirect(array('view','id'=>$model->id));
+				echo json_encode($model->attributes);
+			}
+			
+			return ;
 		}
 
 		$this->render('addpaper',array(

@@ -8,14 +8,12 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'gaokao-form',
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
-
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
+	
 	<?php echo $form->errorSummary($model); ?>
-
-		
+	
 	<div class="form-group">
 		<?php //UtilHelper::dump(Gaokao::model()->getCoursesList()); ?>
 		<?php echo $form->labelEx($model,'course'); ?>
@@ -25,7 +23,7 @@
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'year'); ?>
-		<?php echo $form->dropDownList($model,'year',Gaokao::model()->getYearsList(),array('size'=>4,'maxlength'=>4,'class'=>"form-control",'placeholder'=>$this->module->t('gaokao','Year'))); ?>
+		<?php echo $form->dropDownList($model,'year',Gaokao::model()->getYearsList(),array('class'=>"form-control",'placeholder'=>$this->module->t('gaokao','Year'))); ?>
 		<?php echo $form->error($model,'year'); ?>
 	</div>
 
@@ -52,24 +50,41 @@
 			'id'=>'mulitplefileuploader',
 			'allowedTypes'=>'pdf',//只允许上传PDF文件
 			'fileName'=>'Filedata',
+			'returnType'=>"json",
 			'maxFileSize'=>5*1024*1024,
+			//'showDownload'=>true,
+			//'statusBarWidth'=>600,
+			//'dragdropWidth'=>600,
 			'multiple'=>false,
 			'extErrorStr'=>'允许上传的文件格式为：',
 			'sizeErrorStr'=>'您的文件太大了，最大只能上传',
+			'deleteCallback'=>'js:function (data, pd) {
+				for (var i = 0; i < data.length; i++) {
+					$.post("delete.php", {op: "delete",name: data[i]},
+						function (resp,textStatus, jqXHR) {
+							//Show Message	
+							alert("File Deleted");
+						});
+				}
+				pd.statusbar.hide(); //You choice.
+
+			}',
 			'onLoad'=>'js:function(obj){
 				console.log($("#gaokao_form").serializeArray());
 				
-				return ;
+				console.log(obj);
+				
+				alert($("#Gaokao_course").val());
+				
+				return false;
 			}',
 			'onSuccess'=>'js:function(files,data,xhr)
 			{	
 				$("#status").html("<font color=\'green\'>Upload is success</font>").fadeOut(1000);
-				console.log(data);
-				console.log(files);	
 				
-				$("#Gaokao_fid").val(data.id);
-
-				
+				console.log(data);	
+				console.log(files);					
+				$("#Gaokao_fid").val(data.id);			
 				
 			}',
 			'onError'=>'js:function(files,status,errMsg){		
@@ -83,7 +98,7 @@
 	</div>
 	
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn btn-default')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
@@ -106,7 +121,19 @@ function addIds(object){
 	result = result.substring(0,result.length-1);
 	
 	$("#Gaokao_province").val(result);
-	
-
 }
+
+
+
+$(function(){
+	$("#gaokao-form").submit(function(){
+		var data = $(this).serializeArray();
+		$.post('<?php echo $this->createUrl("/gaokao/space/addpaper");?>',data,function(result){
+			console.log(result);
+		});	
+
+		console.log($(this).serializeArray());
+		return false;
+	});	
+});
 </script>

@@ -16,7 +16,19 @@ $this->menu=array(
 );
 ?>
 
+<a href="<?php echo $this->createUrl('viewsingle',array('file'=>'/public/upload/GaoKao/2015/07/20/d01cfd6d4f77aaa9701d06c9909f2c81.pdf')); ?>">查看</a>
+
 <h1>View Gaokao #<?php echo $model->id; ?></h1>
+
+<?php
+	$this->widget('ext.pdfobject.PDFObjectWidget',array(
+		'file'=>'/public/upload/GaoKao/2015/07/20/d01cfd6d4f77aaa9701d06c9909f2c81.pdf',
+	));
+?>
+
+
+
+
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -28,3 +40,4 @@ $this->menu=array(
 		'fid',
 	),
 )); ?>
+
