@@ -11,7 +11,7 @@
  * @property integer $fid
  *
  * The followings are the available model relations:
- * @property Simplebase.sbFile $f
+ * @property File $file
  */
 class Gaokao extends CActiveRecord
 {

@@ -16,13 +16,21 @@ $this->menu=array(
 );
 ?>
 
-<a href="<?php echo $this->createUrl('viewsingle',array('file'=>'/public/upload/GaoKao/2015/07/20/d01cfd6d4f77aaa9701d06c9909f2c81.pdf')); ?>">查看</a>
+
+<?php 
+$folder = Yii::app()->params->uploadGaoKaoPath;
+$targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
+echo $targetFile;
+?>
+
+
+<a href="<?php echo $this->createUrl('viewsingle',array('file'=>$targetFile)); ?>">全屏查看</a>
 
 <h1>View Gaokao #<?php echo $model->id; ?></h1>
 
 <?php
 	$this->widget('ext.pdfobject.PDFObjectWidget',array(
-		'file'=>'/public/upload/GaoKao/2015/07/20/d01cfd6d4f77aaa9701d06c9909f2c81.pdf',
+		'file'=>$targetFile,
 	));
 ?>
 
