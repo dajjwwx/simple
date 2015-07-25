@@ -7,6 +7,12 @@ class DefaultController extends Controller
 	
 	public function actionIndex()
 	{
-		$this->render('index');
+		$courses = Gaokao::model()->getCourses();
+		$provinces = Region::model()->generateProvince(0);
+		
+		$this->render('index',array(
+			'courses'=>$courses,
+			'provinces'=>$provinces
+		));
 	}
 }
