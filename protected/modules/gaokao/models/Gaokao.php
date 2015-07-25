@@ -123,9 +123,24 @@ class Gaokao extends CActiveRecord
 		return $list;
 	}
 	
+	/**
+	 *根据省份和高考科目生成相关试卷链接
+	 */
+	public function getPaperLink($province,$course,$year)
+	{
+		$model = self::model()->find(array(
+			'conditions'=>'province=:province AND course=:course AND year=:year',
+			'params'=>array(
+				':province'=>$province,
+				':course'=>$course,
+				':year'=>$year
+			)
+		));
+	}
+	
 	public function getCourses()
 	{
-		$config =  Yii::getPathOfAlias('gaokao.config.courses').'.php';		
+		$config =  Yii::getPathOfAlias('gaokao.config.gaokao_courses').'.php';		
 		$courses = require $config;	
 		return $courses;				
 	}
