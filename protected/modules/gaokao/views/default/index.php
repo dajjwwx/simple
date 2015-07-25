@@ -5,17 +5,24 @@ $this->breadcrumbs=array(
 	$this->module->id,
 );
 ?>
-<h1><?php echo $this->uniqueId . '/' . $this->action->id; ?></h1>
-
-<p>
-This is the view content for action "<?php echo $this->action->id; ?>".
-The action belongs to the controller "<?php echo get_class($this); ?>"
-in the "<?php echo $this->module->id; ?>" module.
-</p>
-<p>
-You may customize this page by editing <tt><?php echo __FILE__; ?></tt>
-</p>
-
-<p>
-
-</p>
+<?php foreach($courses as $course):?>
+<a name="<?php echo $course['cname'];?>"></a>
+<div class="panel panel-default">
+<div class="panel-heading">
+	<span class="glyphicon glyphicon-paperclip"></span> <?php echo $course['course'];?></div>
+<div class="panel-body">
+	<ul style="margin:0px;padding:0px;">
+	<?php foreach($provinces as $k=>$province):?>
+		<li style="list-style:none;float:left;width:180px;height:100px;margin:10px;padding:5px;background-color:#FFFFFF;border:1px solid grey;">
+			<div style="margin-top:10px;text-align:center;font-size:18px;font-weight:bold;"><?php echo $province?></div>
+			<br />
+			<div style="text-align:center;font-size:16px;">
+			<a href="" style="">试卷</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="">答案</a>
+			</div>
+		</li>
+	<?php endforeach;?>
+	</ul>
+			
+</div>
+</div>
+<?php endforeach;?>
