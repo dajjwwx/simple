@@ -7,7 +7,7 @@
 		</div>
 	
 		<div class="row" style="margin-top:30px;opacity:0.9;">
-			<div class="col-md-3">
+			<div class="col-md-3" style="position:relative;height:600px;">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<span class="glyphicon glyphicon-paperclip"></span> View Profile </div>
