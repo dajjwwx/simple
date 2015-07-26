@@ -15,4 +15,11 @@ class DefaultController extends Controller
 			'provinces'=>$provinces
 		));
 	}
+
+	public function actionTest()
+	{
+		$link = Gaokao::model()->getPaperLink(9,1,2013);
+
+		echo $link;
+	}
 }

@@ -128,14 +128,30 @@ class Gaokao extends CActiveRecord
 	 */
 	public function getPaperLink($province,$course,$year)
 	{
-		$model = self::model()->find(array(
-			'conditions'=>'province=:province AND course=:course AND year=:year',
+
+		$criteria = new CDbCriteria(array(
+			'condition'=>'course = :course AND year = :year',
 			'params'=>array(
-				':province'=>$province,
 				':course'=>$course,
-				':year'=>$year
+				':year'=>$year				
 			)
 		));
+
+		$criteria->addSearchCondition('province','\','.$province.',\'',true, 'AND');
+		$criteria->addSearchCondition('province','\','.$province.'\'',true, 'OR');
+		$criteria->addSearchCondition('province','\''.$province.',\'',true, 'OR');
+
+		$model = self::model()->find($criteria);
+
+		//未完成，根据ID等信息生成相应的链接
+		if($model)
+		{
+			return CHtml::link('试题',array('space/view','id'=>$model->id)).'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.CHtml::link('答案',array('space/key','id'=>$model->id));
+		}
+		else
+		{
+			return '<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>';
+		}
 	}
 	
 	public function getCourses()

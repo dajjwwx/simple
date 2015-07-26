@@ -17,7 +17,10 @@ $this->breadcrumbs=array(
 			<div style="margin-top:10px;text-align:center;font-size:18px;font-weight:bold;"><?php echo $province?></div>
 			<br />
 			<div style="text-align:center;font-size:16px;">
-			<a href="" style="">试卷</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="">答案</a>
+			<!--<a href="" style="color:grey;">试卷</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="color:grey;">答案</a>-->
+			<?php //echo $province.'-'.$course;?>
+			<?php //print_r($course['id']);?>
+			<?php echo Gaokao::model()->getPaperLink($province,$course['id'],2015); ?>
 			</div>
 		</li>
 	<?php endforeach;?>
