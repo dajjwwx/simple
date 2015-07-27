@@ -4,7 +4,7 @@
 	<div class="row" style="margin-top:60px;"></div>
 	<div class="row-fluid">
 		<div class="col-md-8">
-						<?php if(isset($this->breadcrumbs)):?>
+					<?php if(isset($this->breadcrumbs)):?>
 						<?php $this->widget('application.components.BootBreadcrumbs', array(
 							'links'=>$this->breadcrumbs,
 							'homeLink'=>'<li>'.CHtml::link(Yii::t('zii','Home'),'/').'</li>'

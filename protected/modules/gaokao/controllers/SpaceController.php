@@ -24,7 +24,7 @@ class SpaceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','list','viewsingle'),
+				'actions'=>array('index','view','list','viewsingle','year'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -44,7 +44,33 @@ class SpaceController extends Controller
 		
 	public function actionList()
 	{
-		$this->render('list');
+
+		$courses = Gaokao::model()->getCourses();
+		$provinces = Region::model()->generateProvince(0);
+		$year = $_GET['year']?$_GET['id']:(date('Y')-1);
+
+
+		$this->render('list',array(
+			'courses'=>$courses,
+			'provinces'=>$provinces,
+			'year'=>$year
+		));
+
+	}
+
+	public function actionYear()
+	{
+
+		$courses = Gaokao::model()->getCourses();
+		$provinces = Region::model()->generateProvince(0);
+		$year = $_GET['year']?$_GET['id']:(date('Y')-1);
+
+
+		$this->render('list',array(
+			'courses'=>$courses,
+			'provinces'=>$provinces,
+			'year'=>$year
+		));
 	}	
 	
 	/**

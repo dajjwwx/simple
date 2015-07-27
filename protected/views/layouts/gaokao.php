@@ -24,7 +24,7 @@
 							));
 							$this->widget('zii.widgets.CMenu', array(
 								'items'=>$this->menu,
-								'htmlOptions'=>array('class'=>'operations'),
+								'htmlOptions'=>array('class'=>'operations list-group'),
 							));
 							$this->endWidget();
 						?>		
@@ -76,7 +76,18 @@
 				</div>	
 			</div>
 			<div class="col-md-9">
+				<?php if(isset($this->breadcrumbs)):?>
+						<?php $this->widget('application.components.BootBreadcrumbs', array(
+							'links'=>$this->breadcrumbs,
+							'homeLink'=>'<li>'.CHtml::link(Yii::t('zii','Home'),'/').'</li>'
+						)); ?><!-- breadcrumbs -->
+					<?php endif?> 
 				<?php echo $content;?>
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-5">
+
+				</div>
 			</div>	
 		</div>
 		

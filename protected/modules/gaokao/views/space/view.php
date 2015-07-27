@@ -20,13 +20,11 @@ $this->menu=array(
 <?php 
 $folder = Yii::app()->params->uploadGaoKaoPath;
 $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
-echo $targetFile;
+// echo $targetFile;
 ?>
 
 
-<a href="<?php echo $this->createUrl('viewsingle',array('file'=>$targetFile)); ?>">全屏查看</a>
 
-<h1>View Gaokao #<?php echo $model->id; ?></h1>
 
 <?php
 	$this->widget('ext.pdfobject.PDFObjectWidget',array(
@@ -34,9 +32,7 @@ echo $targetFile;
 	));
 ?>
 
-
-
-
+<a href="<?php echo $this->createUrl('viewsingle',array('file'=>$targetFile)); ?>">全屏查看</a>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
