@@ -8,6 +8,7 @@
  * @property string $region
  * @property integer $uid
  * @property integer $pid
+ * @property string $code
  * @property integer $forerunner
  *
  * The followings are the available model relations:
@@ -76,6 +77,7 @@ class Region extends CActiveRecord
 			'region' => 'Region',
 			'uid' => 'Uid',
 			'pid' => 'Pid',
+			'code' => 'Code',
 			'forerunner' => 'Forerunner',
 		);
 	}
@@ -102,6 +104,7 @@ class Region extends CActiveRecord
 		$criteria->compare('region',$this->region,true);
 		$criteria->compare('uid',$this->uid);
 		$criteria->compare('pid',$this->pid);
+		$criteria->compare('code',$this->code);
 		$criteria->compare('forerunner',$this->forerunner);
 
 		return new CActiveDataProvider($this, array(
