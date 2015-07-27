@@ -129,17 +129,22 @@ class Gaokao extends CActiveRecord
 	public function getPaperLink($province,$course,$year)
 	{
 
+		$or = 'province LIKE \'%,'.$province.',%\' OR ';
+		$or .= 'province LIKE \'%,'.$province.'\' OR ';
+		$or .= 'province LIKE \''.$province.',%\'';
+
+
 		$criteria = new CDbCriteria(array(
-			'condition'=>'course = :course AND year = :year',
+			'condition'=>'course = :course AND year = :year AND ('.$or.')',
 			'params'=>array(
 				':course'=>$course,
 				':year'=>$year				
 			)
 		));
 
-		$criteria->addSearchCondition('province','\','.$province.',\'',true, 'AND');
-		$criteria->addSearchCondition('province','\','.$province.'\'',true, 'OR');
-		$criteria->addSearchCondition('province','\''.$province.',\'',true, 'OR');
+		// $criteria->addSearchCondition('province','\','.$province.',\'',true, 'AND');
+		// $criteria->addSearchCondition('province','\','.$province.'\'',true, 'OR');
+		// $criteria->addSearchCondition('province','\''.$province.',\'',true, 'OR');
 
 		$model = self::model()->find($criteria);
 
