@@ -183,6 +183,15 @@ class Gaokao extends CActiveRecord
 		$years = array_reverse(range(2006,date('Y')));
 		return $years;
 	}
+
+	public function getProvinces()
+	{
+		$provinces = Region::model()->generateProvince(0);
+
+		$provinces = array_slice($provinces, 2, 29);
+
+		return $provinces;
+	}
 	
 	
 	

@@ -29,7 +29,7 @@
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'province'); ?>
-		<?php foreach(Region::model()->generateProvince(0) as $k=>$province):?>
+		<?php foreach(Gaokao::model()->getProvinces() as $k=>$province):?>
 			<span class="item"><a href="javascript:void(0);" class="provinceItem" onclick="addIds($(this));" id="<?php echo $k; ?>"><?php echo $province; ?></a></span> | 
 		<?php endforeach;?>
 		<?php echo $form->hiddenField($model,'province',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>

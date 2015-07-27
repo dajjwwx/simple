@@ -13,7 +13,7 @@ class GaokaoMenu extends CWidget
 	{
 		$this->courses = $this->getCourses();	
 		
-		$this->provinces = Region::model()->generateProvince(0);		
+		$this->provinces = Gaokao::model()->getProvinces();		
 	
 		$this->years = $this->getYears();
 	}

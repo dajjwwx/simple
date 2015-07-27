@@ -24,24 +24,40 @@ $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder
 ?>
 
 
+<div>
 
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">试题简介</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">在线预览</a></li>
 
-<?php
-	$this->widget('ext.pdfobject.PDFObjectWidget',array(
-		'file'=>$targetFile,
-	));
-?>
+  </ul>
 
-<a href="<?php echo $this->createUrl('viewsingle',array('file'=>$targetFile)); ?>">全屏查看</a>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'course',
-		'year',
-		'province',
-		'fid',
-	),
-)); ?>
+		<?php $this->widget('zii.widgets.CDetailView', array(
+			'data'=>$model,
+			'attributes'=>array(
+				'id',
+				'course',
+				'year',
+				'province',
+				'fid',
+			),
+		)); ?>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+    	<a href="<?php echo $this->createUrl('viewsingle',array('file'=>$targetFile)); ?>" style="display:inline-block;text-align:right;">全屏查看</a>
+		<?php
+			$this->widget('ext.pdfobject.PDFObjectWidget',array(
+				'file'=>$targetFile,
+			));
+		?>
+		
+    </div>
 
+  </div>
+
+</div>
