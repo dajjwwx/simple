@@ -32,13 +32,13 @@
 		<?php foreach(Region::model()->generateProvince(0) as $k=>$province):?>
 			<span class="item"><a href="javascript:void(0);" class="provinceItem" onclick="addIds($(this));" id="<?php echo $k; ?>"><?php echo $province; ?></a></span> | 
 		<?php endforeach;?>
-		<?php echo $form->textField($model,'province',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
+		<?php echo $form->hiddenField($model,'province',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
 		<?php echo $form->error($model,'province'); ?>
 	</div>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'fid'); ?>
-		<?php echo $form->textField($model,'fid'); ?>
+		<?php //echo $form->labelEx($model,'fid'); ?>
+		<?php echo $form->hiddenField($model,'fid'); ?>
 		<?php echo $form->error($model,'fid'); ?>
 	</div>
 
