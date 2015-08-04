@@ -6,9 +6,9 @@
  * The followings are the available columns in table '{{region}}':
  * @property integer $id
  * @property string $region
+ * @property string $code
  * @property integer $uid
  * @property integer $pid
- * @property string $code
  * @property integer $forerunner
  *
  * The followings are the available model relations:
@@ -39,12 +39,13 @@ class Region extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('region, uid, pid', 'required'),
+			array('region, code, uid, pid', 'required'),
 			array('uid, pid, forerunner', 'numerical', 'integerOnly'=>true),
-			array('region', 'length', 'max'=>50),
+			array('region', 'length', 'max'=>20),
+			array('code', 'length', 'max'=>6),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, region, uid, pid, forerunner', 'safe', 'on'=>'search'),
+			array('id, region, code, uid, pid, forerunner', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,9 +76,9 @@ class Region extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'region' => 'Region',
+			'code' => 'Code',
 			'uid' => 'Uid',
 			'pid' => 'Pid',
-			'code' => 'Code',
 			'forerunner' => 'Forerunner',
 		);
 	}
@@ -102,9 +103,9 @@ class Region extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('region',$this->region,true);
+		$criteria->compare('code',$this->code,true);
 		$criteria->compare('uid',$this->uid);
 		$criteria->compare('pid',$this->pid);
-		$criteria->compare('code',$this->code);
 		$criteria->compare('forerunner',$this->forerunner);
 
 		return new CActiveDataProvider($this, array(
