@@ -20,6 +20,10 @@ class DefaultController extends Controller
 	{
 		$provinces = Province::model()->findAll();
 
+		// UtilHelper::dump($provinces);
+
+		// die();
+
 		foreach ($provinces as $key => $province) {
 			UtilHelper::dump($province->attributes);
 			$region = new Region();
@@ -28,8 +32,14 @@ class DefaultController extends Controller
 			$region->code = $province->code;
 			$region->uid = Yii::app()->user->id;
 
-			if($region->save()){
+			// UtilHelper::dump($region->attributes);
+
+			if($region->validate() && $region->save()){
 				echo $region->id;
+			}
+			else
+			{
+				UtilHelper::dump($region->errors);
 			}
 		}
 	}

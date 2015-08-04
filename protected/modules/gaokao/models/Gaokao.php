@@ -188,6 +188,11 @@ class Gaokao extends CActiveRecord
 	{
 		$provinces = Region::model()->generateProvince(0);
 
+		$keys = array_keys($provinces);
+		$values = array_values($provinces);
+
+		$provinces = array_combine($values, $keys);
+
 		$provinces = array_slice($provinces, 2, 29);
 
 		return $provinces;
