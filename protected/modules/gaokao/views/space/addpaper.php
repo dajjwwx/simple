@@ -3,8 +3,8 @@
 /* @var $model Gaokao */
 
 $this->breadcrumbs=array(
-	'Gaokaos'=>array('index'),
-	'Create',
+	$this->module->t('gaokao','Gaokao')=>array('index'),
+	$this->module->t('gaokao','Add Paper'),
 );
 
 $this->menu=array(

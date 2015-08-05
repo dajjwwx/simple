@@ -3,8 +3,10 @@
 /* @var $model Gaokao */
 
 $this->breadcrumbs=array(
-	'Gaokaos'=>array('index'),
-	$model->id,
+	$this->module->t('gaokao','Gaokao')=>array('index'),
+	Gaokao::model()->getCourseName($model->course)=>array('course','id'=>$model->course),
+	$model->year.'年'=>array('year',$model->year),
+	CHtml::encode($model->file->name)
 );
 
 $this->menu=array(
@@ -45,18 +47,6 @@ $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder
     	<div class="view_info">
 		<?php $this->renderPartial('view_info',array('model'=>$model)); ?>
 		</div>
-		<?php $this->widget('zii.widgets.CDetailView', array(
-			'data'=>$model,
-			'attributes'=>array(
-				'id',
-				'course',
-				'year',
-				'province',
-				'fid',
-			),
-		)); ?>
-		
-
     </div>
     <div role="tabpanel" class="tab-pane" id="profile">    	
 		<?php

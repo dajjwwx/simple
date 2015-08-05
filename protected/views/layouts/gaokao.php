@@ -95,4 +95,75 @@
 		
 		</script>
 	</div>
+
+	<!-- Modal -->
+<button type="button" class="btn btn-primary" data-whatever="@yuekegu.com">Large modal</button>
+
+<div class="modal fade bs-example-modal-lg" id="exampleModal" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+function ShowModal(data)
+{
+	this.id = data.id;
+	this.title = data.title;
+	this.body = data.body;
+
+	this.showEvent = function(){
+		return $("#"+this.id).on('show.bs.modal',function(event){
+			data.showEvent(event);
+		});
+	};
+	this.hideEvent = data.hideEvent;
+
+	this.show = function(){
+		
+		$(".modal-title").html(this.title);
+		$(".modal-body").html(this.body);
+
+		$("#"+this.id).modal('show');
+
+		return this;
+
+	};
+
+
+}
+
+$(function(){
+	$(".btn-primary").click(function(){
+		new ShowModal({
+			'id':'exampleModal',
+			'title':'Hello Title',
+			'body':'Hello Body',
+			'showEvent':function(event){
+
+				console.log(event);
+
+				var modal = $("#exampleModal");
+				modal.find('.modal-footer>.btn-primary').click(function(){
+					alert("HHHHH");
+				});
+			}
+		}).show().showEvent();
+	});
+});
+
+</script>
+
 <?php $this->endContent(); ?>

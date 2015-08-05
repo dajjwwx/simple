@@ -3,8 +3,8 @@
 /* @var $model Gaokao */
 
 $this->breadcrumbs=array(
-	'Gaokaos'=>array('index'),
-	'Create',
+	$this->module->t('gaokao','Gaokao')=>array('index'),
+	Yii::t('gaokao','Upload'),
 );
 
 $this->menu=array(

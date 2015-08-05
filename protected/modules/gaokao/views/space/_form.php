@@ -10,7 +10,7 @@
 	'id'=>'gaokao-form',
 	'enableAjaxValidation'=>true,
 )); ?>
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<?php echo Yii::t('basic','<p class="note">Fields with <span class="required">*</span> are required.</p>');?>
 	
 	<?php echo $form->errorSummary($model); ?>
 	
@@ -93,17 +93,19 @@
 			}'	
 		));
 	?>
-		<div id="mulitplefileuploader">上传试卷</div>  
+		<div id="mulitplefileuploader"><?php echo $this->module->t('gaokao','Add Paper');?></div>  
 		<div id="status"></div> 
 	</div>
 	
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn btn-default')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? $this->module->t('gaokao','Add Paper') : Yii::t('basic','Save'),array('class'=>'btn btn-default')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+
 <script type="text/javascript">
 function addIds(object){
 	if(object.parent().hasClass('selected')){
@@ -131,7 +133,7 @@ $(function(){
 		$.post('<?php echo $this->createUrl("/gaokao/space/addpaper");?>',data,function(result){
 			console.log(result);
 
-			$(".buttons").append('&nbsp;&nbsp;&nbsp;&nbsp;<a href="/gaokao/space/view/'+result.id+'.html">查看</a></span>');
+			$(".buttons").append('&nbsp;&nbsp;&nbsp;&nbsp;<a href="/gaokao/space/view/'+result.id+'.html">查看试卷</a></span>');
 		},'json');	
 
 		console.log($(this).serializeArray());
