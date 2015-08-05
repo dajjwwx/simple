@@ -38,7 +38,7 @@ $this->menu=array(
 						<p>作者：<span id="author"><?php echo $model->info->author;?></span></p>
 						<p>价格：&yen;<span id="price"><?php echo $model->info->price;?></span>元</p>
 						<p>出版社：<span id="publisher"><?php echo $model->info->publisher;?></span></p>
-						<p>书籍分类：<span id="bookcategory" class="editable" contenteditable="true" onclick="showCategories($(this));return false;" data-href="<?php echo $this->createUrl('bookcategory',);?>">分类</span></p>
+						<p>书籍分类：<span id="bookcategory" class="editable" contenteditable="true" onclick="showCategories($(this));return false;" data-href="<?php echo $this->createUrl('bookcategory',array('id'=>$model->shelf->id));?>">分类</span></p>
 						<hr />
 						<div id="categoryList"></div>
 				</div>
