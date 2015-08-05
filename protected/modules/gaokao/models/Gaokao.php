@@ -106,6 +106,12 @@ class Gaokao extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getCourseName($id)
+	{
+		$courses = $this->getCourses();
+		return $courses[$id-1]['course'];
+	}
 	
 	public function getCoursesList()
 	{
@@ -184,16 +190,37 @@ class Gaokao extends CActiveRecord
 		return $years;
 	}
 
+
+	/**
+	 * [getProvincesScope 获取试卷适用省份名称]
+	 * @param  [string] $ids [适用省份ID]
+	 * @return [string]      [对应省份名称的链接]
+	 */
+	public function getProvincesScope($ids)
+	{
+		$links = '';
+		$ids = explode(',', $ids);
+		foreach ($ids as $key => $value) {
+			$province = Region::model()->getRegion($value);
+			$links .= CHtml::link($province,array('space/province/','id'=>$value));
+		}	
+		return $links;
+	}
+
 	public function getProvinces()
 	{
 		$provinces = Region::model()->generateProvince(0);
 
 		$keys = array_keys($provinces);
 		$values = array_values($provinces);
-
 		$provinces = array_combine($values, $keys);
 
 		$provinces = array_slice($provinces, 2, 29);
+
+		$keys = array_keys($provinces);
+		$values = array_values($provinces);
+
+		$provinces = array_combine($values, $keys);
 
 		return $provinces;
 	}
