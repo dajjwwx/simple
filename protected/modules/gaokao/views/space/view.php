@@ -22,10 +22,16 @@ $folder = Yii::app()->params->uploadGaoKaoPath;
 $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
 // echo $targetFile;
 ?>
-
+<style type="text/css">
+	.view_info p{
+		text-indent: 2em;
+	}
+	.view_info .province a{
+		margin:0px 5px;
+	}
+</style>
 
 <div>
-
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">试题简介</a></li>
@@ -36,7 +42,9 @@ $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">
-
+    	<div class="view_info">
+		<?php $this->renderPartial('view_info',array('model'=>$model)); ?>
+		</div>
 		<?php $this->widget('zii.widgets.CDetailView', array(
 			'data'=>$model,
 			'attributes'=>array(
@@ -47,9 +55,10 @@ $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder
 				'fid',
 			),
 		)); ?>
+		
+
     </div>
-    <div role="tabpanel" class="tab-pane" id="profile">
-    	<a href="<?php echo $this->createUrl('viewsingle',array('file'=>$targetFile)); ?>" style="display:inline-block;text-align:right;">全屏查看</a>
+    <div role="tabpanel" class="tab-pane" id="profile">    	
 		<?php
 			$this->widget('ext.pdfobject.PDFObjectWidget',array(
 				'file'=>$targetFile,
@@ -61,3 +70,18 @@ $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder
   </div>
 
 </div>
+
+<script type="text/javascript">
+$(function(){
+	$(".nav-tabs>li:eq(1)").click(function(){
+		if($(".nav-tabs > #fullscreen").length < 1){
+			$('<li role="presentation" id="fullscreen"><a href="<?php echo Yii::app()->request->hostInfo.$this->createUrl('viewsingle',array('file'=>$targetFile)); ?>" aria-controls="fullscreen" role="tab"  data-toggle="tab">全屏预览</a></li>')
+			.click(function(){
+				location.href = $(this).find('a:eq(0)').attr('href');
+			})
+			.appendTo($(this).parent());
+		}
+		
+	});
+});
+</script>
