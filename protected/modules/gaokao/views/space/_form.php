@@ -29,7 +29,7 @@
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'province'); ?>
-		<?php foreach(Gaokao::model()->getProvinces() as $province=>$k):?>
+		<?php foreach(Gaokao::model()->getProvinces() as $k=>$province):?>
 			<span class="item"><a href="javascript:void(0);" class="provinceItem" onclick="addIds($(this));" id="<?php echo $k; ?>"><?php echo $province; ?></a></span> | 
 		<?php endforeach;?>
 		<?php echo $form->hiddenField($model,'province',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
@@ -130,7 +130,9 @@ $(function(){
 		var data = $(this).serializeArray();
 		$.post('<?php echo $this->createUrl("/gaokao/space/addpaper");?>',data,function(result){
 			console.log(result);
-		});	
+
+			$(".buttons").append('&nbsp;&nbsp;&nbsp;&nbsp;<a href="/gaokao/space/view/'+result.id+'.html">查看</a></span>');
+		},'json');	
 
 		console.log($(this).serializeArray());
 		return false;
