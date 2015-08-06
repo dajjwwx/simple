@@ -16,6 +16,9 @@ return array(
 		'Create'=>'创建',
 		'Save'=>'保存',
 		'Upload'=>'上传',
+
+		'Recent Updates'=>'最近更新',
+
 		
 		//Contact From
 		'Name'=>'姓名',

@@ -1,9 +1,39 @@
 <?php /* @var $this Controller */ ?>
+<style type="text/css">
+	.view_info p{
+		text-indent: 2em;
+	}
+	.view_info .province a{
+		margin:0px 5px;
+	}
+</style>
 <?php $this->beginContent('//layouts/main'); ?>
 	<div class="container">
 	
-		<div class="row" style="margin-top:90px;opacity:0.9;">
-			<h1>高考真题库</h1>
+		<div class="row" style="margin-top:70px;opacity:0.9;">
+			<div class="col-md-4">
+				<h1>
+					<img src="/public/image/gaokao/logo.png" />
+					<span class="small">
+						<?php if($this->action->id == 'year') echo $_GET['id']; ?>
+						<?php if($this->action->id == 'province') echo Region::model()->getRegion(intval($_GET['id'])); ?>
+						<?php if($this->action->id == 'course') echo Gaokao::model()->getCourseName(intval($_GET['id'])); ?>
+					</span>
+
+				</h1>
+
+			</div>
+			<div class="col-md-4">&nbsp;</div>
+			<div class="col-md-4" style="text-align:right;">
+				<br />
+				<br />
+				<div class="input-group">
+			      	<input type="text" class="form-control" placeholder="Search for...">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-default" type="button">Go!</button>
+			      	</span>
+			    </div><!-- /input-group -->
+			</div>
 		</div>
 	
 		<div class="row" style="margin-top:30px;opacity:0.9;">

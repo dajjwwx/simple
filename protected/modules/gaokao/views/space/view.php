@@ -24,14 +24,6 @@ $folder = Yii::app()->params->uploadGaoKaoPath;
 $targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
 // echo $targetFile;
 ?>
-<style type="text/css">
-	.view_info p{
-		text-indent: 2em;
-	}
-	.view_info .province a{
-		margin:0px 5px;
-	}
-</style>
 
 <div>
   <!-- Nav tabs -->

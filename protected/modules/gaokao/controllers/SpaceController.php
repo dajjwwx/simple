@@ -24,7 +24,7 @@ class SpaceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','list','viewsingle','year'),
+				'actions'=>array('index','view','list','viewsingle','year','province','course'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -46,8 +46,8 @@ class SpaceController extends Controller
 	{
 
 		$courses = Gaokao::model()->getCourses();
-		$provinces = Region::model()->generateProvince(0);
-		$year = $_GET['year']?$_GET['id']:(date('Y')-1);
+		$provinces = Gaokao::model()->getProvinces();
+		$year = $_GET['id']?$_GET['id']:(date('Y')-1);
 
 
 		$this->render('list',array(
@@ -62,9 +62,9 @@ class SpaceController extends Controller
 	{
 
 		$courses = Gaokao::model()->getCourses();
-		$provinces = Region::model()->generateProvince(0);
-		$year = $_GET['year']?$_GET['id']:(date('Y')-1);
-
+		$provinces = Gaokao::model()->getProvinces();
+		$currentYear = (date('m') >= 6 && date('d')>=20)?date('Y'):(date('Y')-1);
+		$year = $_GET['id']?$_GET['id']:$currentYear;
 
 		$this->render('list',array(
 			'courses'=>$courses,
@@ -177,9 +177,68 @@ class SpaceController extends Controller
 	/**
 	 * Lists all models.
 	 */
+	public function actionCourse()
+	{
+
+		$course = $_GET['id']?$_GET['id']:0;
+
+		$course = intval($course);
+
+		$dataProvider=new CActiveDataProvider('Gaokao',array(
+			'criteria'=>array(
+				'condition'=> 'course = :course',
+				'order'=>'id DESC',
+				'params'=>array(
+					':course'=>$course
+				)
+
+			)
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+
+	/**
+	 * Lists all models.
+	 */
+	public function actionProvince()
+	{
+
+		$province = $_GET['id']?$_GET['id']:(date('Y')-1);
+
+		$province = intval($province);
+
+		$or = 'province LIKE \'%,'.$province.',%\' OR ';
+		$or .= 'province LIKE \'%,'.$province.'\' OR ';
+		$or .= 'province LIKE \''.$province.',%\'';
+
+		$dataProvider=new CActiveDataProvider('Gaokao',array(
+			'criteria'=>array(
+				'condition'=> $or,
+				'order'=>'id DESC',
+				'params'=>array(
+					':province'=>$province
+				)
+
+			)
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+	/**
+	 * Lists all models.
+	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Gaokao');
+		$dataProvider=new CActiveDataProvider('Gaokao',array(
+			'criteria'=>array(
+				'order'=>'id DESC'
+			)
+		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

@@ -23,10 +23,6 @@ YKG.prototype.bootstrap = function(){
 			return $("#"+this.id).modal('show');
 
 		};
-
-		return this.show();
-
-
 	};
 
 

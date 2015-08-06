@@ -10,7 +10,7 @@
 				<div style="margin-top:10px;text-align:center;font-size:18px;font-weight:bold;"><?php echo $province;?></div>
 				<br />
 				<div style="text-align:center;font-size:16px;">
-				<?php echo Gaokao::model()->getPaperLink($k,$course['id'],$year); ?>
+					<?php echo Gaokao::model()->getPaperLink($k,$course['id'],$year); ?>
 				</div>
 			</li>
 		<?php endforeach;?>
