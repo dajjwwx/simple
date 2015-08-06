@@ -39,9 +39,14 @@ var SCALE_SELECT_PADDING = 22;
 var PAGE_NUMBER_LOADING_INDICATOR = 'visiblePageIsLoading';
 var DISABLE_AUTO_FETCH_LOADING_BAR_TIMEOUT = 5000;
 
-PDFJS.imageResourcesPath = '/assets/bca64814/web/images/';
-  PDFJS.workerSrc = '/assets/bca64814/build/pdf.worker.js';
-  PDFJS.cMapUrl = '/assets/bca64814/web/cmaps/';
+var scripts = document.getElementsByTagName('script');
+var script = scripts[scripts.length - 1];
+var path = script.getAttribute('src').split('/');
+var baseUrl = '/'+path[1]+'/'+path[2]+'/';
+
+PDFJS.imageResourcesPath = baseUrl + 'web/images/';
+  PDFJS.workerSrc = baseUrl + 'build/pdf.worker.js';
+  PDFJS.cMapUrl = baseUrl + 'web/cmaps/';
   PDFJS.cMapPacked = true;
 
 var mozL10n = document.mozL10n || document.webL10n;
