@@ -3,7 +3,8 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Gaokaos',
+	$this->module->t('gaokao','Gaokao')=>array('space/index'),
+	$viewname
 );
 
 $this->menu=array(

@@ -196,6 +196,7 @@ class SpaceController extends Controller
 		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'viewname'=> Gaokao::model()->getCourseName($course)
 		));
 	}
 
@@ -226,6 +227,8 @@ class SpaceController extends Controller
 		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'viewname'=>Region::model()->getRegion($province)
+
 		));
 	}
 

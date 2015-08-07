@@ -1,9 +1,9 @@
 <?php
 /* @var $this DefaultController */
 
-$this->breadcrumbs=array(
-	$this->module->id,
-);
+// $this->breadcrumbs=array(
+// 	$this->module->id,
+// );
 ?>
 <?php foreach($courses as $course):?>
 <a name="<?php echo $course['cname'];?>"></a>
