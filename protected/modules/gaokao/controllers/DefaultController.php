@@ -16,6 +16,8 @@ class DefaultController extends Controller
 		));
 	}
 
+	
+
 	public function actionAddProvince()
 	{
 		$provinces = Province::model()->findAll();
