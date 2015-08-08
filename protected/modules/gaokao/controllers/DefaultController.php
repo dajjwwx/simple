@@ -16,6 +16,22 @@ class DefaultController extends Controller
 		));
 	}
 
+
+	public function actionRPC()
+	{
+
+		Yii::import('ext.hprose.*');
+		require_once("Hprose.php");
+		
+		UtilHelper::dump(get_included_files());
+
+		// die();
+
+	    $client = new HproseHttpClient('http://uustudio.sinaapp.com/Service/segment.php');
+	    echo $client->hello('World');
+
+	}
+
 	
 
 	public function actionAddProvince()
