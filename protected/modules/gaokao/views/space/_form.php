@@ -44,8 +44,11 @@
 
 	<div class="form-group">
 		<?php //echo $form->labelEx($model,'pid'); ?>
-		<?php echo $form->hiddenField($model,'pid'); ?>
+		<?php echo $form->textField($model,'pid'); ?>
 		<?php echo $form->error($model,'pid'); ?>
+
+		<div id="uploadPapers"></div>
+
 	</div>
 
 	<div class="form-group">
@@ -129,11 +132,36 @@ function addIds(object){
 	result = result.substring(0,result.length-1);
 	
 	$("#Gaokao_province").val(result);
+
+	var params = {
+		'province':object.attr('id'),
+		'course':$("#Gaokao_course").val(),
+		'year':$("#Gaokao_year").val()
+	};
+
+	$.get('/gaokao/space/checkpaperexists.html',params,function(data){
+		if(data == 1){
+			alert('已经存在');
+		}else{
+			$("#mulitplefileuploader").parent().show();
+		}
+	});
+
+	$.get('/gaokao/space/paperitems.html',params,function(data){
+		//加载已经上传试卷
+	$("#uploadPapers").html(data);
+	});
+
+	//加载已经上传试卷
+	//$("#uploadPapers").load('/gaokao/space/paperitems.html?province='+object.attr('id')+'&year='+$("#Gaokao_year").val()+'&course='+$("#Gaokao_course").val());
 }
 
 
 
 $(function(){
+
+	$("#mulitplefileuploader").parent().hide();
+
 	$("#gaokao-form").submit(function(){
 
 		if($("#Gaokao_course").val() == ''){

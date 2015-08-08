@@ -28,7 +28,7 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('addpaper','upload','update','paperitems'),
+				'actions'=>array('addpaper','upload','update','paperitems','checkpaperexists'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -41,15 +41,28 @@ class SpaceController extends Controller
 		);
 	}
 
-	//用于显示上传文件情况
-	public function actionPaperItems()
+
+	public function actionCheckPaperExists($province,$course,$year)
 	{
+		echo Gaokao::model()->getPaperExists($province,$course,$year);
+	}
 
+	//
+	/**
+	 * 用于显示上传文件情况
+	 * @param  [int] $province 
+	 * @param  [int] $course  
+	 * @param  [int] $year    
+	 * @return [Gaokao]  $model   
+	 */
+	public function actionPaperItems($province,$course,$year)
+	{
+		$this->layout = '/layouts/blank';
 
-		$model = Gaokao::model()->getPaper($province,$course,$year)
+		$model = Gaokao::model()->getPaper($province,$course,$year);
 
 		$this->render('items',array(
-			'model'=>$model
+			'model'=>$model,
 		));
 	}
 
@@ -109,7 +122,11 @@ class SpaceController extends Controller
 	 */
 	public function actionAddPaper()
 	{
+
 		$model=new Gaokao;
+
+		//检查试卷是否已经存在
+		//$exists=Gaokao::model()->exists($condition,$params); 
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
@@ -139,6 +156,11 @@ class SpaceController extends Controller
 	public function actionUpload()
 	{
 		if(Yii::app()->user->isGuest) throw new CHttpException(403,'bad');		
+		if(Gaokao::model()->getPaperExists($province,$course,$year)) 
+		{
+			return '已经存在，请先删除存在文件，再上传';
+		}
+		
 		if (!empty($_FILES)) {			
 			$folder = Yii::app()->params['uploadGaoKaoPath'];
 			$fileext = $_REQUEST['fileext'];

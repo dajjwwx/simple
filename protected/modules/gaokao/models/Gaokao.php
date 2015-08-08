@@ -12,8 +12,8 @@
  * @property integer $pid
  *
  * The followings are the available model relations:
- * @property Gaokao $parent
- * @property Gaokao[] $paper
+ * @property Gaokao $paper
+ * @property Gaokao $paperkey
  * @property File[] $file
  */
 class Gaokao extends CActiveRecord
@@ -70,8 +70,8 @@ class Gaokao extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'parent' => array(self::BELONGS_TO, 'Gaokao', 'pid'),
-			'paper' => array(self::HAS_MANY, 'Gaokao', 'pid'),
+			'paper' => array(self::BELONGS_TO, 'Gaokao', 'pid'),
+			'paperkey' => array(self::HAS_ONE, 'Gaokao', 'pid'),
 			'file' => array(self::BELONGS_TO, 'File', 'fid'),
 		);
 	}
@@ -136,12 +136,51 @@ class Gaokao extends CActiveRecord
 		return $list;
 	}
 
-	public function getPaper($province,$course,$year)
+	/**
+	 * [返回查询province时的like语句]
+	 * @param  [int] $province
+	 * @return [string]  $or 
+	 */
+	public function provinceLike($province)
 	{
 		$or = 'province LIKE \'%,'.$province.',%\' OR ';
 		$or .= 'province LIKE \'%,'.$province.'\' OR ';
 		$or .= 'province LIKE \''.$province.',%\'';
 
+		return $or;
+	}
+
+	/**
+	 * 试卷是否已经存在
+	 * @param  [int] $province
+	 * @param  [int] $course  
+	 * @param  [int] $year  
+	 * @return [bool]
+	 */
+	public function getPaperExists($province,$course,$year)
+	{
+		$or = self::model()->provinceLike($province);
+
+		$condition ='course = :course AND year = :year AND ('.$or.')';
+		$params = array(
+			':course'=>$course,
+			':year'=>$year				
+		);
+		
+		return self::model()->exists($condition,$params); 
+	}
+
+	/**
+	 * 获取试卷相关数据
+	 * @param  [int] $province
+	 * @param  [int] $course  
+	 * @param  [int] $year  
+	 * @return [Gaokao]      
+	 */
+	public function getPaper($province,$course,$year)
+	{
+
+		$or = self::model()->provinceLike($province);
 
 		$criteria = new CDbCriteria(array(
 			'condition'=>'course = :course AND year = :year AND ('.$or.')',
@@ -156,14 +195,15 @@ class Gaokao extends CActiveRecord
 	
 	/**
 	 *根据省份和高考科目生成相关试卷链接
+	 * @param  [int] $province
+	 * @param  [int] $course  
+	 * @param  [int] $year  
+	 * @return [string]  
 	 */
 	public function getPaperLink($province,$course,$year)
 	{
 
-		$or = 'province LIKE \'%,'.$province.',%\' OR ';
-		$or .= 'province LIKE \'%,'.$province.'\' OR ';
-		$or .= 'province LIKE \''.$province.',%\'';
-
+		$or = self::model()->provinceLike($province);
 
 		$criteria = new CDbCriteria(array(
 			'condition'=>'course = :course AND year = :year AND ('.$or.')',
@@ -182,11 +222,23 @@ class Gaokao extends CActiveRecord
 		//未完成，根据ID等信息生成相应的链接
 		if($model)
 		{
-			return CHtml::link('试题',array('space/view','id'=>$model->id)).'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.CHtml::link('答案',array('space/key','id'=>$model->id));
+			$link = CHtml::link('试题',array('space/view','id'=>$model->id)).'&nbsp;&nbsp;&nbsp;&nbsp;';
+
+			if($model->paperkey)
+			{
+				$link .= CHtml::link('答案',array('space/key','id'=>$model->id));
+			}
+			else
+			{
+				$link .= '答案';
+			}
+
+			return $link;
+			
 		}
 		else
 		{
-			return '<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>';
+			return '<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>';
 		}
 	}
 	
