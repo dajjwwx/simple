@@ -43,6 +43,12 @@
 	</div>
 
 	<div class="form-group">
+		<?php //echo $form->labelEx($model,'pid'); ?>
+		<?php echo $form->hiddenField($model,'pid'); ?>
+		<?php echo $form->error($model,'pid'); ?>
+	</div>
+
+	<div class="form-group">
 	<?php
 		$this->widget('ext.jqueryupload.JqueryUploadWidget',array(
 			'url'=>Yii::app()->createUrl('/gaokao/space/upload'),
@@ -129,6 +135,23 @@ function addIds(object){
 
 $(function(){
 	$("#gaokao-form").submit(function(){
+
+		if($("#Gaokao_course").val() == ''){
+			alert("还没选择科目");
+			return false;
+		}
+
+		if($("#Gaokao_year").val() == ''){
+			alert("还没选择年份");
+			return false;
+		}
+
+		if($("#Gaokao_province").val() == ''){
+			alert("还没选择适用省份");
+			return false;
+		}
+
+
 		var data = $(this).serializeArray();
 		$.post('<?php echo $this->createUrl("/gaokao/space/addpaper");?>',data,function(result){
 			console.log(result);

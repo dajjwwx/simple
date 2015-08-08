@@ -28,7 +28,7 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('addpaper','upload','update'),
+				'actions'=>array('addpaper','upload','update','paperitems'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -39,6 +39,18 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	//用于显示上传文件情况
+	public function actionPaperItems()
+	{
+
+
+		$model = Gaokao::model()->getPaper($province,$course,$year)
+
+		$this->render('items',array(
+			'model'=>$model
+		));
 	}
 
 		

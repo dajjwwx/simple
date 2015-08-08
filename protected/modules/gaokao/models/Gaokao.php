@@ -9,9 +9,12 @@
  * @property string $year
  * @property string $province
  * @property integer $fid
+ * @property integer $pid
  *
  * The followings are the available model relations:
- * @property File $file
+ * @property Gaokao $parent
+ * @property Gaokao[] $paper
+ * @property File[] $file
  */
 class Gaokao extends CActiveRecord
 {
@@ -50,12 +53,12 @@ class Gaokao extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('course, year, province, fid', 'required'),
-			array('course, fid', 'numerical', 'integerOnly'=>true),
+			array('course, fid, pid', 'numerical', 'integerOnly'=>true),
 			array('year', 'length', 'max'=>4),
 			array('province', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, course, year, province, fid', 'safe', 'on'=>'search'),
+			array('id, course, year, province, fid, pid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +70,8 @@ class Gaokao extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'parent' => array(self::BELONGS_TO, 'Gaokao', 'pid'),
+			'paper' => array(self::HAS_MANY, 'Gaokao', 'pid'),
 			'file' => array(self::BELONGS_TO, 'File', 'fid'),
 		);
 	}
@@ -82,6 +87,7 @@ class Gaokao extends CActiveRecord
 			'year' => Yii::app()->getModule('gaokao')->t('gaokao','Year'),
 			'province' => Yii::app()->getModule('gaokao')->t('gaokao','Province'),
 			'fid' => 'Fid',
+			'pid' => 'Pid',
 		);
 	}
 
@@ -101,13 +107,14 @@ class Gaokao extends CActiveRecord
 		$criteria->compare('year',$this->year,true);
 		$criteria->compare('province',$this->province,true);
 		$criteria->compare('fid',$this->fid);
+		$criteria->compare('pid',$this->pid);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 
-	public function getCourseName($id)
+		public function getCourseName($id)
 	{
 		$courses = $this->getCourses();
 		return $courses[$id-1]['course'];
@@ -127,6 +134,24 @@ class Gaokao extends CActiveRecord
 		}
 		
 		return $list;
+	}
+
+	public function getPaper($province,$course,$year)
+	{
+		$or = 'province LIKE \'%,'.$province.',%\' OR ';
+		$or .= 'province LIKE \'%,'.$province.'\' OR ';
+		$or .= 'province LIKE \''.$province.',%\'';
+
+
+		$criteria = new CDbCriteria(array(
+			'condition'=>'course = :course AND year = :year AND ('.$or.')',
+			'params'=>array(
+				':course'=>$course,
+				':year'=>$year				
+			)
+		));	
+		
+		return self::model()->findAll($criteria);
 	}
 	
 	/**
@@ -224,7 +249,4 @@ class Gaokao extends CActiveRecord
 
 		return $provinces;
 	}
-	
-	
-	
 }
