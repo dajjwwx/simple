@@ -10,8 +10,15 @@
 	'id'=>'gaokao-form',
 	'enableAjaxValidation'=>true,
 )); ?>
-	<?php echo Yii::t('basic','<p class="note">Fields with <span class="required">*</span> are required.</p>');?>
 	
+	<blockquote>
+		<p>上传试题及答案说明：</p>
+		<small>上传试题前务必保证文件名指明年份，科目（文理），如“2014年高考理科数学四川卷真题”</small>
+		<small>上传试题答案前务必保证文件名指明年份，科目（文理），并在最后加上“答案”二字，如“2014年高考理科数学四川卷真题答案”</small>
+	</blockquote>
+
+	<?php echo Yii::t('basic','<p class="note">Fields with <span class="required">*</span> are required.</p>');?>
+
 	<?php echo $form->errorSummary($model); ?>
 	
 	<div class="form-group">
@@ -142,6 +149,7 @@ function addIds(object){
 	$.get('/gaokao/space/checkpaperexists.html',params,function(data){
 		if(data == 1){
 			alert('已经存在');
+			$("#mulitplefileuploader").parent().hide();
 		}else{
 			$("#mulitplefileuploader").parent().show();
 		}
@@ -149,7 +157,7 @@ function addIds(object){
 
 	$.get('/gaokao/space/paperitems.html',params,function(data){
 		//加载已经上传试卷
-	$("#uploadPapers").html(data);
+		$("#uploadPapers").html(data);
 	});
 
 	//加载已经上传试卷

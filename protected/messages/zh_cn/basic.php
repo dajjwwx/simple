@@ -14,6 +14,7 @@ return array(
 		'Register'=>'注册',
 		
 		'Create'=>'创建',
+		'Submit'=>'提交',
 		'Save'=>'保存',
 		'Upload'=>'上传',
 

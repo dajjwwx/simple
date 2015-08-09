@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50153
 File Encoding         : 65001
 
-Date: 2015-08-08 11:55:26
+Date: 2015-08-09 10:41:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,3 +47,20 @@ INSERT INTO `gk_gaokao` VALUES ('8', '1', '2015', '3,6', '70', null);
 INSERT INTO `gk_gaokao` VALUES ('9', '3', '2015', '3,16', '71', null);
 INSERT INTO `gk_gaokao` VALUES ('10', '3', '2015', '7,16,18', '72', null);
 INSERT INTO `gk_gaokao` VALUES ('11', '3', '2015', '7,16,18', '72', null);
+
+-- ----------------------------
+-- Table structure for gk_paper
+-- ----------------------------
+DROP TABLE IF EXISTS `gk_paper`;
+CREATE TABLE `gk_paper` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `provinces` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gk_paper
+-- ----------------------------
+INSERT INTO `gk_paper` VALUES ('0', '新课标全国卷（Ⅰ）', '2015', '3,16,18');

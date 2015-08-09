@@ -158,7 +158,17 @@ class SpaceController extends Controller
 		if(Yii::app()->user->isGuest) throw new CHttpException(403,'bad');		
 		if(Gaokao::model()->getPaperExists($province,$course,$year)) 
 		{
-			return '已经存在，请先删除存在文件，再上传';
+
+			$response = array(
+				'state'=>'fail',
+				'message'=>'已经存在，请先删除存在文件，再上传'
+			);
+
+
+			echo json_encode($response);
+
+			return ;
+
 		}
 		
 		if (!empty($_FILES)) {			
