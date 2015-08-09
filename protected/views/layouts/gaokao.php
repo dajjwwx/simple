@@ -46,6 +46,7 @@
 						<ul class="list-group">
 							<li class="list-group-item"><?php echo CHtml::link('高考真题库',array('space/list'));?></li>
 							<li class="list-group-item"><?php echo CHtml::link('上传试题',array('space/addpaper'));?></li>
+							<li class="list-group-item"><?php echo CHtml::link('添加试卷类型',array('paper/create'));?></li>
 						</ul>
 					
 						<?php

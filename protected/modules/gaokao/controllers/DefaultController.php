@@ -22,6 +22,7 @@ class DefaultController extends Controller
 
 		Yii::import('ext.hprose.*');
 		require_once("Hprose.php");
+		require_once('Hprose.')
 		
 		UtilHelper::dump(get_included_files());
 

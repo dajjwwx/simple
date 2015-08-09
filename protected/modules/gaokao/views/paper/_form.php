@@ -52,6 +52,16 @@
 <script type="text/javascript">
 
 $(function(){
+
+	// loadPaper('2015');
+
+	$("#Paper_year").click(function(){
+
+		loadPaper($(this).val());
+	});
+
+	
+
 	$("#paper-form").submit(function(){
 		var params = $(this).serializeArray();
 
@@ -59,14 +69,23 @@ $(function(){
 
 		$.post('/gaokao/paper/create.html',params,function(data){
 
-			$("#paperload").html(data);
+			if(data.status == ‘'fail'){
+				alert(data.message);
+			}else{
+				$("#paperload").load('/gaokao/paper/list.html?year='+$("#Paper_year").val());
+			}			
 
-		});
+		},'json');
 
 		return false;
 
 	});
 });
+
+function loadPaper(year)
+{
+	$("#paperload").load('/gaokao/paper/list.html?year='+year);
+}
 
 
 function addIds(object){

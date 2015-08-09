@@ -6,7 +6,9 @@ return array(
 	//Gaokao Model
 	'Course'=>'科目',
 	'Year'	=>'年份',
-	'Province'=>'省份',
+	'Paper' =>'试题',
+	
+	'Provinces'=>'省份',
 
 	'Gaokao'=>'高考'
 );

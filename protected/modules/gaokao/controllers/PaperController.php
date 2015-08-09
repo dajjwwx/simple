@@ -28,7 +28,7 @@ class PaperController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','list','papernames'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,6 +62,8 @@ class PaperController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$result = array();
+
 		$model=new Paper;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -71,18 +73,26 @@ class PaperController extends Controller
 		{
 			$model->attributes=$_POST['Paper'];
 
-			UtilHelper::dump($model->attributes);
-
-			if($model->validate() && $model->save())
+			if(Paper::model()->exists('name = :name AND year = :year',array(':name'=>$_POST['Paper']['name'],':year'=>$_POST['Paper']['year'])))
 			{
-				UtilHelper::dump($model->attributes);
+				$result = array('status'=>'fail','message'=>'已经有了!');
 
-				// $this->redirect(array('paper/index'));
+				return ;
 			}
 			else
 			{
-				UtilHelper::dump($model->errors);
+				if($model->validate() && $model->save())
+				{
+					$result = array('status'=>'success','message'=>'添加成功！');
+				}
+				else
+				{
+					$result = array('status'=>'fail','message'=>$model->errors);
+				}
 			}
+
+
+			echo json_encode($result);
 
 			return ;
 		}
@@ -130,12 +140,59 @@ class PaperController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
+	public function actionPaperNames()
+	{
+
+		$this->layout = '/layouts/blank';
+
+		$year = isset($_GET['year'])?$_GET['year']:date('Y');
+
+		$criteria = new CDbCriteria(array(
+			'condition'=>'year = :year',
+			'params'=>array(
+				':year'=>$year
+			)
+		));
+
+		$model = Paper::model()->findAll($criteria);
+
+		$this->render('papernames',array(
+			'model'=>$model
+		));
+
+
+	}
+
+	/**
+	 * Lists all models.
+	 */
+	public function actionList()
+	{
+		$this->layout = '/layouts/blank';
+
+		$year = isset($_GET['year'])?$_GET['year']:date('Y');
+
+		$criteria = new CDbCriteria(array(
+			'condition'=>'year = :year',
+			'limit'=>30,
+			'params'=>array(
+				':year'=>$year
+			)
+		));
+
+		$dataProvider=new CActiveDataProvider('Paper',array(
+			'criteria' => $criteria
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
 	/**
 	 * Lists all models.
 	 */
 	public function actionIndex()
 	{
-		$this->layout = '/layouts/blank';
 
 		$dataProvider=new CActiveDataProvider('Paper');
 		$this->render('index',array(

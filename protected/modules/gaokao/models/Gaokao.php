@@ -7,35 +7,18 @@
  * @property integer $id
  * @property integer $course
  * @property string $year
- * @property string $province
+ * @property integer $paper
  * @property integer $fid
  * @property integer $pid
  *
  * The followings are the available model relations:
  * @property Gaokao $paper
  * @property Gaokao $paperkey
- * @property File[] $file
+ * @property Paper $papername
+ * @property File $file
  */
 class Gaokao extends CActiveRecord
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return Gaokao the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
-
-	/**
-	 * @return CDbConnection database connection
-	 */
-	public function getDbConnection()
-	{
-		return Yii::app()->dbGaokao;
-	}
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -52,13 +35,12 @@ class Gaokao extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('course, year, province, fid', 'required'),
-			array('course, fid, pid', 'numerical', 'integerOnly'=>true),
+			array('course, year, paper, fid', 'required'),
+			array('course, paper, fid, pid', 'numerical', 'integerOnly'=>true),
 			array('year', 'length', 'max'=>4),
-			array('province', 'length', 'max'=>32),
 			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, course, year, province, fid, pid', 'safe', 'on'=>'search'),
+			// @todo Please remove those attributes that should not be searched.
+			array('id, course, year, paper, fid, pid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,8 +52,9 @@ class Gaokao extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'paper' => array(self::BELONGS_TO, 'Gaokao', 'pid'),
-			'paperkey' => array(self::HAS_ONE, 'Gaokao', 'pid'),
+			'paper' => array(self::BELONGS_TO, 'Gaokao', 'pid'),	//上传试题
+			'paperkey' => array(self::HAS_ONE, 'Gaokao', 'pid'),	//上传试题答案
+			'papername' => array(self::BELONGS_TO, 'Paper', 'paper'),	//试卷名称
 			'file' => array(self::BELONGS_TO, 'File', 'fid'),
 		);
 	}
@@ -85,7 +68,7 @@ class Gaokao extends CActiveRecord
 			'id' => 'ID',
 			'course' => Yii::app()->getModule('gaokao')->t('gaokao','Course'),
 			'year' => Yii::app()->getModule('gaokao')->t('gaokao','Year'),
-			'province' => Yii::app()->getModule('gaokao')->t('gaokao','Province'),
+			'paper' => Yii::app()->getModule('gaokao')->t('gaokao','Paper'),
 			'fid' => 'Fid',
 			'pid' => 'Pid',
 		);
@@ -93,19 +76,26 @@ class Gaokao extends CActiveRecord
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('course',$this->course);
 		$criteria->compare('year',$this->year,true);
-		$criteria->compare('province',$this->province,true);
+		$criteria->compare('paper',$this->paper);
 		$criteria->compare('fid',$this->fid);
 		$criteria->compare('pid',$this->pid);
 
@@ -114,7 +104,28 @@ class Gaokao extends CActiveRecord
 		));
 	}
 
-		public function getCourseName($id)
+	/**
+	 * @return CDbConnection the database connection used for this class
+	 */
+	public function getDbConnection()
+	{
+		return Yii::app()->dbGaokao;
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Gaokao the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+	
+
+
+	public function getCourseName($id)
 	{
 		$courses = $this->getCourses();
 		return $courses[$id-1]['course'];
@@ -292,7 +303,7 @@ class Gaokao extends CActiveRecord
 		$values = array_values($provinces);
 		$provinces = array_combine($values, $keys);
 
-		$provinces = array_slice($provinces, 2, 29);
+		$provinces = array_slice($provinces, 0, 29);
 
 		$keys = array_keys($provinces);
 		$values = array_values($provinces);

@@ -35,12 +35,14 @@
 	</div>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'province'); ?>
-		<?php foreach(Gaokao::model()->getProvinces() as $k=>$province):?>
-			<span class="item"><a href="javascript:void(0);" class="provinceItem" onclick="addIds($(this));" id="<?php echo $k; ?>"><?php echo $province; ?></a></span> | 
-		<?php endforeach;?>
-		<?php echo $form->hiddenField($model,'province',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
-		<?php echo $form->error($model,'province'); ?>
+		<?php echo $form->labelEx($model,'paper'); ?>
+		
+		<div id="loadPaper">
+			<blockquote><small>选择年份，加载试卷类型</small></blockquote>
+		</div>		
+		
+		<?php echo $form->textField($model,'paper',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
+		<?php echo $form->error($model,'paper'); ?>
 	</div>
 
 	<div class="form-group">
@@ -50,7 +52,7 @@
 	</div>
 
 	<div class="form-group">
-		<?php //echo $form->labelEx($model,'pid'); ?>
+		<?php echo $form->labelEx($model,'pid'); ?>
 		<?php echo $form->textField($model,'pid'); ?>
 		<?php echo $form->error($model,'pid'); ?>
 
@@ -124,41 +126,31 @@
 
 <script type="text/javascript">
 function addIds(object){
-	if(object.parent().hasClass('selected')){
-		object.parent().removeClass('selected');
-		object.parent().css({border:'none'});
-	}else{
-		object.parent().addClass('selected');
-		object.parent().css({border:'1px solid grey'});
-	}
-	var result = '';
-	$('.selected a').each(function(i){
-		result = result + $(this).attr('id') + ',';
-	});
+
+	object.parent().siblings().removeClass('selected').css({'border':'none'});
+	object.parent().addClass('selected').css({border:'1px solid grey'});
 	
-	result = result.substring(0,result.length-1);
-	
-	$("#Gaokao_province").val(result);
+	$("#Gaokao_paper").val(object.attr('id'));
 
 	var params = {
-		'province':object.attr('id'),
+		'paper':object.attr('id'),
 		'course':$("#Gaokao_course").val(),
 		'year':$("#Gaokao_year").val()
 	};
 
-	$.get('/gaokao/space/checkpaperexists.html',params,function(data){
-		if(data == 1){
-			alert('已经存在');
-			$("#mulitplefileuploader").parent().hide();
-		}else{
-			$("#mulitplefileuploader").parent().show();
-		}
-	});
+	// $.get('/gaokao/space/checkpaperexists.html',params,function(data){
+	// 	if(data == 1){
+	// 		alert('已经存在');
+	// 		$("#mulitplefileuploader").parent().hide();
+	// 	}else{
+	// 		$("#mulitplefileuploader").parent().show();
+	// 	}
+	// });
 
-	$.get('/gaokao/space/paperitems.html',params,function(data){
-		//加载已经上传试卷
-		$("#uploadPapers").html(data);
-	});
+	// $.get('/gaokao/space/paperitems.html',params,function(data){
+	// 	//加载已经上传试卷
+	// 	$("#uploadPapers").html(data);
+	// });
 
 	//加载已经上传试卷
 	//$("#uploadPapers").load('/gaokao/space/paperitems.html?province='+object.attr('id')+'&year='+$("#Gaokao_year").val()+'&course='+$("#Gaokao_course").val());
@@ -169,6 +161,10 @@ function addIds(object){
 $(function(){
 
 	$("#mulitplefileuploader").parent().hide();
+
+	$("#Gaokao_year").change(function(){
+		$("#loadPaper").load('/gaokao/paper/papernames.html?year='+$(this).val());
+	});
 
 	$("#gaokao-form").submit(function(){
 
