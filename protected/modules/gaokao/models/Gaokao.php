@@ -134,10 +134,14 @@ class Gaokao extends CActiveRecord
 	public function getCoursesList()
 	{
 		$courses = $this->getCourses();
+
+		if(func_num_args()==0){
+			$list = array(
+				''=>'科目'
+			);					
+		}
 		
-		$list = array(
-			''=>'科目'
-		);		
+
 		
 		for($i=0; $i < sizeof($courses); $i++)
 		{

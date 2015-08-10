@@ -8,27 +8,13 @@
  * @property string $name
  * @property string $year
  * @property string $provinces
+ *
+ * The followings are the available model relations:
+ * @property Coursepaper[] $coursepapers
+ * @property Gaokao[] $gaokaos
  */
 class Paper extends CActiveRecord
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return Paper the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
-
-	/**
-	 * @return CDbConnection database connection
-	 */
-	public function getDbConnection()
-	{
-		return Yii::app()->dbGaokao;
-	}
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -46,11 +32,10 @@ class Paper extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, year, provinces', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
 			array('name, provinces', 'length', 'max'=>50),
 			array('year', 'length', 'max'=>4),
 			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
+			// @todo Please remove those attributes that should not be searched.
 			array('id, name, year, provinces', 'safe', 'on'=>'search'),
 		);
 	}
@@ -63,6 +48,8 @@ class Paper extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'coursepapers' => array(self::HAS_MANY, 'Coursepaper', 'paper'),
+			'gaokaos' => array(self::HAS_MANY, 'Gaokao', 'paper'),
 		);
 	}
 
@@ -81,12 +68,19 @@ class Paper extends CActiveRecord
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
 
@@ -98,5 +92,38 @@ class Paper extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * @return CDbConnection the database connection used for this class
+	 */
+	public function getDbConnection()
+	{
+		return Yii::app()->dbGaokao;
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Paper the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	public function getPapers($year)
+	{
+		$criteria = new CDbCriteria(array(
+			'condition'=>'year = :year',
+			'params'=>array(
+				':year'=>$year
+			)
+		));
+
+		$model = self::model()->findAll($criteria);
+
+		return $model;
 	}
 }

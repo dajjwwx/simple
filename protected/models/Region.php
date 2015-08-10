@@ -12,6 +12,7 @@
  * @property integer $forerunner
  *
  * The followings are the available model relations:
+ * @property CoursePaper $coursepaper
  * @property Profile[] $profiles
  * @property Profile[] $profiles1
  * @property Profile[] $profiles2
@@ -57,6 +58,7 @@ class Region extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			// 'coursepaper'=>array(self:HAS_MANY, 'CoursePaper', 'province'),
 			'profiles' => array(self::HAS_MANY, 'Profile', 'homemanicipal'),
 			'profiles1' => array(self::HAS_MANY, 'Profile', 'homecounty'),
 			'profiles2' => array(self::HAS_MANY, 'Profile', 'homevillage'),
