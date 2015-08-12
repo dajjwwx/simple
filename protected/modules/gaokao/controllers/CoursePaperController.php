@@ -70,8 +70,26 @@ class CoursePaperController extends Controller
 
 		$model = CoursePaper::model()->findAll($criteria);
 
+		// if(!$model)
+		// {
+
+			$or = Gaokao::model()->provinceLike($province);
+
+			$papercriteria = new CDbCriteria(array(
+				'condition'=>'year = :year AND ('.$or.')',
+				'params'=>array(
+					':year'=>$year
+				)
+			));
+
+			$paper = Paper::model()->find($papercriteria);
+
+			// UtilHelper::dump($paper);
+		// }
+
 		$this->render('province',array(
-			'model'=>$model
+			'model'=>$model,
+			'paper'=>$paper
 		));
 	}
 
