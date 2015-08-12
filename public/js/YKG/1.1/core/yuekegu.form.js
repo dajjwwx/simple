@@ -59,6 +59,51 @@ YKG.prototype.form = function(){
       	var option = new Option(k,v);
       	pid.options.add(option);
       });
-	}
+	};
+
+  /**
+   * 单选列表
+   * @param  {[type]} object [description]
+   * @param  {[type]} input  [description]
+   * @return {[type]}        [description]
+   */
+  this.singleChoice = function(object,input){
+    
+    object.parent().siblings().removeClass('selected').css({'border':'none'});
+
+    if(object.parent().hasClass('selected')){
+      object.parent().removeClass('selected').css({'border':'none'});
+      $("#"+input).val("");
+    }else{
+      object.parent().addClass('selected').css({border:'1px solid grey'});
+      $("#"+input).val(object.attr('id'));
+    }
+  }; 
+
+  /**
+   * 多选列表
+   * @param  {[jQuery]} object [description]
+   * @param  {[jQuery]} input  [description]
+   * @return {[void]}        [description]
+   */
+  this.multiChoice = function(object,input){
+
+    if(object.parent().hasClass('selected')){
+      object.parent().removeClass('selected');
+      object.parent().css({border:'none'});
+    }else{
+      object.parent().addClass('selected');
+      object.parent().css({border:'1px solid grey'});
+    }
+    var result = '';
+    $('.selected a').each(function(i){
+      result = result + $(this).attr('id') + ',';
+    });
+    
+    result = result.substring(0,result.length-1);
+    
+    $("#"+input).val(result);
+
+  }
 	
 };

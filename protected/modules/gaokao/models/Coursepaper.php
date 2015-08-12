@@ -11,10 +11,10 @@
  * @property string $year
  *
  * The followings are the available model relations:
- * @property Paper $paper0
- * @property SbRegion $province0
+ * @property Paper $paper
+ * @property Region $province
  */
-class Coursepaper extends CActiveRecord
+class CoursePaper extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -49,8 +49,8 @@ class Coursepaper extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'paper0' => array(self::BELONGS_TO, 'Paper', 'paper'),
-			'province0' => array(self::BELONGS_TO, 'SbRegion', 'province'),
+			'paper' => array(self::BELONGS_TO, 'Paper', 'paper'),
+			'province' => array(self::BELONGS_TO, 'Region', 'province'),
 		);
 	}
 
@@ -61,10 +61,10 @@ class Coursepaper extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'province' => 'Province',
-			'course' => 'Course',
-			'paper' => 'Paper',
-			'year' => 'Year',
+			'province' => Yii::app()->getModule('gaokao')->t('gaokao','Province'),
+			'course' => Yii::app()->getModule('gaokao')->t('gaokao','Course'),
+			'paper' => Yii::app()->getModule('gaokao')->t('gaokao','Paper'),
+			'year' => Yii::app()->getModule('gaokao')->t('gaokao','Year'),
 		);
 	}
 

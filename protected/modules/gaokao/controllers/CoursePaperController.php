@@ -28,11 +28,11 @@ class CoursePaperController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','paper'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','province'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -56,6 +56,42 @@ class CoursePaperController extends Controller
 		));
 	}
 
+	public function actionProvince($province, $year)
+	{
+		$this->layout = '/layouts/blank';
+
+		$criteria = new CDbCriteria(array(
+			'condition'=>'province = :province AND year = :year',
+			'params'=>array(
+				':province'=>$province,
+				':year'=>$year
+			)
+		));
+
+		$model = CoursePaper::model()->findAll($criteria);
+
+		$this->render('province',array(
+			'model'=>$model
+		));
+	}
+
+
+	public function actionPaper()
+	{
+
+		$this->layout = '/layouts/blank';
+
+		$year = isset($_GET['year'])?$_GET['year']:date('Y');
+
+		$model = Paper::model()->getPapers($year);
+
+		$this->render('paper',array(
+			'model'=>$model
+		));
+
+
+	}
+
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -67,15 +103,41 @@ class CoursePaperController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
+		$year = $_POST['CoursePaper']['year'];
+		$province = $_POST['CoursePaper']['province'];
+		$course = $_POST['CoursePaper']['course'];
+
 		if(isset($_POST['CoursePaper']))
 		{
+			
 			$model->attributes=$_POST['CoursePaper'];
-			if($model->save())
+			
+			if(CoursePaper::model()->exists('year = :year AND province = :province AND course = :course',array(':year'=>$year,':province'=>$province,'course'=>$course)))
 			{
+				$result = array('status'=>'fail','message'=>'已经有了!');
 
-				// $this->redirect(array('view','id'=>$model->id));
 			}
+			else
+			{				
+				
+				if($model->save())
+				{
+					$result = array('status'=>'success','message'=>'添加成功！');
+
+				}
+				else
+				{
+					$result = array('status'=>'fail','message'=>$model->errors);
+				}
+					
+			}
+
+			echo json_encode($result);
+
+			return ;
 		}
+
+
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -167,7 +229,7 @@ class CoursePaperController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='course-paper-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='CoursePaper-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

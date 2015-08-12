@@ -30,7 +30,7 @@
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'provinces'); ?>
 		<?php foreach(Gaokao::model()->getProvinces() as $k=>$province):?>
-			<span class="item"><a href="javascript:void(0);" class="provinceItem" onclick="addIds($(this));" id="<?php echo $k; ?>"><?php echo $province; ?></a></span> | 
+			<span class="item"><a href="javascript:void(0);" class="provinceItem" onclick="YKG.app('form').multiChoice($(this),'Paper_provinces');" id="<?php echo $k; ?>"><?php echo $province; ?></a></span> | 
 		<?php endforeach;?>
 		<?php echo $form->textField($model,'provinces',array('size'=>50,'maxlength'=>50,'class'=>"form-control",'placeholder'=>$this->module->t('gaokao','Province'))); ?>
 		<?php echo $form->error($model,'provinces'); ?>
@@ -53,6 +53,8 @@
 
 $(function(){
 
+
+
 	// loadPaper('2015');
 
 	$("#Paper_year").click(function(){
@@ -69,7 +71,7 @@ $(function(){
 
 		$.post('/gaokao/paper/create.html',params,function(data){
 
-			if(data.status == ‘'fail'){
+			if(data.status == 'fail'){
 				alert(data.message);
 			}else{
 				$("#paperload").load('/gaokao/paper/list.html?year='+$("#Paper_year").val());
@@ -88,6 +90,7 @@ function loadPaper(year)
 }
 
 
+//暂留下，已经被替换为YKG.app('form').multiChoice(object,input)
 function addIds(object){
 	if(object.parent().hasClass('selected')){
 		object.parent().removeClass('selected');

@@ -113,6 +113,12 @@ class Paper extends CActiveRecord
 		return parent::model($className);
 	}
 
+
+	public function getPaperName($id)
+	{
+		return self::model()->findByPk($id)->name;
+	}
+
 	public function getPapers($year)
 	{
 		$criteria = new CDbCriteria(array(
@@ -126,4 +132,6 @@ class Paper extends CActiveRecord
 
 		return $model;
 	}
+
+
 }

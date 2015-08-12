@@ -28,7 +28,7 @@ class PaperController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','list','papernames'),
+				'actions'=>array('index','view','list','paper'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -140,23 +140,16 @@ class PaperController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
-	public function actionPaperNames()
+	public function actionPaper()
 	{
 
 		$this->layout = '/layouts/blank';
 
 		$year = isset($_GET['year'])?$_GET['year']:date('Y');
 
-		$criteria = new CDbCriteria(array(
-			'condition'=>'year = :year',
-			'params'=>array(
-				':year'=>$year
-			)
-		));
+		$model = Paper::model()->getPapers($year);
 
-		$model = Paper::model()->findAll($criteria);
-
-		$this->render('papernames',array(
+		$this->render('paper',array(
 			'model'=>$model
 		));
 

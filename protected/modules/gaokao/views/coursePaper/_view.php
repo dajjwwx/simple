@@ -1,6 +1,6 @@
 <?php
-/* @var $this CoursePaperController */
-/* @var $data CoursePaper */
+/* @var $this CoursepaperController */
+/* @var $data Coursepaper */
 ?>
 
 <div class="view">

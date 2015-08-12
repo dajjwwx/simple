@@ -125,6 +125,7 @@
 
 
 <script type="text/javascript">
+//暂留下，已经被替换为YKG.app('form').singleChoice(object,input)
 function addIds(object){
 
 	object.parent().siblings().removeClass('selected').css({'border':'none'});
@@ -163,7 +164,7 @@ $(function(){
 	$("#mulitplefileuploader").parent().hide();
 
 	$("#Gaokao_year").change(function(){
-		$("#loadPaper").load('/gaokao/paper/papernames.html?year='+$(this).val());
+		$("#loadPaper").load('/gaokao/paper/paper.html?year='+$(this).val());
 	});
 
 	$("#gaokao-form").submit(function(){

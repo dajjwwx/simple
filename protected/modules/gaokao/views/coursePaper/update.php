@@ -1,23 +1,21 @@
 <?php
-/* @var $this CoursePaperController */
-/* @var $model CoursePaper */
+/* @var $this CoursepaperController */
+/* @var $model Coursepaper */
 
 $this->breadcrumbs=array(
-	'Course Papers'=>array('index'),
+	'Coursepapers'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List CoursePaper', 'url'=>array('index')),
-	array('label'=>'Create CoursePaper', 'url'=>array('create')),
-	array('label'=>'View CoursePaper', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage CoursePaper', 'url'=>array('admin')),
+	array('label'=>'List Coursepaper', 'url'=>array('index')),
+	array('label'=>'Create Coursepaper', 'url'=>array('create')),
+	array('label'=>'View Coursepaper', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage Coursepaper', 'url'=>array('admin')),
 );
 ?>
 
-<div class="panel panel-default">
-	<div class="panel-heading"><h4><span class="glyphicon glyphicon-pencil"></span> Update CoursePaper <?php echo $model->id; ?></div>
-	<div class="panel-body">
-		<?php $this->renderPartial('_form', array('model'=>$model)); ?>	</div>
-<div>
+<h1>Update Coursepaper <?php echo $model->id; ?></h1>
+
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

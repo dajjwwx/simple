@@ -1,13 +1,14 @@
 <?php /* @var $this Controller */ ?>
-<style type="text/css">
-	.view_info p{
-		text-indent: 2em;
-	}
-	.view_info .province a{
-		margin:0px 5px;
-	}
-</style>
+
 <?php $this->beginContent('//layouts/main'); ?>
+	<style type="text/css">
+		.view_info p{
+			text-indent: 2em;
+		}
+		.view_info .province a{
+			margin:0px 5px;
+		}
+	</style>
 	<div class="container">
 	
 		<div class="row" style="margin-top:70px;opacity:0.9;">
