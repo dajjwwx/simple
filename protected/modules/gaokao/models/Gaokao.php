@@ -158,9 +158,10 @@ class Gaokao extends CActiveRecord
 	 */
 	public function provinceLike($province)
 	{
-		$or = 'province LIKE \'%,'.$province.',%\' OR ';
-		$or .= 'province LIKE \'%,'.$province.'\' OR ';
-		$or .= 'province LIKE \''.$province.',%\'';
+		$or = 'provinces = '.$province. ' OR ' ;
+		$or .= 'provinces LIKE \'%,'.$province.',%\' OR ';
+		$or .= 'provinces LIKE \'%,'.$province.'\' OR ';
+		$or .= 'provinces LIKE \''.$province.',%\'';
 
 		return $or;
 	}
