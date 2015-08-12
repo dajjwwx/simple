@@ -13,7 +13,7 @@
 	<?php echo CHtml::encode($data->getAttributeLabel('year')); ?>: <?php echo CHtml::encode($data->year); ?>
 	</span>
 	<span class="item province">
-		适用<?php echo CHtml::encode($data->getAttributeLabel('province')); ?>:	<?php echo Gaokao::model()->getProvincesScope($data->province); ?>
+		适用<?php echo CHtml::encode($data->getAttributeLabel('province')); ?>:	<?php echo Gaokao::model()->getProvincesScope($data->papername->provinces); ?>
 	</span>
 	<span class="item">
 		文件大小:	<?php echo CHtml::encode(UtilFileInfo::formatSize($data->file->size)); ?>

@@ -168,19 +168,19 @@ class Gaokao extends CActiveRecord
 
 	/**
 	 * 试卷是否已经存在
-	 * @param  [int] $province
+	 * @param  [int] $paper
 	 * @param  [int] $course  
 	 * @param  [int] $year  
 	 * @return [bool]
 	 */
-	public function getPaperExists($province,$course,$year)
+	public function getPaperExists($paper,$course,$year)
 	{
-		$or = self::model()->provinceLike($province);
-
-		$condition ='course = :course AND year = :year AND ('.$or.')';
+		
+		$condition ='course = :course AND year = :year AND paper = :paper';
 		$params = array(
 			':course'=>$course,
-			':year'=>$year				
+			':year'=>$year,
+			':paper'=>$paper				
 		);
 		
 		return self::model()->exists($condition,$params); 
@@ -188,21 +188,20 @@ class Gaokao extends CActiveRecord
 
 	/**
 	 * 获取试卷相关数据
-	 * @param  [int] $province
+	 * @param  [int] $paper
 	 * @param  [int] $course  
 	 * @param  [int] $year  
 	 * @return [Gaokao]      
 	 */
-	public function getPaper($province,$course,$year)
+	public function getPaper($paper,$course,$year)
 	{
 
-		$or = self::model()->provinceLike($province);
-
 		$criteria = new CDbCriteria(array(
-			'condition'=>'course = :course AND year = :year AND ('.$or.')',
+			'condition'=>'course = :course AND year = :year AND paper = :paper',
 			'params'=>array(
 				':course'=>$course,
-				':year'=>$year				
+				':year'=>$year,
+				':paper'=>$paper				
 			)
 		));	
 		
@@ -216,22 +215,18 @@ class Gaokao extends CActiveRecord
 	 * @param  [int] $year  
 	 * @return [string]  
 	 */
-	public function getPaperLink($province,$course,$year)
+	public function getPaperLink($paper,$course,$year)
 	{
 
-		$or = self::model()->provinceLike($province);
-
 		$criteria = new CDbCriteria(array(
-			'condition'=>'course = :course AND year = :year AND ('.$or.')',
+			'condition'=>'course = :course AND year = :year AND paper = :paper',
 			'params'=>array(
 				':course'=>$course,
-				':year'=>$year				
+				':year'=>$year,
+				':paper'=>$paper			
 			)
 		));
 
-		// $criteria->addSearchCondition('province','\','.$province.',\'',true, 'AND');
-		// $criteria->addSearchCondition('province','\','.$province.'\'',true, 'OR');
-		// $criteria->addSearchCondition('province','\''.$province.',\'',true, 'OR');
 
 		$model = self::model()->find($criteria);
 
@@ -300,6 +295,7 @@ class Gaokao extends CActiveRecord
 		return $links;
 	}
 
+
 	public function getProvinces()
 	{
 		$provinces = Region::model()->generateProvince(0);
@@ -308,7 +304,7 @@ class Gaokao extends CActiveRecord
 		$values = array_values($provinces);
 		$provinces = array_combine($values, $keys);
 
-		$provinces = array_slice($provinces, 0, 29);
+		$provinces = array_slice($provinces, 0, 31);
 
 		$keys = array_keys($provinces);
 		$values = array_values($provinces);

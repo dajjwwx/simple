@@ -56,7 +56,7 @@
 		<?php echo $form->textField($model,'pid'); ?>
 		<?php echo $form->error($model,'pid'); ?>
 
-		<div id="uploadPapers"></div>
+		<div id="uploadPaper"></div>
 
 	</div>
 
@@ -65,7 +65,7 @@
 		$this->widget('ext.jqueryupload.JqueryUploadWidget',array(
 			'url'=>Yii::app()->createUrl('/gaokao/space/upload'),
 			'method'=>'POST',
-			'id'=>'mulitplefileuploader',
+			'id'=>'multiplyfileuploader',
 			'allowedTypes'=>'pdf',//只允许上传PDF文件
 			'fileName'=>'Filedata',
 			'returnType'=>"json",
@@ -111,7 +111,7 @@
 			}'	
 		));
 	?>
-		<div id="mulitplefileuploader"><?php echo $this->module->t('gaokao','Add Paper');?></div>  
+		<div id="multiplyfileuploader"><?php echo $this->module->t('gaokao','Add Paper');?></div>  
 		<div id="status"></div> 
 	</div>
 	
@@ -126,12 +126,9 @@
 
 <script type="text/javascript">
 //暂留下，已经被替换为YKG.app('form').singleChoice(object,input)
-function addIds(object){
+function checkPaperExists(object){
 
-	object.parent().siblings().removeClass('selected').css({'border':'none'});
-	object.parent().addClass('selected').css({border:'1px solid grey'});
-	
-	$("#Gaokao_paper").val(object.attr('id'));
+	YKG.app('form').singleChoice($(this),'Gaokao_paper');
 
 	var params = {
 		'paper':object.attr('id'),
@@ -139,22 +136,31 @@ function addIds(object){
 		'year':$("#Gaokao_year").val()
 	};
 
-	// $.get('/gaokao/space/checkpaperexists.html',params,function(data){
-	// 	if(data == 1){
-	// 		alert('已经存在');
-	// 		$("#mulitplefileuploader").parent().hide();
-	// 	}else{
-	// 		$("#mulitplefileuploader").parent().show();
-	// 	}
-	// });
+	//根据获取到的文件存在信息，控制$("#multiplyfileuploader")的显示与隐藏
+	$.get('/gaokao/space/checkpaperexists.html',params,function(data){
+		if(data == 1){
+			alert('已经存在');
+			$("#multiplyfileuploader").parent().hide();
 
-	// $.get('/gaokao/space/paperitems.html',params,function(data){
-	// 	//加载已经上传试卷
-	// 	$("#uploadPapers").html(data);
-	// });
+			YKG.app('dom').preAjax($("#uploadPaper"));
+
+			$.get('/gaokao/space/paperitems.html',params,function(data){
+				//加载已经上传试卷
+				console.log(data);
+				$("#uploadPaper").html(data);
+			});
+		}else{
+			alert("不存在");
+			$("#uploadPaper").empty();
+			$("#multiplyfileuploader").parent().show();
+		}
+	});
+
+	
+
 
 	//加载已经上传试卷
-	//$("#uploadPapers").load('/gaokao/space/paperitems.html?province='+object.attr('id')+'&year='+$("#Gaokao_year").val()+'&course='+$("#Gaokao_course").val());
+	//$("#uploadPaper").load('/gaokao/space/paperitems.html?province='+object.attr('id')+'&year='+$("#Gaokao_year").val()+'&course='+$("#Gaokao_course").val());
 }
 
 
@@ -164,6 +170,7 @@ $(function(){
 	$("#mulitplefileuploader").parent().hide();
 
 	$("#Gaokao_year").change(function(){
+		YKG.app('dom').preAjax($("#loadPaper"));
 		$("#loadPaper").load('/gaokao/paper/paper.html?year='+$(this).val());
 	});
 

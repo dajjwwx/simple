@@ -138,7 +138,7 @@ class CoursePaperController extends Controller
 			else
 			{				
 				
-				if($model->save())
+				if($model->validate() && $model->save())
 				{
 					$result = array('status'=>'success','message'=>'添加成功！');
 

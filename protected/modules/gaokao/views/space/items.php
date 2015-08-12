@@ -6,7 +6,7 @@
 				<?php //echo Gaokao::model()->getPaperLink($province,$data->course,$data->year); ?>
 				<?php echo $data->file->name;?>
 				<br />
-				<b>注:</b>本试卷适用于<?php echo Gaokao::model()->getProvincesScope($data->province);?>
+				<b>注:</b>本试卷适用于<?php echo Gaokao::model()->getProvincesScope($data->papername->provinces);?>
 			</div>
 		</li>
 		<?php endforeach;?>

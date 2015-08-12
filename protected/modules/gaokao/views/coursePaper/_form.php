@@ -110,8 +110,10 @@
 					alert(data.message);
 					$("#paperInfo").load('/gaokao/coursepaper/province.html?province='+$("#CoursePaper_province").val()+'&year='+$("#CoursePaper_year").val());
 				}else{
-					console.log(data.messages);
+					console.log(data.message);
 				}
+
+
 
 			},'json');
 

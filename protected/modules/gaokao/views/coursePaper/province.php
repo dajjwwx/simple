@@ -5,7 +5,14 @@
 	 <?php echo Paper::model()->getPaperName($data->paper);?><br />
 <?php endforeach;?>
 <?php else: ?>
-	<?php foreach(Gaokao::model()->getCourses() as $course):?>
-		<?php echo $course['course'];?>=><?php echo $paper->name; ?>
+	<?php 
+
+		$courses = Gaokao::model()->getCourses(); 
+		$chunks = array_chunk($courses, 6);
+		$courses = $chunks[0];
+	?>
+
+	<?php foreach($chunks[0] as $course):?>
+		<?php echo $course['course'];?>=><?php echo $paper->name; ?><br />
 	<?php endforeach;?>
 <?php endif;?>

@@ -42,9 +42,9 @@ class SpaceController extends Controller
 	}
 
 
-	public function actionCheckPaperExists($province,$course,$year)
+	public function actionCheckPaperExists($paper,$course,$year)
 	{
-		echo Gaokao::model()->getPaperExists($province,$course,$year);
+		echo Gaokao::model()->getPaperExists($paper,$course,$year);
 	}
 
 	//
@@ -55,11 +55,11 @@ class SpaceController extends Controller
 	 * @param  [int] $year    
 	 * @return [Gaokao]  $model   
 	 */
-	public function actionPaperItems($province,$course,$year)
+	public function actionPaperItems($paper,$course,$year)
 	{
 		$this->layout = '/layouts/blank';
 
-		$model = Gaokao::model()->getPaper($province,$course,$year);
+		$model = Gaokao::model()->getPaper($paper,$course,$year);
 
 		$this->render('items',array(
 			'model'=>$model,
