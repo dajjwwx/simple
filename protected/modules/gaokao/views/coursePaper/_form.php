@@ -72,19 +72,29 @@
 
 <script type="text/javascript">
 
-function paperInfo(object)
-{
-	YKG.app('form').singleChoice(object,'CoursePaper_province');
+	function paperInfo(object)
+	{
+		YKG.app('form').singleChoice(object,'CoursePaper_province');
 
-	$("#paperInfo").load('/gaokao/coursepaper/province.html?province='+$("#CoursePaper_province").val()+'&year='+$("#CoursePaper_year").val());
-}
+		// alert($("#CoursePaper_province").val() + '----' + $("#CoursePaper_year").val());
+
+		var href = '/gaokao/coursepaper/province.html?province='+$("#CoursePaper_province").val()+'&year='+$("#CoursePaper_year").val();
+
+		YKG.app('dom').preAjax($("#paperInfo"));
+
+		$("#paperInfo").load(href);
+	}
 
 	$(function(){
 
+
 		$("#loadPaper").load('/gaokao/coursepaper/paper.html?year='+$("#CoursePaper_year").val()+'&paper='+$("#CoursePaper_course").val());
 
-		$("#CoursePaper_year").change(function(){
+		$("#CoursePaper_year").change(function(){			
+			
+			YKG.app('dom').preAjax($("#loadPaper"));
 			$("#loadPaper").load('/gaokao/coursepaper/paper.html?year='+$(this).val()+'&paper='+$("#CoursePaper_course").val());
+
 		});
 
 
@@ -92,9 +102,10 @@ function paperInfo(object)
 
 			var params = $(this).serializeArray();
 
+			YKG.app('dom').preAjax($("#paperInfo"));
+
 			$.post('/gaokao/coursepaper/create.html',params,function(data){
 				$("#paperInfo").html(data.result);
-
 				if(data.status == 'success'){
 					alert(data.message);
 					$("#paperInfo").load('/gaokao/coursepaper/province.html?province='+$("#CoursePaper_province").val()+'&year='+$("#CoursePaper_year").val());
@@ -107,6 +118,6 @@ function paperInfo(object)
 			return false;
 		});
 
-	})
+	});
 
 </script>

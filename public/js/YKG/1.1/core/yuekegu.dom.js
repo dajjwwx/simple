@@ -6,6 +6,14 @@
  */
 YKG.prototype.dom = function(){
     
+
+	/**
+	 *用于ajax加载内容之前填充数据
+	 */
+    this.preAjax = function(object)
+    {
+    	object.html('<img src="/public/image/loading.gif" />');
+    }
 	/**
 	 * 
 	 */
