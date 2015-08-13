@@ -250,30 +250,39 @@ class SpaceController extends Controller
 	 */
 	public function actionProvince()
 	{
-
 		$province = $_GET['id']?$_GET['id']:(date('Y')-1);
 
 		$province = intval($province);
 
-		$or = 'province LIKE \'%,'.$province.',%\' OR ';
-		$or .= 'province LIKE \'%,'.$province.'\' OR ';
-		$or .= 'province LIKE \''.$province.',%\'';
-
-		$dataProvider=new CActiveDataProvider('Gaokao',array(
-			'criteria'=>array(
-				'condition'=> $or,
-				'order'=>'id DESC',
-				'params'=>array(
-					':province'=>$province
-				)
-
+		$criteria = new CDbCriteria(array(
+			'condition'=>'province = :province',
+			'params'=>array(
+				':province'=>$province,
 			)
 		));
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-			'viewname'=>Region::model()->getRegion($province)
 
+		$model = CoursePaper::model()->findAll($criteria);
+
+		if(!$model)
+		{
+
+			$or = Gaokao::model()->provinceLike($province);
+
+			$papercriteria = new CDbCriteria(array(
+				'condition'=>$or,
+			));
+
+			$paper = Paper::model()->find($papercriteria);
+
+			// UtilHelper::dump($paper);
+		}
+
+		$this->render('province',array(
+			'model'=>$model,
+			'paper'=>$paper,
+			'viewname'=>Region::model()->getRegion($province)
 		));
+
 	}
 
 	/**

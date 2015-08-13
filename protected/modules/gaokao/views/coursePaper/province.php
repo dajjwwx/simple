@@ -6,13 +6,13 @@
 <?php endforeach;?>
 <?php else: ?>
 	<?php 
+		$courses = Gaokao::model()->getCourses();
 
-		$courses = Gaokao::model()->getCourses(); 
 		$chunks = array_chunk($courses, 6);
-		$courses = $chunks[0];
 	?>
-
+	
 	<?php foreach($chunks[0] as $course):?>
+
 		<?php echo $course['course'];?>=><?php echo $paper->name; ?><br />
 	<?php endforeach;?>
 <?php endif;?>

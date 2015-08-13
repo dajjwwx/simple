@@ -70,8 +70,8 @@ class CoursePaperController extends Controller
 
 		$model = CoursePaper::model()->findAll($criteria);
 
-		// if(!$model)
-		// {
+		if(!$model)
+		{
 
 			$or = Gaokao::model()->provinceLike($province);
 
@@ -85,7 +85,7 @@ class CoursePaperController extends Controller
 			$paper = Paper::model()->find($papercriteria);
 
 			// UtilHelper::dump($paper);
-		// }
+		}
 
 		$this->render('province',array(
 			'model'=>$model,

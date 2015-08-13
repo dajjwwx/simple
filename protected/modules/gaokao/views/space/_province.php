@@ -1,8 +1,3 @@
-<?php
-/* @var $this GaokaoController */
-/* @var $data Gaokao */
-?>
-
 <div class="view_info">
 	<h5><span class="glyphicon glyphicon-file" aria-hidden="true"></span>   <?php echo CHtml::link(CHtml::encode($data->name), array('view', 'id'=>$data->id)); ?></h5>
 
