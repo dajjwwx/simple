@@ -259,6 +259,15 @@ class Gaokao extends CActiveRecord
 		$courses = require $config;	
 		return $courses;				
 	}
+
+	/**
+	 * [获取当前已有的高考真题卷]
+	 * @return [int] 
+	 */
+	public function getCurrentYear()
+	{
+		return (intval(date('m')) >= 6)?date('Y'):(date('Y')-1);
+	}
 	
 	public function getYearsList()
 	{

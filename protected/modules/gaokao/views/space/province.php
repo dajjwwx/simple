@@ -4,7 +4,8 @@
 
 $this->breadcrumbs=array(
 	$this->module->t('gaokao','Gaokao')=>array('space/index'),
-	$viewname.$current_year.'年高考真题'
+	$viewname.'高考真题'=>array('space/province','id'=>$_GET['id']),
+	$current_year.'年'
 );
 
 $this->menu=array(
@@ -12,35 +13,35 @@ $this->menu=array(
 	array('label'=>'Manage Gaokao', 'url'=>array('admin')),
 );
 ?>
+<blockquote>
+<ul class="list-unstyled" style="font-size:14px;line-height:1.5em;"><b>筛选条件</b>
+	<li>年份：
+		<?php foreach($years as $year):?>
+			<?php echo CHtml::link($year.'年',array('space/province','id'=>$_GET['id'],'year'=>$year));?> / 
+		<?php endforeach;?>			
+	</li>
+	<li>省份：
+		<?php foreach($provinces as $k=>$province):?>
+			<?php echo CHtml::link($province,array('space/province','id'=>$k,'year'=>$year));?> / 
+		<?php endforeach;?>
+	</li>
+</ul>
+</blockquote>
+
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<span class="glyphicon glyphicon-paperclip"></span> <?php echo $viewname.$current_year;?>年高考真题</div>
 	<div class="panel-body">
-		<blockquote>
-		<p>高考年份</p>
-		<footer>
-			<?php foreach($years as $year):?>
-				<?php echo CHtml::link($year.'年 / ',array('space/province','id'=>$_GET['id'],'year'=>$year));?>
-			<?php endforeach;?>			
-		</footer>
-	</blockquote>
-	<hr />
 		<ul style="margin:0px;padding:0px;">
 		<?php if($model):?>
 			<?php foreach($model as $data):?>
-				 <li style="list-style:none;float:left;width:180px;height:150px;margin:10px;padding:5px;background-color:#FFFFFF;border:1px solid grey;">
-
-					<div style="margin-top:10px;text-align:center;font-size:18px;font-weight:bold;">
-						<a href="/gaokao/coursepaper/update.html?id=<?php echo $data->id;?>"></a>
-						<?php echo $data->year;?>年<br />
-						<?php echo $data->coursepaper->name; ?><br />
-						<?php echo Gaokao::model()->getCourseName($data->course);?><br />						
-					</div>
-					<div style="text-align:center;font-size:16px;">
-						<br />
-						<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>				
-					</div>
-				</li>
+				<?php $this->renderPartial('_list',array(
+					'id'=>$data->id,
+					'year'=>$year,
+					'name'=>$data->coursepaper->name,
+					'course'=>Gaokao::model()->getCourseName($data->course),
+					'paper'=>'<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>'
+				)); ?>
 			<?php endforeach;?>
 			<?php else: ?>		
 			<?php				
@@ -48,19 +49,13 @@ $this->menu=array(
 				$chunks = array_chunk($courses, 6);
 			?>	
 			<?php foreach($chunks[0] as $course):?>
-				<li style="list-style:none;float:left;width:180px;height:150px;margin:10px;padding:5px;background-color:#FFFFFF;border:1px solid grey;">
-					<div style="margin-top:10px;text-align:center;font-size:18px;font-weight:bold;">
-						<a href="/gaokao/coursepaper/update.html?id=<?php echo $data->id;?>">
-							<?php echo Gaokao::model()->getCourseName($data->course);?>
-						</a>
-						<?php echo $current_year;?>年<br />
-						<?php echo $paper->name; ?><br />
-						<?php echo $course['course'];?>
-					</div>					
-					<div style="text-align:center;font-size:16px;"><br />
-						<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>				
-					</div>
-				</li>
+				<?php $this->renderPartial('_list',array(
+					'id'=>$data->id,
+					'year'=>$current_year,
+					'name'=>$paper->name,
+					'course'=>$course['course'],
+					'paper'=>'<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>'
+				)); ?>
 			<?php endforeach;?>
 		<?php endif;?>	
 		</ul>		

@@ -87,14 +87,28 @@ class SpaceController extends Controller
 	{
 
 		$courses = Gaokao::model()->getCourses();
-		$provinces = Gaokao::model()->getProvinces();
-		$currentYear = (date('m') >= 6 && date('d')>=20)?date('Y'):(date('Y')-1);
+
+		$currentYear = Gaokao::model()->getCurrentYear();
 		$year = $_GET['id']?$_GET['id']:$currentYear;
 
-		$this->render('list',array(
+		$papernames = Paper::model()->findAll(array(
+			'condition'=>'year = :year',
+			'params'=>array(
+				':year'=>$year
+			)
+
+		));
+
+
+		$current_course_id = intval(isset($_GET['course'])?$_GET['course']:1);
+		$current_course =Gaokao::model()->getCourseName($current_course_id);
+
+		$this->render('year',array(
+			'current_course'=>$current_course,
 			'courses'=>$courses,
-			'provinces'=>$provinces,
-			'year'=>$year
+			'papernames'=>$papernames,
+			'year'=>$year,
+			'viewname'=>$year
 		));
 	}	
 	
@@ -287,6 +301,7 @@ class SpaceController extends Controller
 			'model'=>$model,
 			'paper'=>$paper,
 			'years'=>Gaokao::model()->getYears(),
+			'provinces'=>Gaokao::model()->getProvinces(),
 			'current_year'=>$year,
 			'viewname'=>Region::model()->getRegion($province)
 		));
