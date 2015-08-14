@@ -250,16 +250,19 @@ class SpaceController extends Controller
 	 */
 	public function actionProvince()
 	{
-		$province = $_GET['id']?$_GET['id']:(date('Y')-1);
-
+		$province = $_GET['id']?$_GET['id']:1;//此处可改进为获取当前省份ID
 		$province = intval($province);
 
+		$year = $_GET['year']?$_GET['year']:(date('Y'));
+
 		$criteria = new CDbCriteria(array(
-			'condition'=>'province = :province',
+			'condition'=>'province = :province AND year = :year',			
 			'params'=>array(
 				':province'=>$province,
+				':year'=>$year
 			)
 		));
+
 
 		$model = CoursePaper::model()->findAll($criteria);
 
@@ -269,7 +272,10 @@ class SpaceController extends Controller
 			$or = Gaokao::model()->provinceLike($province);
 
 			$papercriteria = new CDbCriteria(array(
-				'condition'=>$or,
+				'condition'=>'year = :year AND ('. $or .')',
+				'params'=>array(
+					':year'=>$year
+				)
 			));
 
 			$paper = Paper::model()->find($papercriteria);
@@ -280,6 +286,8 @@ class SpaceController extends Controller
 		$this->render('province',array(
 			'model'=>$model,
 			'paper'=>$paper,
+			'years'=>Gaokao::model()->getYears(),
+			'current_year'=>$year,
 			'viewname'=>Region::model()->getRegion($province)
 		));
 
