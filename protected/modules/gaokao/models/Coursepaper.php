@@ -11,7 +11,7 @@
  * @property string $year
  *
  * The followings are the available model relations:
- * @property Paper $paper
+ * @property Paper $coursepaper
  * @property Region $province
  */
 class CoursePaper extends CActiveRecord
@@ -49,7 +49,7 @@ class CoursePaper extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'paper' => array(self::BELONGS_TO, 'Paper', 'paper'),
+			'coursepaper' => array(self::BELONGS_TO, 'Paper', 'paper'),
 			'province' => array(self::BELONGS_TO, 'Region', 'province'),
 		);
 	}

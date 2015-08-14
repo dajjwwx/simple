@@ -86,6 +86,7 @@ $(function(){
 
 function loadPaper(year)
 {
+	YKG.app('dom').preAjax($("#paperload"));
 	$("#paperload").load('/gaokao/paper/list.html?year='+year);
 }
 
