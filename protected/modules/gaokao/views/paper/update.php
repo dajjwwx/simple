@@ -16,6 +16,13 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Paper <?php echo $model->id; ?></h1>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span class="glyphicon glyphicon-paperclip"></span> 更新<?php echo $model->name;?>
+	</div>
+	<div class="panel-body">	
+		
+		<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>	
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+	</div>
+</div>

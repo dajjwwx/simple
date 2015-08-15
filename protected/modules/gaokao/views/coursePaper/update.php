@@ -19,3 +19,14 @@ $this->menu=array(
 <h1>Update Coursepaper <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span class="glyphicon glyphicon-paperclip"></span> 更新高考卷（<?php echo $model->name;?>）信息
+	</div>
+	<div class="panel-body">	
+		
+		<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>	
+
+	</div>
+</div>
