@@ -39,41 +39,46 @@
 	
 		<div class="row" style="margin-top:30px;opacity:0.9;">
 			<div class="col-md-3" style="position:relative;height:600px;">
+				<?php if(!Yii::app()->user->isGuest):?>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<span class="glyphicon glyphicon-paperclip"></span> View Profile </div>
-					<div class="panel-body">
-										
+						<span class="glyphicon glyphicon-paperclip"></span> 基本操作 </div>
+					<div class="panel-body">										
 						<ul class="list-group">
 							<li class="list-group-item"><?php echo CHtml::link('高考真题库',array('space/list'));?></li>
 							<li class="list-group-item"><?php echo CHtml::link('上传试题',array('space/addpaper'));?></li>
+							<?php if(Yii::app()->user->name == 'admin'):?>
 							<li class="list-group-item"><?php echo CHtml::link('添加试卷类型',array('paper/create'));?></li>
-						</ul>
-					
+							<li class="list-group-item"><?php echo CHtml::link('添加特殊试卷',array('coursepaper/create'));?></li>
+							<?php endif;?>
+						</ul>					
 						<?php
-							$this->beginWidget('zii.widgets.CPortlet', array(
-								'title'=>'Operations',
-							));
-							$this->widget('zii.widgets.CMenu', array(
-								'items'=>$this->menu,
-								'htmlOptions'=>array('class'=>'operations list-group'),
-							));
-							$this->endWidget();
+							// $this->beginWidget('zii.widgets.CPortlet', array(
+							// 	'title'=>'Operations',
+							// ));
+							// $this->widget('zii.widgets.CMenu', array(
+							// 	'items'=>$this->menu,
+							// 	'htmlOptions'=>array('class'=>'operations list-group'),
+							// ));
+							// $this->endWidget();
 						?>		
 					</div>
 				</div>
-				
+				<?php endif;?>
+				<!--
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<span class="glyphicon glyphicon-paperclip"></span> 科目
 					</div>
 					<div class="panel-body">
-						<?php $this->widget('gaokao.components.gaokaomenu.GaokaoMenu',array(
-							'view'=>'courseslist'
-						)); ?>
+						<?php 
+						// $this->widget('gaokao.components.gaokaomenu.GaokaoMenu',array(
+						// 	'view'=>'courseslist'
+						// )); 
+						?>
 					</div>
 				</div>
-				
+				-->
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<span class="glyphicon glyphicon-paperclip"></span> 年份
@@ -95,7 +100,7 @@
 						)); ?>
 					</div>
 				</div>
-			
+				<!--
 				<div class="panel panel-default">
 					<div class="panel-heading"><?php echo Yii::app()->getModule('gaokao')->t('gaokao','College Entrance Examination');?></div>
 					<div class="panel-body">
@@ -106,6 +111,7 @@
 						</div>
 					</div>
 				</div>	
+				-->
 			</div>
 			<div class="col-md-9">
 				<?php if(isset($this->breadcrumbs)):?>

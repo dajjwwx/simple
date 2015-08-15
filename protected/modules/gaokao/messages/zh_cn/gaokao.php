@@ -11,6 +11,9 @@ return array(
 	'Province'=>'省份',	
 	'Provinces'=>'省份',
 
-	'Gaokao'=>'高考'
+	'Gaokao'=>'高考',
+
+	'Name'=>'名称',
+	
 );
 ?>

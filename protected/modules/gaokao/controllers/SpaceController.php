@@ -83,34 +83,81 @@ class SpaceController extends Controller
 
 	}
 
-	public function actionYear()
+
+	/**
+	 * Lists all models.
+	 */
+	public function actionCourse()
 	{
 
-		$courses = Gaokao::model()->getCourses();
+		$course = $_GET['id']?$_GET['id']:0;
 
-		$currentYear = Gaokao::model()->getCurrentYear();
-		$year = $_GET['id']?$_GET['id']:$currentYear;
+		$course = intval($course);
 
-		$papernames = Paper::model()->findAll(array(
-			'condition'=>'year = :year',
+		$dataProvider=new CActiveDataProvider('Gaokao',array(
+			'criteria'=>array(
+				'condition'=> 'course = :course',
+				'order'=>'id DESC',
+				'params'=>array(
+					':course'=>$course
+				)
+
+			)
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+			'viewname'=> Gaokao::model()->getCourseName($course)
+		));
+	}
+
+
+	/**
+	 * Lists all models.
+	 */
+	public function actionProvince()
+	{
+		$province = $_GET['id']?$_GET['id']:1;//此处可改进为获取当前省份ID
+		$province = intval($province);
+
+		$year = $_GET['year']?$_GET['year']:(date('Y'));
+
+		$criteria = new CDbCriteria(array(
+			'condition'=>'province = :province AND year = :year',			
 			'params'=>array(
+				':province'=>$province,
 				':year'=>$year
 			)
-
 		));
 
+		$model = CoursePaper::model()->findAll($criteria);
 
-		$current_course_id = intval(isset($_GET['course'])?$_GET['course']:1);
-		$current_course =Gaokao::model()->getCourseName($current_course_id);
+		if(!$model)
+		{
 
-		$this->render('year',array(
-			'current_course'=>$current_course,
-			'courses'=>$courses,
-			'papernames'=>$papernames,
-			'year'=>$year,
-			'viewname'=>$year
+			$or = Gaokao::model()->provinceLike($province);
+
+			$papercriteria = new CDbCriteria(array(
+				'condition'=>'year = :year AND ('. $or .')',
+				'params'=>array(
+					':year'=>$year
+				)
+			));
+
+			$paper = Paper::model()->find($papercriteria);
+
+			// UtilHelper::dump($paper);
+		}
+
+		$this->render('province',array(
+			'model'=>$model,
+			'paper'=>$paper,
+			'years'=>Gaokao::model()->getYears(),
+			'provinces'=>Gaokao::model()->getProvinces(),
+			'current_year'=>$year,
+			'viewname'=>Region::model()->getRegion($province)
 		));
-	}	
+
+	}
 	
 	/**
 	 * Displays a particular model.
@@ -232,95 +279,39 @@ class SpaceController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionCourse()
-	{
-
-		$course = $_GET['id']?$_GET['id']:0;
-
-		$course = intval($course);
-
-		$dataProvider=new CActiveDataProvider('Gaokao',array(
-			'criteria'=>array(
-				'condition'=> 'course = :course',
-				'order'=>'id DESC',
-				'params'=>array(
-					':course'=>$course
-				)
-
-			)
-		));
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-			'viewname'=> Gaokao::model()->getCourseName($course)
-		));
-	}
-
-
-	/**
-	 * Lists all models.
-	 */
-	public function actionProvince()
-	{
-		$province = $_GET['id']?$_GET['id']:1;//此处可改进为获取当前省份ID
-		$province = intval($province);
-
-		$year = $_GET['year']?$_GET['year']:(date('Y'));
-
-		$criteria = new CDbCriteria(array(
-			'condition'=>'province = :province AND year = :year',			
-			'params'=>array(
-				':province'=>$province,
-				':year'=>$year
-			)
-		));
-
-
-		$model = CoursePaper::model()->findAll($criteria);
-
-		if(!$model)
-		{
-
-			$or = Gaokao::model()->provinceLike($province);
-
-			$papercriteria = new CDbCriteria(array(
-				'condition'=>'year = :year AND ('. $or .')',
-				'params'=>array(
-					':year'=>$year
-				)
-			));
-
-			$paper = Paper::model()->find($papercriteria);
-
-			// UtilHelper::dump($paper);
-		}
-
-		$this->render('province',array(
-			'model'=>$model,
-			'paper'=>$paper,
-			'years'=>Gaokao::model()->getYears(),
-			'provinces'=>Gaokao::model()->getProvinces(),
-			'current_year'=>$year,
-			'viewname'=>Region::model()->getRegion($province)
-		));
-
-	}
 
 	/**
 	 * Lists all models.
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Gaokao',array(
-			'criteria'=>array(
-				'order'=>'id DESC'
+		$courses = Gaokao::model()->getCourses();
+
+		$currentYear = Gaokao::model()->getCurrentYear();
+		$year = $_GET['id']?$_GET['id']:$currentYear;
+
+		$papernames = Paper::model()->findAll(array(
+			'condition'=>'year = :year',
+			'params'=>array(
+				':year'=>$year
 			)
+
 		));
+
+
+		$current_course_id = intval(isset($_GET['course'])?$_GET['course']:1);
+		$current_course =Gaokao::model()->getCourseName($current_course_id);
+
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'current_course'=>$current_course,
+			'courses'=>$courses,
+			'papernames'=>$papernames,
+			'years'=>Gaokao::model()->getYears(),
+			'default_year'=>$year,
+			'viewname'=>$year,
+			'default_course'=>$current_course_id
 		));
+
 	}
 
 	/**

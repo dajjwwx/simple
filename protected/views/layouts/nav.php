@@ -14,13 +14,25 @@
             <li <?php echo ($this->id=='site'&&$this->action->id=='index')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/index');?>"><?php echo Yii::t("basic","Home");?></a></li>
             <?php $navitems = Config::mergeConfig('nav');?>
             <?php if ($navitems):?>
-			<?php $module = isset($this->module)?$this->module->id:'';?>
+			      <?php $module = isset($this->module)?$this->module->id:'';?>
             <?php foreach ($navitems as $item):?>
-            <li <?php echo ($module==$item['module'])?'class="active"':'';?>><a href="<?php echo $this->createUrl($item['link']);?>"><?php echo $item['name'];?></a></li>
+              <?php if(isset($item['items'])):?>
+                <li class="dropdown <?php echo ($module==$item['module'])?'active':'';?>">
+                  <a data-toggle="dropdown" href="#"><?php echo $item['name'];?></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <?php foreach($item['items'] as $data):?>
+                    <li role="presentatioon"><a role="menuitem" tabindex="-1" href="<?php echo $this->createUrl($data['link']);?>"><?php echo $data['name'];?></a></li> 
+                    <?php endforeach;?>
+                  </ul>
+                </li>
+              <?php else: ?>
+                <li <?php echo ($module==$item['module'])?'class="active"':'';?>><a href="<?php echo $this->createUrl($item['link']);?>"><?php echo $item['name'];?></a></li>
+              <?php endif;?>
             <?php endforeach;?>
             <?php endif;?>
             <li <?php echo ($this->id=='site'&&$this->action->id=='page')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>"><?php echo Yii::t("basic","About");?></a></li>    
             <li <?php echo ($this->id=='site'&&$this->action->id=='contact')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/contact');?>"><?php echo Yii::t("basic","Contact");?></a></li>
+
           </ul>          
          <ul class="nav navbar-nav pull-right">
           	<?php if(Yii::app()->user->isGuest): ?>

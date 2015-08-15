@@ -60,9 +60,9 @@ class Paper extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'year' => 'Year',
-			'provinces' => 'Provinces',
+			'name' => Yii::app()->getModule('gaokao')->t('gaokao','Name'),
+			'year' => Yii::app()->getModule('gaokao')->t('gaokao','Year'),
+			'provinces' => Yii::app()->getModule('gaokao')->t('gaokao','Provinces'),
 		);
 	}
 
