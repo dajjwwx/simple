@@ -272,6 +272,7 @@ class SpaceController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -297,7 +298,6 @@ class SpaceController extends Controller
 			)
 
 		));
-
 
 		$current_course_id = intval(isset($_GET['course'])?$_GET['course']:1);
 		$current_course =Gaokao::model()->getCourseName($current_course_id);

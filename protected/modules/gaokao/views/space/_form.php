@@ -153,14 +153,11 @@ function checkPaperExists(object){
 			$.get('/gaokao/space/paperitems.html',params,function(data){
 				//加载已经上传试卷
 				console.log(data);
-				$("#uploadPaper").html('<em>文件已经存在</em><br />'+data);
+				$("#uploadPaper").html('<br />'+data);
 			});
-		}else{
-			
+		}else{			
 			$("#uploadPaper").html(function(){
-				return $('<b style="background-color:yellow;border:3px dashed grey;">文件还没有上传</b>').css({'background-color':'yellow','border':'3px dashed grey','font-size':'24px'}).animate({
-					'font-size':'12px'
-				}).html();
+				return $('<b style="background-color:yellow;border:3px dashed grey;">文件还没有上传</b>').html();
 			}).fadeOut(3000);
 			$("#multiplyfileuploader").parent().show();
 		}

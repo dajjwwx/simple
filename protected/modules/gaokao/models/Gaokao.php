@@ -122,6 +122,22 @@ class Gaokao extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function deletePaper($id)
+	{
+		$model = Gaokao::model()->findByPk($id);
+
+		$folder = Yii::app()->params->uploadGaoKaoPath;
+		$targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, true, false);
+
+		echo $targetFile;
+
+		if(file_exists($targetFile)) {
+			echo "OK";
+		}else{
+			echo "Fail";
+		}
+	}
 	
 
 
@@ -258,6 +274,27 @@ class Gaokao extends CActiveRecord
 		$config =  Yii::getPathOfAlias('gaokao.config.gaokao_courses').'.php';		
 		$courses = require $config;	
 		return $courses;				
+	}
+
+	public function getProvinceCourses($province)
+	{
+
+		$courses = self::getCourses();	
+
+
+		//默认21为海南
+		if($province == 22)
+		{
+			unset($courses[4]);
+			unset($courses[5]);
+		}
+		else
+		{
+			$chunks = array_chunk($courses, 6);
+			$courses = $chunks[0];
+		}
+
+		return $courses;
 	}
 
 	/**

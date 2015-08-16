@@ -3,9 +3,9 @@
 /* @var $model Gaokao */
 
 $this->breadcrumbs=array(
-	$this->module->t('gaokao','Gaokao')=>array('index'),
-	Gaokao::model()->getCourseName($model->course)=>array('course','id'=>$model->course),
-	$model->year.'年'=>array('year',$model->year),
+	$this->module->t('gaokao','Gaokao')=>array('index'),	
+	$model->year.'年'=>array('index','id'=>$model->year),
+	Gaokao::model()->getCourseName($model->course)=>array('index','id'=>$model->year,'course'=>$model->course),
 	CHtml::encode($model->file->name)
 );
 

@@ -5,8 +5,8 @@ return array(
 		'name'=>'高考真题库'		
 	),
 	array(
-		'link'=>'/gaokao/space/addpaper',
+		'link'=>'/gaokao/space/create',
 		'name'=>'上传试卷'		
 	)
 );
-?>
+?>\
