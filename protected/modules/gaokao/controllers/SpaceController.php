@@ -28,11 +28,11 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','upload','update','paperitems','checkpaperexists'),
+				'actions'=>array('create','delete','upload','update','paperitems','checkpaperexists'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin',),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -195,13 +195,16 @@ class SpaceController extends Controller
 		if(isset($_POST['Gaokao']))
 		{
 			$model->attributes=$_POST['Gaokao'];
-			if($model->save())
+			if(!Gaokao::model()->getPaperExists($model->paper,$model->course,$model->year))
 			{
-				//$this->redirect(array('view','id'=>$model->id));
-				echo json_encode($model->attributes);
+				if($model->save())
+				{
+					//$this->redirect(array('view','id'=>$model->id));
+					echo json_encode($model->attributes);
+				}				
 			}
 			
-			return ;
+			Yii::app()->end();
 		}
 
 		$this->render('addpaper',array(
@@ -265,6 +268,8 @@ class SpaceController extends Controller
 		));
 	}
 
+
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -273,11 +278,14 @@ class SpaceController extends Controller
 	public function actionDelete($id)
 	{
 
-		$this->loadModel($id)->delete();
+
+		$model = $this->loadModel($id);
+
+		echo Gaokao::model()->deletePaper($model);
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		// if(!isset($_GET['ajax']))
+		// 	$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 

@@ -9,10 +9,11 @@
 
 				<br />
 				<?php if(UtilAuth::isLogin($data->file->owner)):?>
-				<a href="<?php echo $this->createUrl('space/delete',array('id'=>$data->id,'fid'=>$data->file->id));?>">删除</a>
+				<a href="<?php echo $this->createUrl('space/view',array('id'=>$data->id));?>">查看</a> / 
+				<a href="<?php echo $this->createUrl('space/delete',array('id'=>$data->id,'fid'=>$data->fid));?>" onclick="deletePaper($(this));return false;">删除</a>
 				<?php endif;?>
 
-				<?php echo Gaokao::model()->deletePaper($data->file);?>
+				<?php //echo Gaokao::model()->deletePaper($data->id);?>
 			</div>
 		</li>
 		<?php endforeach;?>

@@ -101,6 +101,7 @@ class File extends CActiveRecord
 				'category' => array(self::BELONGS_TO, 'Category', 'pid'),
 				'owner' => array(self::BELONGS_TO, 'User', 'owner'),
 				'avatar' => array(self::HAS_ONE, 'Profile', 'avatar'),
+				'paper' => array(self::HAS_ONE, 'Gaokao', 'fid')
 		);
 	}
 
@@ -243,6 +244,30 @@ class File extends CActiveRecord
 		$this->setFileServer(Yii::app()->params->fileServer);
 	
 		return $this->server;
+	}
+
+	/**
+	 * 删除文件
+	 */
+	public function deleteFile($id, $folder)
+	{
+		$model = self::model()->findByPk($id);
+		if($model)
+		{
+			//找到文件删除
+			// $folder = Yii::app()->params->uploadGaoKaoPath;
+			$targetFile = File::model()->attributeAdapter($model)->getFilePath($folder, true, false);		
+			//静默删除
+			UtilFile::unlinkFile($targetFile);
+			$model->delete(); //删除文件相关数据		
+			
+			return true;	
+		}
+		else
+		{
+			return false;
+		}
+
 	}
 	
 }

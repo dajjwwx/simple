@@ -123,20 +123,28 @@ class Gaokao extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function deletePaper($id)
+	/**
+	 * 删除上传的文件及Gaokao表中相关数据
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public function deletePaper($model)
 	{
-		$model = Gaokao::model()->findByPk($id);
+		// $model = Gaokao::model()->findByPk($id);
+		if($model)
+		{
+			//找到文件删除
+			$folder = Yii::app()->params->uploadGaoKaoPath;
+			$targetFile = File::model()->deleteFile($model->fid, $folder);	
 
-		$folder = Yii::app()->params->uploadGaoKaoPath;
-		$targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, true, false);
+			$model->delete();//删除Gaokao相关数据
 
-		echo $targetFile;
-
-		if(file_exists($targetFile)) {
-			echo "OK";
-		}else{
-			echo "Fail";
+			return true;		
 		}
+
+		return false;
+
+
 	}
 	
 

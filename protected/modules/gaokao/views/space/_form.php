@@ -140,7 +140,7 @@ function checkPaperExists(object){
 		'year':$("#Gaokao_year").val()
 	};
 
-	$("#uploadPaper").show();
+	// $("#uploadPaper").show();
 
 	//根据获取到的文件存在信息，控制$("#multiplyfileuploader")的显示与隐藏
 	$.get('/gaokao/space/checkpaperexists.html',params,function(data){
@@ -155,19 +155,41 @@ function checkPaperExists(object){
 				console.log(data);
 				$("#uploadPaper").html('<br />'+data);
 			});
-		}else{			
-			$("#uploadPaper").html(function(){
-				return $('<b style="background-color:yellow;border:3px dashed grey;">文件还没有上传</b>').html();
-			}).fadeOut(3000);
+		}else{
+
+			var html = $('<b style="background-color:yellow;border:3px dashed grey;">文件还没有上传</b>');
+
+			$("#uploadPaper").empty().append(html);
+
+			html.fadeOut(1000);
+
 			$("#multiplyfileuploader").parent().show();
 		}
 	});
 
-	
+	event.preventDefault();
 
 
 	//加载已经上传试卷
 	//$("#uploadPaper").load('/gaokao/space/paperitems.html?province='+object.attr('id')+'&year='+$("#Gaokao_year").val()+'&course='+$("#Gaokao_course").val());
+}
+
+function deletePaper(object)
+{
+	$.post(object.attr('href'),{},function(data){
+		if(data == 1){
+			alert("删除成功");
+
+			obejct.parent().parent().hide();
+		}else{
+			alert("删除失败");
+		}
+
+	});
+
+	event.preventDefault();
+
+		
 }
 
 
