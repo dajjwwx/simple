@@ -46,7 +46,7 @@
 					<div class="panel-body">										
 						<ul class="list-group">
 							<li class="list-group-item"><?php echo CHtml::link('高考真题库',array('space/list'));?></li>
-							<li class="list-group-item"><?php echo CHtml::link('上传试题',array('space/addpaper'));?></li>
+							<li class="list-group-item"><?php echo CHtml::link('上传试题',array('space/create'));?></li>
 							<?php if(Yii::app()->user->name == 'admin'):?>
 							<li class="list-group-item"><?php echo CHtml::link('添加试卷类型',array('paper/create'));?></li>
 							<li class="list-group-item"><?php echo CHtml::link('添加特殊试卷',array('coursepaper/create'));?></li>

@@ -295,11 +295,24 @@ class Gaokao extends CActiveRecord
 	 */
 	public function getProvincesScope($ids)
 	{
+
+		$num = func_num_args();
+
+
 		$links = '';
 		$ids = explode(',', $ids);
-		foreach ($ids as $key => $value) {
+		foreach ($ids as $key => $value) 
+		{
 			$province = Region::model()->getRegion($value);
-			$links .= CHtml::link($province,array('space/province/','id'=>$value));
+			if(num > 1)
+			{
+				$links .= '<span>'.$province.'</span>';
+			}
+			else
+			{
+				$links .= CHtml::link($province,array('space/province/','id'=>$value));
+			}
+			
 		}	
 		return $links;
 	}

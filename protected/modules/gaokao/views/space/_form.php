@@ -76,6 +76,7 @@
 			'multiple'=>false,
 			'extErrorStr'=>'允许上传的文件格式为：',
 			'sizeErrorStr'=>'您的文件太大了，最大只能上传',
+			'showDelete'=>true,
 			'deleteCallback'=>'js:function (data, pd) {
 				for (var i = 0; i < data.length; i++) {
 					$.post("delete.php", {op: "delete",name: data[i]},
@@ -86,6 +87,9 @@
 				}
 				pd.statusbar.hide(); //You choice.
 
+			}',
+			'onSelect'=>'js:function(obj){
+				console.log(obj);
 			}',
 			'onLoad'=>'js:function(obj){
 				console.log($("#gaokao_form").serializeArray());
@@ -128,7 +132,7 @@
 //暂留下，已经被替换为YKG.app('form').singleChoice(object,input)
 function checkPaperExists(object){
 
-	YKG.app('form').singleChoice($(this),'Gaokao_paper');
+	YKG.app('form').singleChoice(object,'Gaokao_paper');
 
 	var params = {
 		'paper':object.attr('id'),
@@ -136,10 +140,12 @@ function checkPaperExists(object){
 		'year':$("#Gaokao_year").val()
 	};
 
+	$("#uploadPaper").show();
+
 	//根据获取到的文件存在信息，控制$("#multiplyfileuploader")的显示与隐藏
 	$.get('/gaokao/space/checkpaperexists.html',params,function(data){
 		if(data == 1){
-			alert('已经存在');
+			
 			$("#multiplyfileuploader").parent().hide();
 
 			YKG.app('dom').preAjax($("#uploadPaper"));
@@ -147,11 +153,15 @@ function checkPaperExists(object){
 			$.get('/gaokao/space/paperitems.html',params,function(data){
 				//加载已经上传试卷
 				console.log(data);
-				$("#uploadPaper").html(data);
+				$("#uploadPaper").html('<em>文件已经存在</em><br />'+data);
 			});
 		}else{
-			alert("不存在");
-			$("#uploadPaper").empty();
+			
+			$("#uploadPaper").html(function(){
+				return $('<b style="background-color:yellow;border:3px dashed grey;">文件还没有上传</b>').css({'background-color':'yellow','border':'3px dashed grey','font-size':'24px'}).animate({
+					'font-size':'12px'
+				}).html();
+			}).fadeOut(3000);
 			$("#multiplyfileuploader").parent().show();
 		}
 	});
@@ -186,16 +196,15 @@ $(function(){
 			return false;
 		}
 
-		if($("#Gaokao_province").val() == ''){
-			alert("还没选择适用省份");
+		if($("#Gaokao_paper").val() == ''){
+			alert("还没选择试题名称");
 			return false;
 		}
 
 
 		var data = $(this).serializeArray();
-		$.post('<?php echo $this->createUrl("/gaokao/space/addpaper");?>',data,function(result){
+		$.post('<?php echo $this->createUrl("/gaokao/space/create");?>',data,function(result){
 			console.log(result);
-
 			$(".buttons").append('&nbsp;&nbsp;&nbsp;&nbsp;<a href="/gaokao/space/view/'+result.id+'.html">查看试卷</a></span>');
 		},'json');	
 

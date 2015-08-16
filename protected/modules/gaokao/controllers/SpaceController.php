@@ -28,7 +28,7 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('addpaper','upload','update','paperitems','checkpaperexists'),
+				'actions'=>array('create','upload','update','paperitems','checkpaperexists'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -181,7 +181,7 @@ class SpaceController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionAddPaper()
+	public function actionCreate()
 	{
 
 		$model=new Gaokao;

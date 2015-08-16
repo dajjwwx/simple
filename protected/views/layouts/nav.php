@@ -18,7 +18,7 @@
             <?php foreach ($navitems as $item):?>
               <?php if(isset($item['items'])):?>
                 <li class="dropdown <?php echo ($module==$item['module'])?'active':'';?>">
-                  <a data-toggle="dropdown" href="#"><?php echo $item['name'];?></a>
+                  <a data-toggle="dropdown" href="#"><?php echo $item['name'];?><b class="caret"></b></a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                     <?php foreach($item['items'] as $data):?>
                     <li role="presentatioon"><a role="menuitem" tabindex="-1" href="<?php echo $this->createUrl($data['link']);?>"><?php echo $data['name'];?></a></li> 
