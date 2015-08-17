@@ -229,7 +229,7 @@ class Gaokao extends CActiveRecord
 			)
 		));	
 		
-		return self::model()->findAll($criteria);
+		return self::model()->find($criteria);
 	}
 	
 	/**
@@ -261,7 +261,7 @@ class Gaokao extends CActiveRecord
 
 			if($model->paperkey)
 			{
-				$link .= CHtml::link('答案',array('space/key','id'=>$model->id));
+				$link .= CHtml::link('答案',array('space/view','id'=>$model->paperkey->id));
 			}
 			else
 			{

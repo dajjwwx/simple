@@ -41,7 +41,7 @@
 			<blockquote><small>选择年份，加载试卷类型</small></blockquote>
 		</div>		
 		
-		<?php echo $form->textField($model,'paper',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
+		<?php echo $form->hiddenField($model,'paper',array('size'=>32,'maxlength'=>32,'class'=>"form-control")); ?>
 		<?php echo $form->error($model,'paper'); ?>
 	</div>
 
@@ -52,8 +52,8 @@
 	</div>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'pid'); ?>
-		<?php echo $form->textField($model,'pid'); ?>
+		<?php //echo $form->labelEx($model,'pid'); ?>
+		<?php echo $form->hiddenField($model,'pid'); ?>
 		<?php echo $form->error($model,'pid'); ?>
 
 		<div id="uploadPaper"></div>
@@ -157,11 +157,13 @@ function checkPaperExists(object){
 			});
 		}else{
 
-			var html = $('<b style="background-color:yellow;border:3px dashed grey;">文件还没有上传</b>');
+			var html = $('<b style="border:1px dashed grey;">文件还没有上传</b>');
 
 			$("#uploadPaper").empty().append(html);
 
-			html.fadeOut(1000);
+			html.animate({
+				'font-size':'36px'
+			}).fadeOut(3000);
 
 			$("#multiplyfileuploader").parent().show();
 		}
@@ -192,6 +194,11 @@ function deletePaper(object)
 		
 }
 
+function uploadPaperKey(object)
+{
+	$('#Gaokao_pid').val(object.attr('id'));
+	$("#multiplyfileuploader").parent().show();
+}
 
 
 $(function(){
@@ -225,6 +232,9 @@ $(function(){
 		$.post('<?php echo $this->createUrl("/gaokao/space/create");?>',data,function(result){
 			console.log(result);
 			$(".buttons").append('&nbsp;&nbsp;&nbsp;&nbsp;<a href="/gaokao/space/view/'+result.id+'.html">查看试卷</a></span>');
+
+
+
 		},'json');	
 
 		console.log($(this).serializeArray());

@@ -195,7 +195,15 @@ class SpaceController extends Controller
 		if(isset($_POST['Gaokao']))
 		{
 			$model->attributes=$_POST['Gaokao'];
-			if(!Gaokao::model()->getPaperExists($model->paper,$model->course,$model->year))
+			if(!Gaokao::model()->getPaperExists($model->paper,$model->course,$model->year) && $model->pid == '')
+			{
+				if($model->save())
+				{
+					//$this->redirect(array('view','id'=>$model->id));
+					echo json_encode($model->attributes);
+				}				
+			}
+			else
 			{
 				if($model->save())
 				{
