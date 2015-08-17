@@ -61,6 +61,19 @@ YKG.prototype.form = function(){
       });
 	};
 
+
+  //获取Select的Option中的值
+  this.getSelectedOptionText = function(object)
+  {
+    var select = object;
+
+    var index = select.selectedIndex;
+
+    var text =  select.options[index].text;
+
+    return text;
+  }
+
   /**
    * 单选列表
    * @param  {[type]} object [description]
