@@ -7,13 +7,13 @@ class JqueryUploadWidget extends CWidget
 	public $clientScript;
 	
 	public $baseUrl;
-	public $Jscripts = array('jquery.uploadfile.min.js');
+	public $Jscripts = array('jquery.uploadfile.js');
 	public $Cssscript = array('jquery.uploadfile.css');	
 	public $id = 'facybox';
     public $needCore = false;
     
 	private $_options = array(
-		sizeErrorStr=>'只能16M'
+		sizeErrorStr=>'只能10M'
     );
 
 
