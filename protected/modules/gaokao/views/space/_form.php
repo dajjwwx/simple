@@ -88,8 +88,16 @@
 				pd.statusbar.hide(); //You choice.
 
 			}',
-			'onSelect'=>'js:function(obj){
-				console.log(obj);
+			'onSelect'=>'js:function(files){
+				
+				var course = YKG.app("form").getSelectedOptionText($("#Gaokao_course")[0]);
+				var year = YKG.app("form").getSelectedOptionText($("#Gaokao_year")[0]);
+				var paper = $("#loadPaper .selected").text();
+
+				alert(year + paper + course);
+
+				return false;
+
 			}',
 			'onLoad'=>'js:function(obj){
 				console.log($("#gaokao_form").serializeArray());
