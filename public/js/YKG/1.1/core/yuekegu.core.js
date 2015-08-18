@@ -13,8 +13,14 @@ function YKG(){}
  *这样就可以调form模块下的alert()的函数组件
  */
 YKG.app = function(name){
-	var ykg = new YKG();
-    var model = 'new ykg.' + name +'()';    
-    eval('app ='+model);    
-    return app;
+
+	if(name == undefined){
+		return new YKG();
+	}else{
+		var ykg = new YKG();
+	    var model = 'new ykg.' + name +'()';    
+	    eval('app ='+model);    
+	    return app;		
+	}
+
 };

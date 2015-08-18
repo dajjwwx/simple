@@ -94,8 +94,16 @@
 				var year = YKG.app("form").getSelectedOptionText($("#Gaokao_year")[0]);
 				var paper = $("#loadPaper .selected").text();
 
-				alert(year + paper + course);
+				var filename = files[0].name;
 
+				if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0){
+
+
+
+					return true;
+				}
+				
+				alert(\'文件名至少要含有如下关键字"\'+course+\',\'+year+\',\'+paper+\'"\');
 				return false;
 
 			}',
