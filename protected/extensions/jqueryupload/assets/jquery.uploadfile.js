@@ -7,7 +7,20 @@
  */
 (function ($) {
     if ($.fn.ajaxForm == undefined) {
-        $.getScript("http://malsup.github.io/jquery.form.js");
+
+        var scripts = document.getElementsByTagName('script');
+        var script = scripts[scripts.length - 1];
+        var path = script.getAttribute('src').split('/');
+        var baseUrl = '/'+path[1]+'/'+path[2]+'/';
+
+        // console.log(baseUrl);
+        // 
+        // $.getScript("http://malsup.github.io/jquery.form.js");
+
+        // var paths = YKG.app().dom().getCurrentScriptPath();
+
+        // console.log(paths);
+        $.getScript(baseUrl + "jquery.form.js");
     }
     var feature = {};
     feature.fileapi = $("<input type='file'/>").get(0).files !== undefined;

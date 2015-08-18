@@ -92,18 +92,39 @@
 				
 				var course = YKG.app("form").getSelectedOptionText($("#Gaokao_course")[0]);
 				var year = YKG.app("form").getSelectedOptionText($("#Gaokao_year")[0]);
-				var paper = $("#loadPaper .selected").text();
+				var paper = YKG.app("string").trim($("#loadPaper .selected").text());
+				var pid = $("#Gaokao_pid").val();
+
+				var body = "文件名至少要含有如下关键字\""+course+","+year+","+paper;
+
+				console.log(pid);
 
 				var filename = files[0].name;
 
-				if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0){
-
-
-
+				if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 && pid == ""){
 					return true;
 				}
-				
-				alert(\'文件名至少要含有如下关键字"\'+course+\',\'+year+\',\'+paper+\'"\');
+
+				if(pid != ""){
+					if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 && filename.indexOf('答案'') >= 0)){
+						return true;
+					}	
+
+					body = body + '答案';	
+				}
+
+
+				body = body + "\"";
+
+				YKG.app("bootstrap").showModal({
+					"id":"defaultModal",
+					"title":"Title",
+					"body":body,
+					"showEvent":function(){
+						alert("HEllo wrld");
+					}
+				}).show().showEvent();
+
 				return false;
 
 			}',
@@ -185,7 +206,7 @@ function checkPaperExists(object){
 		}
 	});
 
-	event.preventDefault();
+	// window.event.preventDefault();
 
 
 	//加载已经上传试卷
@@ -205,7 +226,7 @@ function deletePaper(object)
 
 	});
 
-	event.preventDefault();
+	// window.event.preventDefault();
 
 		
 }

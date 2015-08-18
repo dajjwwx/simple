@@ -25,7 +25,7 @@ class Controller extends CController
 	{
 		$scripts = array(
 				'ykg'=>array(
-						'core'=>array('core','form','dom','bootstrap'),
+						'core'=>array('core','form','dom','string','bootstrap'),
 						'plugins'=>array('jquery.lazyload.js')
 				)
 		);
