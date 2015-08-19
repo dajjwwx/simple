@@ -113,7 +113,6 @@
 					body = body + "答案";	
 				}
 
-
 				body = body + "\"";
 
 				YKG.app("bootstrap").showModal({
