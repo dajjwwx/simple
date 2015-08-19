@@ -55,7 +55,7 @@
 		<?php //echo $form->labelEx($model,'pid'); ?>
 		<?php echo $form->hiddenField($model,'pid'); ?>
 		<?php echo $form->error($model,'pid'); ?>
-
+		<div id="paperName"></div>
 		<div id="uploadPaper"></div>
 
 	</div>
@@ -106,11 +106,11 @@
 				}
 
 				if(pid != ""){
-					if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 && filename.indexOf('答案'') >= 0)){
+					if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 ){
 						return true;
 					}	
 
-					body = body + '答案';	
+					body = body + "答案";	
 				}
 
 
@@ -121,7 +121,7 @@
 					"title":"Title",
 					"body":body,
 					"showEvent":function(){
-						alert("HEllo wrld");
+						// alert("HEllo wrld");
 					}
 				}).show().showEvent();
 
