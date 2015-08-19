@@ -8,8 +8,9 @@ YKG.prototype.bootstrap = function(){
 	this.showModal = function(data){
 
 		this.html = function(){
+
 			return '<div class="modal fade bs-example-modal-lg" id="'+ this.id +'" role="dialog" aria-labelledby="myLargeModalLabel">'
-			  +'<div class="modal-dialog modal-lg">'
+			  +'<div class="modal-dialog modal-sm">'
 			    +'<div class="modal-content">'
 			      +'<div class="modal-header">'
 			        +'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
@@ -27,8 +28,8 @@ YKG.prototype.bootstrap = function(){
 			+'</div><!-- /.modal -->';
 		};
 
-		this.id = data.id;
-		this.title = data.title;
+		this.id = (data.id == undefined)?'defaultModal':data.id;
+		this.title = (data.title==undefined)?'操作提示':data.title;
 		this.body = data.body;
 
 		this.showEvent = function(){

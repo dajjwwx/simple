@@ -89,6 +89,8 @@
 
 			}',
 			'onSelect'=>'js:function(files){
+
+				if(!checkData()) return false;
 				
 				var course = YKG.app("form").getSelectedOptionText($("#Gaokao_course")[0]);
 				var year = YKG.app("form").getSelectedOptionText($("#Gaokao_year")[0]);
@@ -106,7 +108,7 @@
 				}
 
 				if(pid != ""){
-					if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 ){
+					if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 && filename.indexOf("答案")>=0){
 						return true;
 					}	
 
@@ -117,10 +119,10 @@
 
 				YKG.app("bootstrap").showModal({
 					"id":"defaultModal",
-					"title":"Title",
+					"title":"操作提示",
 					"body":body,
 					"showEvent":function(){
-						// alert("HEllo wrld");
+						alert("HEllo wrld");
 					}
 				}).show().showEvent();
 
@@ -165,13 +167,10 @@
 
 
 <script type="text/javascript">
-//暂留下，已经被替换为YKG.app('form').singleChoice(object,input)
-function checkPaperExists(object){
 
-	YKG.app('form').singleChoice(object,'Gaokao_paper');
-
+function checkPaper(){
 	var params = {
-		'paper':object.attr('id'),
+		'paper':$("#Gaokao_paper").val(),
 		'course':$("#Gaokao_course").val(),
 		'year':$("#Gaokao_year").val()
 	};
@@ -204,6 +203,14 @@ function checkPaperExists(object){
 			$("#multiplyfileuploader").parent().show();
 		}
 	});
+}
+
+//暂留下，已经被替换为YKG.app('form').singleChoice(object,input)
+function checkPaperExists(object){
+
+	YKG.app('form').singleChoice(object,'Gaokao_paper');
+
+	checkPaper();
 
 	// window.event.preventDefault();
 
@@ -213,14 +220,22 @@ function checkPaperExists(object){
 }
 
 function deletePaper(object)
-{
+{	
+	var that = object;
+
 	$.post(object.attr('href'),{},function(data){
 		if(data == 1){
-			alert("删除成功");
+			YKG.app('bootstrap').showModal({
+				'title':'操作提示',
+				'body':'删除成功'
+			}).show();
 
-			obejct.parent().parent().hide();
+			checkPaper();
 		}else{
-			alert("删除失败");
+			YKG.app('bootstrap').showModal({
+				'title':'操作提示',
+				'body':"删除失败"
+			}).show();
 		}
 
 	});
@@ -236,6 +251,37 @@ function uploadPaperKey(object)
 	$("#multiplyfileuploader").parent().show();
 }
 
+function checkData()
+{
+
+	if($("#Gaokao_course").val() == ''){
+
+		YKG.app('bootstrap').showModal({
+			'title':'操作提示',
+			'body':"还没选择科目"
+		}).show();
+		return false;
+	}
+
+	if($("#Gaokao_year").val() == ''){
+
+		YKG.app('bootstrap').showModal({
+			'title':'操作提示',
+			'body':"还没选择年份"
+		}).show();		
+		return false;
+	}
+
+	if($("#Gaokao_paper").val() == ''){
+		YKG.app('bootstrap').showModal({
+			'title':'操作提示',
+			'body':"还没选择试题名称"
+		}).show();		
+		return false;
+	}	
+
+	return true;
+}
 
 $(function(){
 
@@ -246,26 +292,23 @@ $(function(){
 		$("#loadPaper").load('/gaokao/paper/paper.html?year='+$(this).val());
 	});
 
+	$("#Gaokao_course").change(function(){
+		if($("#Gaokao_paper").val() != "" && $("#Gaokao_year").val() != "" && $("#Gaokao_paper").val() != ""){
+			YKG.app('dom').preAjax($("#loadPaper"));
+			checkPaper();
+
+		}
+
+	});
+
 	$("#gaokao-form").submit(function(){
 
-		if($("#Gaokao_course").val() == ''){
-			alert("还没选择科目");
-			return false;
-		}
-
-		if($("#Gaokao_year").val() == ''){
-			alert("还没选择年份");
-			return false;
-		}
-
-		if($("#Gaokao_paper").val() == ''){
-			alert("还没选择试题名称");
-			return false;
-		}
-
+		checkData();
 
 		var data = $(this).serializeArray();
 		$.post('<?php echo $this->createUrl("/gaokao/space/create");?>',data,function(result){
+
+			checkPaper();
 			console.log(result);
 			$(".buttons").append('&nbsp;&nbsp;&nbsp;&nbsp;<a href="/gaokao/space/view/'+result.id+'.html">查看试卷</a></span>');
 
