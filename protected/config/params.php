@@ -4,11 +4,12 @@ return array(
 		//七牛参数设置
 		'QiNiu'=>array(
 				'blog'=>array(
-					'bucket'=>'blog-yuekegu-com',
-					'domain'=>'blog-yuekegu-com.qiniudn.com',
-					'accessKey'=>'F2fkDeXLJtXZfN3K4nD2fZ2MQGmq58yyRM8makqV',
-					'secretKey'=>'G29tjdCzP1jWOT7iUjbE_ac2yA6r67Tp-tocCZPc'
+					'bucket'=>'gaokao',
+					'domain'=>'7xl7l8.com1.z0.glb.clouddn.com',
+					'accessKey'=>'h7QjbfBapyJ5IaA4SxuBKzKr1ozpTJU6mkBU8dNn',
+					'secretKey'=>'2hPx9p0upxgI_vNg5ZyqAJaGGa2Kqj6LTjtc3Z7_'
 				),
+
 						
 		),
 		'fileServer'=>'local',

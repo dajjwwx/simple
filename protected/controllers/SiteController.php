@@ -24,6 +24,20 @@ class SiteController extends Controller
 		);
 	}
 
+	public function actionTest()
+	{
+
+		$t = new Qiniu();
+
+		$file = File::model()->find();
+
+		$model = File::model()->attributeAdapter($file, Yii::app()->params->uploadGaoKaoPath);
+
+		echo $t->getKey($model);
+
+		// UtilHelper::dump($t);
+
+	}
 
 	/**
 	 * This is the default 'index' action that is invoked

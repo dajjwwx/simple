@@ -42,6 +42,8 @@ YKG.prototype.bootstrap = function(){
 
 		this.show = function(){
 
+			
+
 			// alert(this.html());
 
 			$(this.html()).appendTo($("body"));

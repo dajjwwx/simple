@@ -135,8 +135,6 @@
 	</div>
 
 	<!-- Modal -->
-<button type="button" class="btn btn-primary" data-whatever="@yuekegu.com">Large modal</button>
-
 
 
 <script type="text/javascript">
@@ -168,6 +166,7 @@ function ShowModal(data)
 }
 
 $(function(){
+
 	$(".btn-primary").click(function(){
 
 		YKG.app('bootstrap').showModal({
