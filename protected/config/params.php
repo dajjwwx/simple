@@ -3,7 +3,7 @@ return array(
 			
 		//七牛参数设置
 		'QiNiu'=>array(
-				'blog'=>array(
+				'gaokao'=>array(
 					'bucket'=>'gaokao',
 					'domain'=>'7xl7l8.com1.z0.glb.clouddn.com',
 					'accessKey'=>'h7QjbfBapyJ5IaA4SxuBKzKr1ozpTJU6mkBU8dNn',

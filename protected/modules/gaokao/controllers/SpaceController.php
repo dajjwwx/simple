@@ -247,7 +247,18 @@ class SpaceController extends Controller
 			$folder = Yii::app()->params['uploadGaoKaoPath'];
 			$fileext = $_REQUEST['fileext'];
 			$pid = $_REQUEST['id'];
-			UtilUploader2::uploadNormal('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
+
+			// UtilHelper::writeToFile($pid);
+			// UtilHelper::writeToFile(__FILE__.'--'.__LINE__);		
+
+			// $model = UtilUploader2::setFileAttributes('Filedata', File::FILE_TYPE_GAOKAO, $pid, '*.pdf');
+
+
+
+			// UtilHelper::writeToFile($model);
+
+			// UtilUploader2::uploadNormal('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
+			UtilUploader2::uploadQiniu('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
 		}		
 	}
 	

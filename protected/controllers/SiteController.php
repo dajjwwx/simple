@@ -27,15 +27,53 @@ class SiteController extends Controller
 	public function actionTest()
 	{
 
-		$t = new Qiniu();
+		// $_FILES['Filedata'] = array
+		// (
+		//     'pid' => null,
+		//     'created' => 1440143513,
+		//     'extension' => 'pdf',
+		//     'name' => '2015年语文四川卷.pdf',
+		//     'size' => 265105,
+		//     'mine' => 'application/pdf',
+		//     'links' => 'aa937936bdde139d49c9b3b084c39994',
+		//     'owner' => 1,
+		//     'isfolder' => 0,
+		//     'hits' => 0,
+		//     'filetype' => 10,
+		//     'status' => 2,
+		//     'islocal' => 1,
+		//     'server' => 'local'
+		// );
 
-		$file = File::model()->find();
 
-		$model = File::model()->attributeAdapter($file, Yii::app()->params->uploadGaoKaoPath);
 
-		echo $t->getKey($model);
 
-		// UtilHelper::dump($t);
+		// $_FILES = Array
+		// (
+		//     'Filedata' => Array
+		//         (
+		//             'name' => '2015年语文天津卷.pdf',
+		//             'type' => 'application/kswps',
+		//             'tmp_name' => 'C:\Windows\Temp\php2D77.tmp',
+		//             'error' => 0,
+		//             'size' => 265105,
+		//         )
+
+		// );
+
+		$tempFile = 'C:\Windows\Temp\phpFB28.tmp';
+		$targetFile = '/public/upload/GaoKao/2015/08/21/47917ba9aef3626993bc39de8ce6ebf6.pdf';
+
+		$qiniu = new Qiniu();
+		$msg = $qiniu->putFile($targetFile,$tempFile);
+
+		UtilHelper::dump($msg);
+
+
+		// UtilHelper::dump($_FILES);
+
+		// UtilUploader2::uploadQiniu('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'], null,'*.pdf;');
+
 
 	}
 
