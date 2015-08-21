@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL^E_NOTICE);
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../Common/Libaray/yii-1.1.14.f0fee9/framework/yii.php';
+$yii=dirname(__FILE__).'/../Common/Libaray/yii-1.1.16.bca042/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
 
 //引入公共类库
