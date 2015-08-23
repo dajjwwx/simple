@@ -20,11 +20,6 @@ $this->menu=array(
 
 
 <?php 
-$folder = Yii::app()->params->uploadGaoKaoPath;
-if($model->file)
-{
-	$targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
-}
 
 // echo $targetFile;
 ?>

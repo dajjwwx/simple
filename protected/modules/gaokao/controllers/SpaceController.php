@@ -165,8 +165,20 @@ class SpaceController extends Controller
 	 */
 	public function actionView($id)
 	{
+
+		$model = $this->loadModel($id);
+
+		$folder = Yii::app()->params->uploadGaoKaoPath;
+		if($model->file)
+		{
+			$targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
+		}
+
+		echo $targetFile;
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
+			'targetFile'=>$targetFile
 		));
 	}
 	
@@ -248,18 +260,20 @@ class SpaceController extends Controller
 			$fileext = $_REQUEST['fileext'];
 			$pid = $_REQUEST['id'];
 
-			// UtilHelper::writeToFile($pid);
-			// UtilHelper::writeToFile(__FILE__.'--'.__LINE__);		
-
-			// $model = UtilUploader2::setFileAttributes('Filedata', File::FILE_TYPE_GAOKAO, $pid, '*.pdf');
-
-
-
 			// UtilHelper::writeToFile($model);
 
 			// UtilUploader2::uploadNormal('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
-			UtilUploader2::uploadQiniu('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
+			
+			try{
+				$test = UtilUploader2::uploadQiniu('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
+			}catch(Exception $e){
+				UtilHelper::writeToFile($e,'a+');
+			}
+			
+
+			
 		}		
+
 	}
 	
 

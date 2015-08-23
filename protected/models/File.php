@@ -258,7 +258,22 @@ class File extends CActiveRecord
 			// $folder = Yii::app()->params->uploadGaoKaoPath;
 			$targetFile = File::model()->attributeAdapter($model)->getFilePath($folder, true, false);		
 			//静默删除
-			UtilFile::unlinkFile($targetFile);
+			$server = Yii::app()->params->fileServer;
+
+			switch ($server) {
+				case self::FILE_SERVER_LOCAL:
+					UtilFile::unlinkFile($targetFile);
+					break;
+				case self::FILE_SERVER_QINIU:
+					$qiniu = new Qiniu();
+					$qiniu->delete($targetFile);
+					break;
+				default:
+					UtilFile::unlinkFile($targetFile);
+					break;
+			}
+
+			
 			$model->delete(); //删除文件相关数据		
 			
 			return true;	

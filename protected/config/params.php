@@ -5,14 +5,12 @@ return array(
 		'QiNiu'=>array(
 				'gaokao'=>array(
 					'bucket'=>'gaokao',
-					'domain'=>'7xl7l8.com1.z0.glb.clouddn.com',
+					'domain'=>'http://7xl7l8.com1.z0.glb.clouddn.com',
 					'accessKey'=>'h7QjbfBapyJ5IaA4SxuBKzKr1ozpTJU6mkBU8dNn',
 					'secretKey'=>'2hPx9p0upxgI_vNg5ZyqAJaGGa2Kqj6LTjtc3Z7_'
-				),
-
-						
+				),						
 		),
-		'fileServer'=>'local',
+		'fileServer'=>'qiniu',
 		'qq'=>array(
 				// 应用基本信息
 				'appid' => 100657839,

@@ -53,7 +53,7 @@
 
 	<div class="form-group">
 		<?php //echo $form->labelEx($model,'pid'); ?>
-		<?php echo $form->hiddenField($model,'pid'); ?>
+		<?php echo $form->textField($model,'pid'); ?>
 		<?php echo $form->error($model,'pid'); ?>
 		<div id="paperName"></div>
 		<div id="uploadPaper"></div>
@@ -99,7 +99,8 @@
 
 				var body = "文件名至少要含有如下关键字\""+course+","+year+","+paper;
 
-				console.log(pid);
+				// console.log(pid);
+				// alert(pid);
 
 				var filename = files[0].name;
 
@@ -110,8 +111,7 @@
 				if(pid != ""){
 					if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 && filename.indexOf("答案")>=0){
 						return true;
-					}	
-
+					}
 					body = body + "答案";	
 				}
 
