@@ -67,6 +67,9 @@ return array(
 		'gaokao'=>array(
 		
 		),
+		'preparation'=>array(
+
+		),
 	),
 
 	// application components
@@ -148,6 +151,17 @@ return array(
 				'password' => 'blueidea',
 				'charset' => 'utf8',
 				'tablePrefix'=>'gk_',
+				'enableProfiling'=>true,
+				'schemaCachingDuration'=>3600,
+		),
+		'dbPreparation'=>array(
+				'class'=> 'CDbConnection',
+				'connectionString' => 'mysql:host=localhost;dbname=simplepreparation',
+				'emulatePrepare' => true,
+				'username' => 'root',
+				'password' => 'blueidea',
+				'charset' => 'utf8',
+				'tablePrefix'=>'sp_',
 				'enableProfiling'=>true,
 				'schemaCachingDuration'=>3600,
 		),
