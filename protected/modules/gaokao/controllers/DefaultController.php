@@ -43,7 +43,10 @@ class DefaultController extends Controller
 
 	public function actionForm()
 	{
-		// $folder = Yii::app()->params['uploadGaoKaoPath'];
+
+		header("Content-Type:text/html; charset=utf-8");
+
+		$folder = Yii::app()->params['uploadGaoKaoPath'];
 		// // echo File::model()->getFilePath(94,$folder);
 		// $model = File::model()->findByPk(104);
 		// $targetFile = File::model()->attributeAdapter($model)->getFilePath($folder, false, false);
@@ -65,19 +68,19 @@ class DefaultController extends Controller
 		// }
 
 
-		// if($_FILES){
-		// 	// UtilHelper::dump($_FILES);
+		if($_FILES){
+			// UtilHelper::dump($_FILES);
 
-		// 	$qiniu = new Qiniu();
-		// 	// $msg = $qiniu->putFile($_FILES['file']['name'], $_FILES['file']['tmp_name']);
+			$qiniu = new \API\Qiniu();
+			// $msg = $qiniu->putFile($_FILES['file']['name'], $_FILES['file']['tmp_name']);
 
-		// 	$msg = UtilUploader2::uploadQiniu('file', File::FILE_TYPE_GAOKAO,$folder,$pid=null,$fileext='*.jpg;*.png;*.gif,*.pdf', $prefix = '');
+			$msg = UtilUploader2::uploadQiniu('file', File::FILE_TYPE_GAOKAO,$folder,$pid=null,$fileext='*.jpg;*.png;*.gif,*.pdf', $prefix = '');
 
-		// 	UtilHelper::dump($msg);
-		// }
-		// 
-		//     header("Content-Type:text/html; charset=utf-8");
-		//     
+			// UtilHelper::dump($msg);
+		}
+		
+		    
+		    
 	    
 
    
