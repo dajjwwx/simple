@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><?php echo CHtml::encode(Yii::app()->name);?></a>
+          <a class="navbar-brand" href="#"><img src="/public/image/logo.png" style="height:60px;margin-top:-15px;" /><?php echo CHtml::link('',array(Yii::app()->request->hostInfo),array('title'=>CHtml::encode(Yii::app()->name)));?></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
