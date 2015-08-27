@@ -265,7 +265,7 @@ class File extends CActiveRecord
 					UtilFile::unlinkFile($targetFile);
 					break;
 				case self::FILE_SERVER_QINIU:
-					$qiniu = new Qiniu();
+					$qiniu = new \API\Qiniu();
 					$qiniu->delete($targetFile);
 					break;
 				default:

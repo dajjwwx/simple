@@ -1,8 +1,9 @@
-<form action="<?php echo $this->createUrl('form2');?>" method="post"enctype="multipart/form-data">
+<form action="<?php echo $this->createUrl('form');?>" method="post"enctype="multipart/form-data">
 	<label for="file">Filename=></label>
 	<input type="file" name="file" id="file" /> 
 	<br />
-	<?php $this->widget('ext.mdeditor.MdeditorWidget',array(
+	<?php 
+/*    $this->widget('ext.mdeditor.MdeditorWidget',array(
                 'width' => "100%",
                 'syncScrolling' => "single",
                 'height'=> '740px',
@@ -43,7 +44,9 @@
                     //this.height(480);
                     //this.resize("100%", 640);
                 }
-	));?>
+	));*/
+
+    ?>
 		<br />
 <input type="submit" name="submit" value="Submit" />
 </form>
