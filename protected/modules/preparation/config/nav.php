@@ -1,7 +1,7 @@
 <?php
 return array(
 	array(
-		'module'=>'gaokao',
+		'module'=>'preparation',
 		'link'=>'/preparation',
 		'name'=>'备课本',
 		// 'items'=>array(

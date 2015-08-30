@@ -19,6 +19,9 @@ jQuery.uaMatch = function( ua ) {
 
 matched = jQuery.uaMatch( navigator.userAgent );
 //IE 11+ fix (Trident) 
+
+console.log(navigator.userAgent);
+
 matched.browser = matched.browser == 'trident' ? 'msie' : matched.browser;
 browser = {};
 

@@ -97,7 +97,8 @@
 				var paper = YKG.app("string").trim($("#loadPaper .selected").text());
 				var pid = $("#Gaokao_pid").val();
 
-				var body = "文件名至少要含有如下关键字\""+course+","+year+","+paper;
+				// var body = "文件名至少要含有如下关键字\""+course+","+year+","+paper;
+				var body = "请把文件名改为：\""+ year +"年" + course + paper + ".pdf";
 
 				// console.log(pid);
 				// alert(pid);

@@ -248,6 +248,7 @@ class File extends CActiveRecord
 
 	/**
 	 * 删除文件
+	 * 注：这里缺少先判断再删除
 	 */
 	public function deleteFile($id, $folder)
 	{
