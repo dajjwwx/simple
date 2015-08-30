@@ -171,7 +171,11 @@ class SpaceController extends Controller
 		$folder = Yii::app()->params->uploadGaoKaoPath;
 		if($model->file)
 		{
-			$targetFile = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
+			$fileModel = File::model()->attributeAdapter($model->file);
+
+			 UtilHelper::dump($fileModel);
+
+			$targetFile = $fileModel->getFilePath($folder, false, false);
 		}
 
 		echo $targetFile;
@@ -207,7 +211,7 @@ class SpaceController extends Controller
 		if(isset($_POST['Gaokao']))
 		{
 			$model->attributes=$_POST['Gaokao'];
-			if(!Gaokao::model()->getPaperExists($model->paper,$model->course,$model->year) && $model->pid == '')
+			if(!Gaokao::model()->getPaperExists($model->paper,$model->course,$model->year))
 			{
 				if($model->save())
 				{
@@ -217,11 +221,15 @@ class SpaceController extends Controller
 			}
 			else
 			{
-				if($model->save())
+				if($model->pid != '')
 				{
-					//$this->redirect(array('view','id'=>$model->id));
-					echo json_encode($model->attributes);
-				}				
+					if($model->save())
+					{
+						//$this->redirect(array('view','id'=>$model->id));
+						echo json_encode($model->attributes);
+					}						
+				}
+			
 			}
 			
 			Yii::app()->end();
