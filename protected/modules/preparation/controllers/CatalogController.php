@@ -47,16 +47,27 @@ class CatalogController extends Controller
 
 	public function actionCatalog($pid, $course)
 	{
+
+		$this->layout = false;
+
 		$models = Catalog::model()->findAll(array(
-			'condition'=>'course = :course AND pid = :pid',
+			'condition'=>'course = :course',
 			'params'=>array(
 				':course'=>$course,
-				':pid' => $pid
+				// ':pid' => $pid
 			)	
 		));
 
+		$data = Catalog::model()->dataAdapter($models);
 
-		CVarDumper::dump($models);
+		$data = CategoryModel::getChildrenObject($data);
+
+		UtilHelper::dump($data);
+
+
+		// $this->render('catalog',array(
+		// 	'data'=>$data
+		// ));
 
 	}
 
