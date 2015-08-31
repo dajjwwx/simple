@@ -1,6 +1,6 @@
 <?php
 
-class CatalogController extends Controller
+class SpaceController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -28,7 +28,7 @@ class CatalogController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','catalog'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -43,21 +43,6 @@ class CatalogController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}
-
-	public function actionCatalog($pid, $course)
-	{
-		$models = Catalog::model()->findAll(array(
-			'condition'=>'course = :course AND pid = :pid',
-			'params'=>array(
-				':course'=>$course,
-				':pid' => $pid
-			)	
-		));
-
-
-		CVarDumper::dump($models);
-
 	}
 
 	/**
@@ -77,14 +62,14 @@ class CatalogController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Catalog;
+		$model=new Preparation;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Catalog']))
+		if(isset($_POST['Preparation']))
 		{
-			$model->attributes=$_POST['Catalog'];
+			$model->attributes=$_POST['Preparation'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -106,9 +91,9 @@ class CatalogController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Catalog']))
+		if(isset($_POST['Preparation']))
 		{
-			$model->attributes=$_POST['Catalog'];
+			$model->attributes=$_POST['Preparation'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -137,7 +122,7 @@ class CatalogController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Catalog');
+		$dataProvider=new CActiveDataProvider('Preparation');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -148,10 +133,10 @@ class CatalogController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Catalog('search');
+		$model=new Preparation('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Catalog']))
-			$model->attributes=$_GET['Catalog'];
+		if(isset($_GET['Preparation']))
+			$model->attributes=$_GET['Preparation'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -162,12 +147,12 @@ class CatalogController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Catalog the loaded model
+	 * @return Preparation the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Catalog::model()->findByPk($id);
+		$model=Preparation::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -175,11 +160,11 @@ class CatalogController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Catalog $model the model to be validated
+	 * @param Preparation $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='catalog-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='preparation-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
