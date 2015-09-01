@@ -12,7 +12,7 @@ YKG.prototype.dom = function(){
 	 */
     this.preAjax = function(object)
     {
-    	object.html('<img src="/public/image/loading.gif" />');
+    	object.html('<img src="/public/image/loading_3.gif" />');
     }
 	/**
 	 * 

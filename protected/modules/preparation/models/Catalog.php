@@ -140,7 +140,7 @@ class Catalog extends CActiveRecord
 	}
 
 	//数据适配
-	public function dataAdapter(Catalog $model)
+	public function dataAdapter($model)
 	{
 		if(is_array($model))
 		{

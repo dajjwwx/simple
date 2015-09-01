@@ -118,5 +118,7 @@ YKG.prototype.form = function(){
     $("#"+input).val(result);
 
   }
+
+  return this;
 	
 };

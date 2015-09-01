@@ -45,18 +45,31 @@ class CatalogController extends Controller
 		);
 	}
 
-	public function actionCatalog($pid, $course)
+	public function actionCatalog($course, $pid = 0)
 	{
-		$models = Catalog::model()->findAll(array(
-			'condition'=>'course = :course AND pid = :pid',
+
+		$criteria = new CDbCriteria(array(
+			'condition'=>'course = :course',
 			'params'=>array(
 				':course'=>$course,
-				':pid' => $pid
+				// ':pid' => $pid
 			)	
 		));
 
+		if($pid == 0)
+		{
+			$criteria->addCondition('pid = '. $pid);
+		}
 
-		CVarDumper::dump($models);
+
+		$models = Catalog::model()->findAll($criteria);
+
+		$data = Catalog::model()->dataAdapter($models);
+		$data = CategoryModel::getChildrenObject($data,$pid);
+
+		echo json_encode($data);
+		// UtilHelper::dump($data);
+
 
 	}
 

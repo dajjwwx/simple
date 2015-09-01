@@ -20,8 +20,10 @@
   <body style="background-color:#f6f4f7;">
     <?php echo $content;?>
     <?php Yii::app()->clientScript->registerCoreScript('jquery');?>
-    <?php  Yii::app()->getClientScript()->registerScriptFile('/public/js/bootstrap.min.js');?>
-     <?php  Yii::app()->getClientScript()->registerScriptFile('/public/js/browser.js');?>
+    <?php Yii::app()->getClientScript()->registerScriptFile('/public/js/bootstrap.min.js');?>
+    <?php Yii::app()->getClientScript()->registerScriptFile('/public/js/browser.js');?>
+    <?php Yii::app()->getClientScript()->registerScriptFile('/public/js/baiduTemplate.js');?>
+
     <?php 	
     	$this->registerScripts();
     ?>
