@@ -8,6 +8,9 @@
  * @property string $name
  * @property integer $pid
  * @property integer $course
+ *
+ * The followings are the available model relations:
+ * @property Preparation[] $preparations
  */
 class Catalog extends CActiveRecord
 {
@@ -29,7 +32,7 @@ class Catalog extends CActiveRecord
 		return array(
 			array('name, pid, course', 'required'),
 			array('pid, course', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, pid, course', 'safe', 'on'=>'search'),
@@ -44,6 +47,7 @@ class Catalog extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'preparations' => array(self::HAS_MANY, 'Preparation', 'cid'),
 		);
 	}
 
@@ -107,7 +111,7 @@ class Catalog extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function getCourses()
+		public function getCourses()
 	{
 		$config =  Yii::getPathOfAlias('preparation.config.courses').'.php';		
 		$courses = require $config;	

@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Preparations',
+	$this->module->t('preparation','Preparations'),
 );
 
 $this->menu=array(
@@ -12,9 +12,17 @@ $this->menu=array(
 );
 ?>
 
-<h1>Preparations</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span class="glyphicon glyphicon-paperclip"></span> <?php echo $this->module->t('preparation','Preparations');?>
+	</div>
+	<div class="panel-body">
+		<?php $this->widget('zii.widgets.CListView', array(
+			'dataProvider'=>$dataProvider,
+			'itemView'=>'_view',
+		)); ?>
+	</div>
+</div>
+<h1></h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+

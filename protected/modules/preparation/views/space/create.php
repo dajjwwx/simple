@@ -27,6 +27,7 @@ $this->menu=array(
 				<p>这里上传课件,上传文件流程如下：</p>
 				<small>选择科目-->选择课件所属目录-->上传课件-->提交数据</small>
 			</blockquote>
+
 			<div class="col-md-8">				
 				<div class="form-group col-md-12">
 					<h5>选择科目</h5>
@@ -80,6 +81,7 @@ $this->menu=array(
 					?>
 					</div>
 			</div>
+
 			<div class="col-md-4">
 				<h5>上传课件</h5>
 				<?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -9,8 +9,8 @@
  * @property integer $fid
  *
  * The followings are the available model relations:
- * @property Catalog $c
- * @property SbFile $f
+ * @property File $file
+ * @property Catalog $catalog
  */
 class Preparation extends CActiveRecord
 {
@@ -46,8 +46,8 @@ class Preparation extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'c' => array(self::BELONGS_TO, 'Catalog', 'cid'),
-			'f' => array(self::BELONGS_TO, 'SbFile', 'fid'),
+			'file' => array(self::BELONGS_TO, 'File', 'fid'),
+			'catalog' => array(self::BELONGS_TO, 'Catalog', 'cid'),
 		);
 	}
 
