@@ -57,6 +57,37 @@ class SpaceController extends Controller
 	}
 
 	/**
+	 *为方便浏览，只允许上传PDF,文件
+	 ****************************************************
+	 *@used 上传试题
+	 */
+	public function actionUpload()
+	{
+		if(Yii::app()->user->isGuest) throw new CHttpException(403,'bad');
+
+		
+		if (!empty($_FILES)) {			
+			$folder = Yii::app()->params['uploadPreparationPath'];
+			$fileext = $_REQUEST['fileext'];
+			$pid = $_REQUEST['id'];
+
+			// UtilHelper::writeToFile($model);
+
+			// UtilUploader2::uploadNormal('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
+			
+			try{
+				$test = UtilUploader2::uploadQiniu('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
+			}catch(Exception $e){
+				UtilHelper::writeToFile($e,'a+');
+			}
+			
+
+			
+		}		
+
+	}
+
+	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
