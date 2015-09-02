@@ -50,7 +50,7 @@ return array(
 		//GaoKao文件上传路径
 		'uploadGaoKaoPath'		=>	'/public/upload/GaoKao/',
 		//Preparation文件上传路径
-		'uploadPreparation'		=>  '/public/upload/Preparation/',
+		'uploadPreparationPath'		=>  '/public/upload/Preparation/',
 		
 		/*********************************/
 

@@ -10,11 +10,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('cid')); ?>:</b>
-	<?php echo CHtml::encode($data->cid); ?>
+	<?php echo CHtml::encode($data->catalog->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fid')); ?>:</b>
-	<?php echo CHtml::encode($data->fid); ?>
+	<?php echo CHtml::encode($data->file->created); ?>
 	<br />
 
 

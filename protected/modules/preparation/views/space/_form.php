@@ -80,10 +80,10 @@
 			<div class="form-group">
 				<?php
 					$this->widget('ext.jqueryupload.JqueryUploadWidget',array(
-						'url'=>Yii::app()->createUrl('/gaokao/space/upload'),
+						'url'=>Yii::app()->createUrl('/preparation/space/upload'),
 						'method'=>'POST',
 						'id'=>'multiplyfileuploader',
-						'allowedTypes'=>'pdf',//只允许上传PDF文件
+						'allowedTypes'=>'pdf,doc,docx,ppt,pptx,wps',//只允许上传PDF文件
 						'fileName'=>'Filedata',
 						'returnType'=>"json",
 						'maxFileSize'=>5*1024*1024,
@@ -96,51 +96,46 @@
 						'showDelete'=>true,
 						'deleteCallback'=>'js:function (data, pd) {
 							for (var i = 0; i < data.length; i++) {
-								$.post("delete.php", {op: "delete",name: data[i]},
-						function (resp,textStatus, jqXHR) {
-							//Show Message	
-							alert("File Deleted");
-						});
+								$.post("delete.php", {op: "delete",name: data[i]},function (resp,textStatus, jqXHR) {
+										//Show Message	
+										alert("File Deleted");
+									});
 							}
 							pd.statusbar.hide(); //You choice.
 
 						}',
 						'onSelect'=>'js:function(files){
 
-							if(!checkData()) return false;
-							
-							var course = YKG.app("form").getSelectedOptionText($("#Gaokao_course")[0]);
-							var year = YKG.app("form").getSelectedOptionText($("#Gaokao_year")[0]);
-							var paper = YKG.app("string").trim($("#loadPaper .selected").text());
-							var pid = $("#Gaokao_pid").val();
+							var cid = $("#Preparation_cid").val();
+							var course = $("#Preparation_Course").val();
+							var chapter = $("#Preparation_Chapter").val();
 
-							// var body = "文件名至少要含有如下关键字\""+course+","+year+","+paper;
-							var body = "请把文件名改为：\""+ year +"年" + course + paper + ".pdf";
+							var body = "";
 
-							// console.log(pid);
-							// alert(pid);
-
-							var filename = files[0].name;
-
-							if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 && pid == ""){
+							if(cid != "" && course != "" && chapter != ""){
 								return true;
 							}
 
-							if(pid != ""){
-								if(filename.indexOf(course) >= 0 && filename.indexOf(year) >= 0 && filename.indexOf(paper) >= 0 && filename.indexOf("答案")>=0){
-						return true;
-								}
-								body = body + "答案";	
+							if(cid == ""){
+								body = "请选择章节";
 							}
 
-							body = body + "\"";
+							if(course == ""){
+								body = "请选择科目";
+							}
+
+							if(chapter == ""){
+								body = "请选择课本"
+							}
+
+
 
 							YKG.app("bootstrap").showModal({
 								"id":"defaultModal",
 								"title":"操作提示",
 								"body":body,
 								"showEvent":function(){
-						alert("HEllo wrld");
+									// alert("HEllo wrld");
 								}
 							}).show().showEvent();
 
@@ -162,7 +157,7 @@
 							
 							console.log(data);	
 							console.log(files);		
-							$("#Gaokao_fid").val(data.id);
+							$("#Preparation_fid").val(data.id);
 							
 						}',
 						'onError'=>'js:function(files,status,errMsg){		
