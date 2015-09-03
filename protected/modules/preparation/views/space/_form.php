@@ -24,7 +24,7 @@
 		<small>选择科目-->选择课件所属目录-->上传课件-->提交数据</small>
 	</blockquote>
 
-	<div class="form-group col-md-12">
+	<div class="form-group">
 		<h5>选择科目</h5>
 		<p id="loadCourses" style="border:1px dashed grey;padding:5px;">
 			<?php $courses = Catalog::model()->getCourses();?>
@@ -35,17 +35,21 @@
 					</a>
 				</span>  
 			<?php endfor;?>
-			<input type="text" id="Preparation_Course" />
+			<input type="text" id="Preparation_Course" class="hide" />
 		</p>
 	</div>
-	<div class="col-md-12">	
+	<div class="row">	
 		<div class="form-group col-md-4">
 			<h5>选择课本</h5>
-			<p id="loadTextBooks"  style="border:1px dashed grey;padding:5px;"></p>
+			<div id="loadTextBooks"  style="border:1px dashed grey;padding:5px;">
+				<blockquote>
+					<p>这里加载对应科目的课本</p>
+				</blockquote>
+			</div>
 			<script type="text/template" id="textBooks">
 				<ul class="list">
 				<%for(var i=0;i<list.length;i++){%>
-					<li><a href="javascript:void(0);" id="<%=list[i].id%>" onclick="loadChapters($(this));">
+					<li>◇&nbsp;<a href="javascript:void(0);" id="<%=list[i].id%>" onclick="loadChapters($(this));">
 						<%=list[i].name%>
 						</a>
 					</li>
@@ -55,12 +59,16 @@
 		</div>
 		<div class="form-group col-md-4">
 			<h5>选择章节</h5>
-			<p id="loadChapters" style="border:1px dashed grey;padding:5px;"></p>
+			<div id="loadChapters" style="border:1px dashed grey;padding:5px;">
+				<blockquote>
+					<p>这里加载课本的章节目录</p>
+				</blockquote>
+			</div>
 			<script type="text/template" id="chapters">
 				<ul class="list">
 				<%for(var i=0;i<list.length;i++){%>
 					<li>
-						<%for(var j=0;j<list[i].deep-1;j++){%>―&nbsp;<%}%>
+						<%for(var j=0;j<list[i].deep-1;j++){%>◇&nbsp;<%}%>
 						<a href="javascript:void(0);" id="<%=list[i].id%>" onclick="setCatalogID($(this));">
 						<%=list[i].name%>
 						</a>
@@ -68,7 +76,7 @@
 				<%}%>
 				</ul>
 			</script>
-			<input type="text" id="Preparation_Chapter" />
+			<input type="text" id="Preparation_Chapter" class="hide" />
 			<?php
 		// 		$this->widget('ext.treeview.TreeViewWidget',array(
 		// // 'link'=>''
@@ -93,6 +101,9 @@
 						'multiple'=>false,
 						'extErrorStr'=>'允许上传的文件格式为：',
 						'sizeErrorStr'=>'您的文件太大了，最大只能上传',
+						'dynamicFormData'=>'js:function(){
+			                return {"pid":$("#Preparation_cid").val()};
+			            }',
 						'showDelete'=>true,
 						'deleteCallback'=>'js:function (data, pd) {
 							for (var i = 0; i < data.length; i++) {
@@ -106,40 +117,8 @@
 						}',
 						'onSelect'=>'js:function(files){
 
-							var cid = $("#Preparation_cid").val();
-							var course = $("#Preparation_Course").val();
-							var chapter = $("#Preparation_Chapter").val();
+							return checkUploadData();
 
-							var body = "";
-
-							if(cid != "" && course != "" && chapter != ""){
-								return true;
-							}
-
-							if(cid == ""){
-								body = "请选择章节";
-							}
-
-							if(course == ""){
-								body = "请选择科目";
-							}
-
-							if(chapter == ""){
-								body = "请选择课本"
-							}
-
-
-
-							YKG.app("bootstrap").showModal({
-								"id":"defaultModal",
-								"title":"操作提示",
-								"body":body,
-								"showEvent":function(){
-									// alert("HEllo wrld");
-								}
-							}).show().showEvent();
-
-							return false;
 
 						}',
 						'onLoad'=>'js:function(obj){
@@ -170,20 +149,39 @@
 					<div id="status"></div> 
 				</div>
 
-				<div class="row">
-					<?php echo $form->labelEx($model,'cid'); ?>
-					<?php echo $form->textField($model,'cid'); ?>
+				<div class="form-group">
+					<div id="existsFilesBox"></div>
+					<script type="text/template" id="existsFiles">
+						<ul class="list">
+						<%for(var i=0;i<list.length;i++){%>
+							<li>
+								<div style="border-bottom:1px solid grey;">
+								文件名：<a href="javascript:void(0);" id="<%=list[i].id%>">
+								<%=list[i].filename%>
+								</a><br />
+								章节目录：<%=list[i].catalog%>
+
+								</div>
+							</li>
+						<%}%>
+						</ul>
+					</script>
+				</div>
+
+				<div class="form-group">
+					<?php //echo $form->labelEx($model,'cid'); ?>
+					<?php echo $form->hiddenField($model,'cid'); ?>
 					<?php echo $form->error($model,'cid'); ?>
 				</div>
 
-				<div class="row">
-					<?php echo $form->labelEx($model,'fid'); ?>
-					<?php echo $form->textField($model,'fid'); ?>
+				<div class="form-group">
+					<?php //echo $form->labelEx($model,'fid'); ?>
+					<?php echo $form->hiddenField($model,'fid'); ?>
 					<?php echo $form->error($model,'fid'); ?>
 				</div>
 
-				<div class="row buttons">
-					<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+				<div class="form-group buttons">
+					<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn btn-primary pull')); ?>
 				</div>
 			
 		</div>
@@ -191,6 +189,7 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
 
 
 

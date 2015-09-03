@@ -32,7 +32,7 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','upload'),
+				'actions'=>array('create','update','upload','chapterfiles'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -57,6 +57,62 @@ class SpaceController extends Controller
 	}
 
 	/**
+	 *此处的实现可以更改为只使用File Model
+	 * id 即为 Preparation 的cid也是File的pid
+	 */
+	public function actionChapterFiles($id,$owner = null)
+	{
+		$result = array();
+		$i = 0;
+
+		$criteria = new CDbCriteria(array(
+			// 'join'=>'JOIN simplebase.sb_file on file.owner = '.Yii::app()->user->id,
+			// 'join'=>'INNER JOIN simplebase.sb_file b on b.owner = '.Yii::app()->user->id,
+			'condition'=>'cid = :cid',
+			'params'=>array(
+				':cid'=>$id,
+			)
+		));
+
+		$model = Preparation::model()->findAll($criteria);
+
+		$folder = Yii::app()->params->uploadPreparationPath;
+
+		foreach($model as $data)
+		{		
+
+			if($data->file->owner == $owner)
+			{
+				$result[$i] = array(
+					'filename'=>$data->file->name,
+					'catalog'=>$data->catalog->name,
+					'id'=>$data->id,
+					'path'=>File::model()->attributeAdapter($data->file)->getFilePath($folder,$false,$false)
+
+				);
+
+				$i++;
+			}
+			
+			if($owner == null){
+				$result[$i] = array(
+					'filename'=>$data->file->name,
+					'catalog'=>$data->catalog->name,
+					'id'=>$data->id,
+					'path'=>File::model()->attributeAdapter($data->file)->getFilePath($folder,$false,$false)
+
+				);
+				$i++;
+			}
+		}
+
+		echo json_encode($result);
+
+
+
+	}
+
+	/**
 	 *为方便浏览，只允许上传PDF,文件
 	 ****************************************************
 	 *@used 上传试题
@@ -69,9 +125,9 @@ class SpaceController extends Controller
 		if (!empty($_FILES)) {			
 			$folder = Yii::app()->params['uploadPreparationPath'];
 			$fileext = $_REQUEST['fileext'];
-			$pid = $_REQUEST['id'];
+			$pid = $_REQUEST['pid'];
 
-			// UtilHelper::writeToFile($model);
+			UtilHelper::writeToFile($_REQUEST);
 
 			// UtilUploader2::uploadNormal('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
 			
@@ -82,9 +138,7 @@ class SpaceController extends Controller
 				UtilHelper::writeToFile($e,'a+');
 			}
 			
-
-			
-		}		
+		}
 
 	}
 

@@ -31,6 +31,65 @@ $this->menu=array(
 
 <script type="text/javascript">
 
+function checkUploadData(){
+	var cid = $("#Preparation_cid").val();
+	var course = $("#Preparation_Course").val();
+	var chapter = $("#Preparation_Chapter").val();
+
+	var body = "";
+
+	if(cid != "" && course != "" && chapter != ""){
+		return true;
+	}
+
+	if(cid == ""){
+		body = "请选择章节";
+	}
+
+	if(course == ""){
+		body = "请选择科目";
+	}
+
+	if(chapter == ""){
+		body = "请选择课本"
+	}
+
+
+	YKG.app("bootstrap").showModal({
+		"id":"defaultModal",
+		"title":"操作提示",
+		"body":body,
+		"showEvent":function(){
+			// alert("HEllo wrld");
+		}
+	}).show().showEvent();
+	return false;
+}
+
+function checkPreparationData()
+{
+	var uploadData = checkUploadData();
+	if(uploadData){
+		var fid = $("#Preparation_fid").val();
+
+		if(fid != ""){
+			return true;
+		}else{
+
+			YKG.app("bootstrap").showModal({
+				"id":"defaultModal",
+				"title":"操作提示",
+				"body":"请先上传课件",
+				"showEvent":function(){
+					// alert("HEllo wrld");
+				}
+			}).show().showEvent();
+
+		}
+
+	}
+}
+
 function loadTextBooks(object)
 {
 	YKG.app().form().singleChoice(object,'Preparation_Course');
@@ -66,23 +125,42 @@ function loadChapters(object)
 	},'json');	
 }
 
+function loadExistsFiles()
+{
+
+	$.get('/preparation/space/chapterfiles.html',{'id':$("#Preparation_cid").val()},function(data){
+
+		var datalist = {
+			'list': data
+		};
+
+		var html = baidu.template('existsFiles',datalist);
+		$("#existsFilesBox").html(html);
+
+	},'json');
+}
+
 function setCatalogID(object)
 {
 	YKG.app().form().singleChoice(object,'Preparation_cid');
+
+	loadExistsFiles();
 }
 
 
 $(function(){
+	$("#preparation-form").submit(function(){
+
+		var params = $(this).serializeArray();
+
+		$.post('/preparation/space/create.html',params,function(data){
+
+			loadExistsFiles();
+
+		},'json');
 
 
-
-	// var data = {
-	// 	name:"Hello world",
-	// 	list:['test1','test2','test3']
-	// };
-
-	// var html = baidu.template('textBooks',data);
-
-	// $("#loadTextBooks").html(html);
+		return false;			
+	});
 });
 </script>
