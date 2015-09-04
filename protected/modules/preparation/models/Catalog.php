@@ -111,7 +111,7 @@ class Catalog extends CActiveRecord
 		return parent::model($className);
 	}
 
-		public function getCourses()
+	public function getCourses()
 	{
 		$config =  Yii::getPathOfAlias('preparation.config.courses').'.php';		
 		$courses = require $config;	
@@ -169,6 +169,36 @@ class Catalog extends CActiveRecord
 		}
 
 	}
+
+	/**
+	 *
+	 * Generate the breadcrumbs
+	 * @method generateBreadcrumbs();
+	 * @param int $id
+	 * @param string $action
+	 * @param array $catename
+	 */
+	public function generateBreadcrumbs($id, $course, $action='list', &$catename=array(), &$model=null){
+		if(isset($id))
+		{
+			$model=Catalog::model()->findbyPk($id);
+			if(count($model)){
+	
+				$data = Catalog::model()->findByPk($model->pid);
+				$catename[$model->name] = array($action, 'id'=>$model->id, 'c'=>urlencode($model->name));
+	
+				if($model->pid == 0 && $model->course == $course)
+					$catename[$model->name] = array('/blog');//,'id'=>$model->cate_id,'c'=>urlencode($model->cate_name), 'm'=>urlencode(self::model()->getCategoryType(self::CONTENT_STORY)));
+	
+				self::generateBreadcrumbs($model->pid, $course, $action, $catename);
+	
+				return $catename;
+			}
+			return $catename;
+	
+		}
+	}
+
 
 	//批量添加数据
 	public function batchInsertData($file)

@@ -28,11 +28,11 @@ class SpaceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','test'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','upload','chapterfiles'),
+				'actions'=>array('create','update','upload','chapterfiles','download'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -43,6 +43,23 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionTest()
+	{
+		$catalog = Catalog::model()->findAll(array(
+			'condition'=>'course = 2'
+		));
+
+		$objects = Catalog::model()->dataAdapter($catalog);
+
+
+		$category = new CategoryModel();
+		// UtilHelper::dump($objects);
+
+		$category->generateTree($objects);
+
+
 	}
 
 	/**
@@ -109,7 +126,29 @@ class SpaceController extends Controller
 		echo json_encode($result);
 
 
+	}
 
+
+	/**
+	 * 文件下载
+	 */
+	public function actionDownload($id)
+	{
+		$model = $this->loadModel($id);
+
+		$folder = Yii::app()->params->uploadPreparationPath;
+
+		$filename = File::model()->attributeAdapter($model->file)->getFilePath($folder, false, false);
+
+		$file = fopen($filename,"r"); 
+
+
+		$download = new UtilDownload('doc,docx,ppt,pptx,pdf',false);
+		$download->setDownloadFilename($model->file->name);
+		if (!$download->downloadfile($filename))
+		{
+			echo $download->geterrormsg();
+		}
 	}
 
 	/**

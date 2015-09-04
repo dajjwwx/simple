@@ -40,7 +40,8 @@
 				<?php if(!Yii::app()->user->isGuest):?>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<span class="glyphicon glyphicon-paperclip"></span> 基本操作 </div>
+						<span class="glyphicon glyphicon-paperclip"></span> 基本操作 
+					</div>
 					<div class="panel-body">										
 						<ul class="list-group">
 							<li class="list-group-item"><?php echo CHtml::link('备课本',array('space/list'));?></li>
@@ -77,6 +78,22 @@
 					</div>
 				</div>
 
+				<div class="panel panel-default">
+					<div class="panel-heading"><?php echo Yii::t('blog','Categories');?></div>
+					<div class="panel-body">
+						<div class=" widget">
+						<?php
+	// 						echo Category::model()->generateCheckTreeByType(Category::CATEGORY_BLOG,array('treeview'=>Category::TREE_VIEW_LINK,'link'=>'space/list'));
+						?>			
+							<?php
+								// $this->widget('books.extensions.treeview.TreeViewWidget',array(
+								// 		'type'=>Category::CATEGORY_BLOG,
+								// 		'link'=>'/blog/space/list'
+								// ));							
+							?>		
+						</div>
+					</div>
+				</div>	
 			</div>
 			<div class="col-md-9">
 				<?php if(isset($this->breadcrumbs)):?>

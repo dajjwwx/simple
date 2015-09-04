@@ -7,13 +7,13 @@ class TreeViewWidget extends CWidget
 	public $Jscripts = array('jquery.treeview.js','jquery.treeview.async.js');
 	public $Cssscript = array('jquery.treeview.css');	
 	public $id = 'treeview';
-    public $needCore = false;
+  public $needCore = false;
     
-    public $treeview = Category::TREE_VIEW_LINK;
-    public $link = 'space/list';
-    public $htmlOptions = array(
-    	'id'=>'treeview'
-    );
+  public $treeview = Category::TREE_VIEW_LINK;
+  public $link = 'space/list';
+  public $htmlOptions = array(
+  	'id'=>'treeview'
+  );
     
 	private $_options = array(
 
