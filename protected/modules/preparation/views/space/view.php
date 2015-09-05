@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	$this->module->t('preparation','Preparations')=>array('index'),
-	Catalog::model()->getCourseName($model->cid)=>array('space/course','id'=>$model->cid),
+	Catalog::model()->getCourseName($model->catalog->course)=>array('space/course','id'=>$model->cid),
 	// $model->file->name,
 );
 
@@ -22,6 +22,7 @@ $menu = array_reverse(Catalog::model()->generateBreadcrumbs($model->cid, $model-
 $this->breadcrumbs = array_merge($this->breadcrumbs,$menu);
 $this->breadcrumbs = array_merge($this->breadcrumbs,array(UtilString::strSlice($model->file->name,0,50)));
 
+UtilHelper::dump($this->breadcrumbs);
 ?>
 
 <div class="panel panel-default">

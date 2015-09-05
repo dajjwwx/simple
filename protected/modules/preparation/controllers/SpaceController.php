@@ -28,7 +28,7 @@ class SpaceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','test'),
+				'actions'=>array('index','view','test','list'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -95,33 +95,42 @@ class SpaceController extends Controller
 
 		$folder = Yii::app()->params->uploadPreparationPath;
 
-		foreach($model as $data)
-		{		
+		if($model)
+		{
 
-			if($data->file->owner == $owner)
-			{
-				$result[$i] = array(
-					'filename'=>$data->file->name,
-					'catalog'=>$data->catalog->name,
-					'id'=>$data->id,
-					'path'=>File::model()->attributeAdapter($data->file)->getFilePath($folder,$false,$false)
+			foreach($model as $data)
+			{		
 
-				);
+				if($data->file->owner == $owner)
+				{
+					$result[$i] = array(
+						'filename'=>$data->file->name,
+						'catalog'=>$data->catalog->name,
+						'id'=>$data->id,
+						'path'=>File::model()->attributeAdapter($data->file)->getFilePath($folder,$false,$false)
 
-				$i++;
-			}
-			
-			if($owner == null){
-				$result[$i] = array(
-					'filename'=>$data->file->name,
-					'catalog'=>$data->catalog->name,
-					'id'=>$data->id,
-					'path'=>File::model()->attributeAdapter($data->file)->getFilePath($folder,$false,$false)
+					);
 
-				);
-				$i++;
-			}
+					$i++;
+				}
+				
+				if($owner == null){
+					$result[$i] = array(
+						'filename'=>$data->file->name,
+						'catalog'=>$data->catalog->name,
+						'id'=>$data->id,
+						'path'=>File::model()->attributeAdapter($data->file)->getFilePath($folder,$false,$false)
+
+					);
+					$i++;
+				}
+			}			
 		}
+		// else
+		// {
+		// 	$result['fail'] = true;
+		// }
+
 
 		echo json_encode($result);
 
@@ -240,6 +249,35 @@ class SpaceController extends Controller
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+
+	public function actionList($id)
+	{
+		$result = array();
+
+		$model = Catalog::model()->findbyPk($id);
+		$idsArray = CategoryModel::getChildrenIds($model);
+		$idsArray[] = $model->id;
+
+		if($idsArray)
+		{
+			$ids =  implode(',', $idsArray);
+
+			$criteria = new CDbCriteria(array(
+				'condition'=>'cid in ('.$ids.')',
+			));
+
+			// $models = Preparation::model()->findAll($criteria);
+			$dataProvider=new CActiveDataProvider('Preparation',array(
+				'criteria'=>$criteria
+			));
+		}
+
+		$this->render('list',array(
+			'dataProvider'=>$dataProvider,
+			'model'=>$model
+		));
+
 	}
 
 	/**

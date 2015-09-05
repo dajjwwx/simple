@@ -11,6 +11,8 @@
  *
  * The followings are the available model relations:
  * @property Preparation[] $preparations
+ * @property Catalog $parent;
+ * @property Catalog[] $children;
  */
 class Catalog extends CActiveRecord
 {
@@ -48,6 +50,8 @@ class Catalog extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'preparations' => array(self::HAS_MANY, 'Preparation', 'cid'),
+			'parent'=>array(self::BELONGS_TO, 'Catalog', 'pid'),
+			'children'=>array(self::HAS_MANY, 'Catalog', 'pid'),
 		);
 	}
 
@@ -187,8 +191,8 @@ class Catalog extends CActiveRecord
 				$data = Catalog::model()->findByPk($model->pid);
 				$catename[$model->name] = array($action, 'id'=>$model->id, 'c'=>urlencode($model->name));
 	
-				if($model->pid == 0 && $model->course == $course)
-					$catename[$model->name] = array('/blog');//,'id'=>$model->cate_id,'c'=>urlencode($model->cate_name), 'm'=>urlencode(self::model()->getCategoryType(self::CONTENT_STORY)));
+				// if($model->pid == 0 && $model->course == $course)
+				// 	$catename[$model->name] = array('/preparation');//,'id'=>$model->cate_id,'c'=>urlencode($model->cate_name), 'm'=>urlencode(self::model()->getCategoryType(self::CONTENT_STORY)));
 	
 				self::generateBreadcrumbs($model->pid, $course, $action, $catename);
 	
@@ -198,6 +202,8 @@ class Catalog extends CActiveRecord
 	
 		}
 	}
+
+
 
 
 	//批量添加数据

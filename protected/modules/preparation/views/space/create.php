@@ -127,15 +127,16 @@ function loadChapters(object)
 
 function loadExistsFiles()
 {
+	YKG.app().dom().preAjax($("#existsFilesBox"));
 
 	$.get('/preparation/space/chapterfiles.html',{'id':$("#Preparation_cid").val()},function(data){
 
 		var datalist = {
 			'list': data
 		};
-
 		var html = baidu.template('existsFiles',datalist);
 		$("#existsFilesBox").html(html);
+
 
 	},'json');
 }

@@ -153,16 +153,19 @@
 					<div id="existsFilesBox"></div>
 					<script type="text/template" id="existsFiles">
 						<ul class="list">
-						<%for(var i=0;i<list.length;i++){%>
-							<li>
-								<div style="border-bottom:1px solid grey;">
-								文件名：<a href="javascript:void(0);" id="<%=list[i].id%>">
-								<%=list[i].filename%>
-								</a><br />
-								章节目录：<%=list[i].catalog%>
+						<%if(list.length == 0){%>
+							<li>还没上传文件哦</li>
+						<%}else{%>
+							<%for(var i=0;i<list.length;i++){%>
+								<li>
+									<div style="border-bottom:1px solid grey;">
+									文件名：<a href="javascript:void(0);" id="<%=list[i].id%>">
+									<%=list[i].filename%>
+									</a><br />						
 
-								</div>
-							</li>
+									</div>
+								</li>
+							<%}%>
 						<%}%>
 						</ul>
 					</script>
