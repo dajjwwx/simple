@@ -1,7 +1,7 @@
 <?php
 return array(
 		array(
-			'link'=>'/books/space/index',
+			'link'=>'/blog/space/create',
 			'name'=>'写博客'		
 		)
 );

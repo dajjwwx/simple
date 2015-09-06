@@ -46,7 +46,7 @@ class DefaultController extends Controller
 
 		header("Content-Type:text/html; charset=utf-8");
 
-		$folder = Yii::app()->params['uploadGaoKaoPath'];
+		$folder = Yii::app()->params['uploadPreparationPath'];
 		// // echo File::model()->getFilePath(94,$folder);
 		// $model = File::model()->findByPk(104);
 		// $targetFile = File::model()->attributeAdapter($model)->getFilePath($folder, false, false);
@@ -74,7 +74,11 @@ class DefaultController extends Controller
 			$qiniu = new \API\Qiniu();
 			// $msg = $qiniu->putFile($_FILES['file']['name'], $_FILES['file']['tmp_name']);
 
-			$msg = UtilUploader2::uploadQiniu('file', File::FILE_TYPE_GAOKAO,$folder,$pid=null,$fileext='*.jpg;*.png;*.gif,*.pdf', $prefix = '');
+			$data = UtilUploader2::uploadQiniu('file',File::FILE_TYPE_PREPARATION,$folder,$pid,'*.doc;*.ppt;*.docx;*.pptx;*.pdf',$prefix='');
+
+			echo $data;
+
+			// $msg = UtilUploader2::uploadQiniu('file', File::FILE_TYPE_GAOKAO,$folder,$pid=null,$fileext='*.jpg;*.png;*.gif,*.pdf', $prefix = '');
 
 			// UtilHelper::dump($msg);
 		}

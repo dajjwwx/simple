@@ -52,14 +52,14 @@
 							<?php endif;?>
 						</ul>					
 						<?php
-							$this->beginWidget('zii.widgets.CPortlet', array(
-								'title'=>'Operations',
-							));
-							$this->widget('zii.widgets.CMenu', array(
-								'items'=>$this->menu,
-								'htmlOptions'=>array('class'=>'operations list-group'),
-							));
-							$this->endWidget();
+							// $this->beginWidget('zii.widgets.CPortlet', array(
+							// 	'title'=>'Operations',
+							// ));
+							// $this->widget('zii.widgets.CMenu', array(
+							// 	'items'=>$this->menu,
+							// 	'htmlOptions'=>array('class'=>'operations list-group'),
+							// ));
+							// $this->endWidget();
 						?>		
 					</div>
 				</div>

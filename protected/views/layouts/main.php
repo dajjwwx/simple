@@ -1,7 +1,7 @@
 <?php $this->beginContent('//layouts/base');?>
 	<?php $this->renderPartial('//layouts/nav');?>
 		<?php echo $content;?>
-	<div class="footer">
+	<div class="footer" style="background-color:black;padding:10px;margin-top:100px;">
       <div class="container">
         <p class="text-muted">Psdlace sticky footer content here.</p>
       </div>

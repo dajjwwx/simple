@@ -28,7 +28,7 @@ class SpaceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','test','list'),
+				'actions'=>array('index','view','test','list','course'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -180,7 +180,8 @@ class SpaceController extends Controller
 			// UtilUploader2::uploadNormal('Filedata',File::FILE_TYPE_GAOKAO,Yii::app()->params['uploadGaoKaoPath'],$pid,'*.pdf');
 			
 			try{
-				$data = UtilUploader2::uploadQiniu('Filedata',File::FILE_TYPE_PREPARATION,$folder,$pid,'*.doc;*.ppt;*.docx;*.pptx;*.pdf');
+				// $data = UtilUploader2::uploadQiniu('Filedata',File::FILE_TYPE_PREPARATION,$folder,$pid,'*.doc;*.ppt;*.docx;*.pptx;*.pdf');
+				$data = UtilUploader2::uploadQiniu('Filedata', File::FILE_TYPE_PREPARATION, $folder, $pid, '*.doc;*.ppt;*.docx;*.pptx;*.pdf', $prefix='');
 				echo $data;
 			}catch(Exception $e){
 				UtilHelper::writeToFile($e,'a+');
@@ -229,7 +230,15 @@ class SpaceController extends Controller
 		{
 			$model->attributes=$_POST['Preparation'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			{
+				$breadcrumbs = Catalog::model()->generateBreadcrumbs($model->cid,$model->catalog->course); 
+				$category = new CategoryModel(); 
+				echo $category->generatePageTitle($breadcrumbs,true,' / ');
+
+				Yii::app()->end();
+				// $this->redirect(array('view','id'=>$model->id));
+			}
+
 		}
 
 		$this->render('update',array(
@@ -249,6 +258,47 @@ class SpaceController extends Controller
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+
+	public function actionCourse($id)
+	{
+		$idsArray = array();
+		$criteria = new CDbCriteria(array(
+			'select'=>'id',
+			'condition'=>'course = :course',
+			'params'=>array(
+				':course'=>$id
+			)
+		));
+
+		$model = Catalog::model()->findAll($criteria);
+
+		foreach ($model as $item) {
+			$idsArray[] = $item->id;
+		}
+
+		if($idsArray)
+		{
+			$ids =  implode(',', $idsArray);
+
+			$criteria = new CDbCriteria(array(
+				'condition'=>'cid in ('.$ids.')',
+			));
+
+			// $models = Preparation::model()->findAll($criteria);
+			$dataProvider=new CActiveDataProvider('Preparation',array(
+				'criteria'=>$criteria
+			));
+		}
+		else
+		{
+			throw new CHttpException(404,'The requested page does not exist.');
+		}
+
+		$this->render('course',array(
+			'dataProvider'=>$dataProvider,
+			'id'=>$id
+		));		
 	}
 
 	public function actionList($id)

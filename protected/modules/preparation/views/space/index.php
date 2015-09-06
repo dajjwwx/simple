@@ -20,9 +20,18 @@ $this->menu=array(
 		<?php $this->widget('zii.widgets.CListView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_view',
+			'itemsCssClass'=>'table table-hover table-condensed clearfix',
+			'pagerCssClass'=>'pull-right clearfix',
+			'pager'=>array(
+				'selectedPageCssClass'=>'active',
+				'maxButtonCount'=>8,
+				'header'=>'',
+				'htmlOptions'=>array(
+					'class'=>'pagination',
+				)
+			)
 		)); ?>
 	</div>
 </div>
-<h1></h1>
 
 

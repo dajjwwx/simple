@@ -14,7 +14,7 @@
 	</span>
 	<span class="item">
 		<?php if(UtilAuth::isLogin($data->file->owner)):?>
-			<a href="<?php echo $this->createUrl('space/view',array('id'=>$data->id));?>">查看</a> / 
+			<a href="<?php echo $this->createUrl('space/update',array('id'=>$data->id));?>">修改</a> / 
 			<a href="<?php echo $this->createUrl('space/delete',array('id'=>$data->id,'fid'=>$data->fid));?>" onclick="deletePaper($(this));return false;">删除</a>
 		<?php endif;?>
 	</span>

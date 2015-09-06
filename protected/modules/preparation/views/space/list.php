@@ -16,6 +16,10 @@ $menu = array_reverse(Catalog::model()->generateBreadcrumbs($model->id, $model->
 
 $this->breadcrumbs = array_merge($this->breadcrumbs,$menu);
 
+$t = array_pop($this->breadcrumbs);
+array_push($this->breadcrumbs, urldecode($t['c']));
+
+
 
 
 // $this->breadcrumbs = array_merge($this->breadcrumbs,array(UtilString::strSlice($model->file->name,0,50)));
@@ -30,6 +34,16 @@ $this->breadcrumbs = array_merge($this->breadcrumbs,$menu);
 		<?php $this->widget('zii.widgets.CListView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_view',
+			'itemsCssClass'=>'table table-hover table-condensed clearfix',
+			'pagerCssClass'=>'pull-right clearfix',
+			'pager'=>array(
+				'selectedPageCssClass'=>'active',
+				'maxButtonCount'=>8,
+				'header'=>'',
+				'htmlOptions'=>array(
+					'class'=>'pagination',
+				)
+			)
 		)); ?>
 	</div>
 </div>

@@ -13,24 +13,26 @@
 			<?php echo $content; ?>
 		</div>
 		<div class="col-md-4">		
+		<!--
 			<div class="panel panel-default">
 				<div class="panel-heading">SideBar</div>
 				<div class="panel-body">
 				<?php
-					$this->beginWidget('zii.widgets.CPortlet', array(
-						'title'=>'Operations',
-					));
-					$this->widget('zii.widgets.CMenu', array(
-						'items'=>$this->menu,
-						'htmlOptions'=>array('class'=>'operations'),
-					));
-					$this->endWidget();
+					// $this->beginWidget('zii.widgets.CPortlet', array(
+					// 	'title'=>'Operations',
+					// ));
+					// $this->widget('zii.widgets.CMenu', array(
+					// 	'items'=>$this->menu,
+					// 	'htmlOptions'=>array('class'=>'operations'),
+					// ));
+					// $this->endWidget();
 				?>				
 				</div>
 			</div>
+		-->
 			
 			<div class="panel panel-default">
-				<div class="panel-heading"><?php echo Yii::t('blog','Categories');?></div>
+				<div class="panel-heading"><?php echo Yii::t('blog','Latest Blogs');?></div>
 				<div class="panel-body">
 					<div class=" widget">
 					<?php
