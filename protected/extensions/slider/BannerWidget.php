@@ -67,7 +67,7 @@ class BannerWidget extends CWidget {
 		$script = <<<SCRIPT
 	
 $('.banner').unslider({
-	speed: 500,               //  The speed to animate each slide (in milliseconds)
+	speed: 2000,               //  The speed to animate each slide (in milliseconds)
 	delay: 3000,              //  The delay between slide animations (in milliseconds)
 	complete: function() {},  //  A function that gets called after every slide animation
 	keys: true,               //  Enable keyboard (left, right) arrow shortcuts
