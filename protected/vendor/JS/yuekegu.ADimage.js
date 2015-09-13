@@ -1,0 +1,7 @@
+YKG.prototype.ADImage = function(){
+	
+	
+	
+	
+	
+}

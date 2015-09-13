@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="/public/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/public/css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/public/image/favourite.ico" type="image/x-icon" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,5 +28,18 @@
     <?php 	
     	$this->registerScripts();
     ?>
+    <script type="text/javascript">
+    $(function(){
+
+      if($(document.body).height() <= $(window).height() ){
+
+          $("#footer").css({
+                "position":"absolute",
+                "bottom":0
+          });
+
+      }
+    });
+    </script>
   </body>
 </html>

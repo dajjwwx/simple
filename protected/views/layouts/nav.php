@@ -30,8 +30,7 @@
               <?php endif;?>
             <?php endforeach;?>
             <?php endif;?>
-            <li <?php echo ($this->id=='site'&&$this->action->id=='page')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>"><?php echo Yii::t("basic","About");?></a></li>    
-            <li <?php echo ($this->id=='site'&&$this->action->id=='contact')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/contact');?>"><?php echo Yii::t("basic","Contact");?></a></li>
+
 
           </ul>          
          <ul class="nav navbar-nav pull-right">

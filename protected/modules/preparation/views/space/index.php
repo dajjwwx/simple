@@ -17,7 +17,8 @@ $this->menu=array(
 		<span class="glyphicon glyphicon-paperclip"></span> <?php echo $this->module->t('preparation','Preparations');?>
 	</div>
 	<div class="panel-body">
-		<?php $this->widget('zii.widgets.CListView', array(
+		<?php 
+		$this->widget('zii.widgets.CListView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_view',
 			'itemsCssClass'=>'table table-hover table-condensed clearfix',
@@ -30,7 +31,8 @@ $this->menu=array(
 					'class'=>'pagination',
 				)
 			)
-		)); ?>
+		));
+		 ?>
 	</div>
 </div>
 

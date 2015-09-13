@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-09-06 17:35:02
+-- Generation Time: 2015-09-11 14:59:12
 -- 服务器版本： 5.5.29
 -- PHP Version: 5.5.0alpha2
 
@@ -473,7 +473,7 @@ INSERT INTO `sp_preparation` (`id`, `cid`, `fid`) VALUES
 -- 限制表 `sp_preparation`
 --
 ALTER TABLE `sp_preparation`
-  ADD CONSTRAINT `sp_preparation_ibfk_2` FOREIGN KEY (`fid`) REFERENCES `qdm165430425_db`.`sb_file` (`id`),
+  ADD CONSTRAINT `sp_preparation_ibfk_2` FOREIGN KEY (`fid`) REFERENCES `simplebase`.`sb_file` (`id`),
   ADD CONSTRAINT `sp_preparation_ibfk_3` FOREIGN KEY (`cid`) REFERENCES `sp_catalog` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

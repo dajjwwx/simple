@@ -53,11 +53,11 @@ class SpaceController extends Controller
 
 		$objects = Catalog::model()->dataAdapter($catalog);
 
-
 		$category = new CategoryModel();
-		// UtilHelper::dump($objects);
 
-		$category->generateTree($objects);
+		$list = $category->generateTree($objects);
+
+		UtilHelper::dump($list);
 
 
 	}

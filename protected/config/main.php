@@ -2,14 +2,13 @@
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
-Yii::setPathOfAlias('common',dirname(dirname(dirname(dirname(__FILE__)))).'\Common');
-
+//Yii::setPathOfAlias('common',dirname(dirname(dirname(dirname(__FILE__)))).'\Common');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'悦珂谷',
-		
+
 	'language'=>'zh_cn',
 
 	// preloading 'log' component
@@ -19,13 +18,14 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-		'application.helpers.*',
+		//'application.helpers.*',
 		'application.modules.srbac.controllers.SBaseController',
-		'application.modules.gaokao.models.*'
+		//'application.modules.gaokao.models.*'
 	),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
+		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'blueidea',
@@ -33,62 +33,57 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		'srbac' => array(
-					'userclass' => 'User',
-					'userid' => 'id',
-					'username' => 'username',
-					'debug' => true,
-					'delimeter'=>"@",
-					'pageSize' => 10,
-					'superUser' => 'Authority',
-					'css' => 'srbac.css',
-					'layout' => 'application.views.layouts.main', //'webroot.themes.light.views.layouts.admin',
-					'notAuthorizedView' => 'srbac.views.authitem.unauthorized',
-					//'alwaysAllowed'=>array(),
-					'userActions' => array('show', 'View', 'List'),
-					'listBoxNumberOfLines' => 15,
-					'imagesPath' => 'srbac.images',
-					'imagesPack' => 'tango',
-					'iconText' => false,
-					'header' => 'srbac.views.authitem.header',
-					'footer' => 'srbac.views.authitem.footer',
-					'showHeader' => true,
-					'showFooter' => true,
-					'alwaysAllowedPath' => 'srbac.components',
+			'userclass' => 'User',
+			'userid' => 'id',
+			'username' => 'username',
+			'debug' => true,
+			'delimeter'=>"@",
+			'pageSize' => 10,
+			'superUser' => 'Authority',
+			'css' => 'srbac.css',
+			'layout' => 'application.views.layouts.main', //'webroot.themes.light.views.layouts.admin',
+			'notAuthorizedView' => 'srbac.views.authitem.unauthorized',
+			//'alwaysAllowed'=>array(),
+			'userActions' => array('show', 'View', 'List'),
+			'listBoxNumberOfLines' => 15,
+			'imagesPath' => 'srbac.images',
+			'imagesPack' => 'tango',
+			'iconText' => false,
+			'header' => 'srbac.views.authitem.header',
+			'footer' => 'srbac.views.authitem.footer',
+			'showHeader' => true,
+			'showFooter' => true,
+			'alwaysAllowedPath' => 'srbac.components',
 		),
-		'test'=>array(),
+		'gaokao'=>array(),
+		'preparation'=>array(),
 		'blog'=>array(),
 		'administrator'=>array(
-// 				'language'=>'zh_cn',
-				
+			//'language'=>'zh_cn',	
 		),
-		'books'=>array(
-		
-		),
-		'gaokao'=>array(
-		
-		),
-		'preparation'=>array(
+		'books'=>array(),
 
-		),
+		
 	),
 
 	// application components
 	'components'=>array(
+
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+
 		'swiftMailer' => array(
-				'class' => 'ext.swiftMailer.SwiftMailer',
+			'class' => 'ext.swiftMailer.SwiftMailer',
 		),		
 		'authManager' => array(
-				'class' => 'srbac.components.SDbAuthManager',
-				'connectionID' => 'db',
-				'itemTable' => 'sb_items',
-				'assignmentTable' => 'sb_assignments',
-				'itemChildTable' => 'sb_itemchildren',
+			'class' => 'srbac.components.SDbAuthManager',
+			'connectionID' => 'db',
+			'itemTable' => 'sb_items',
+			'assignmentTable' => 'sb_assignments',
+			'itemChildTable' => 'sb_itemchildren',
 		),
-		
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
@@ -111,6 +106,8 @@ return array(
 		),
 		// uncomment the following to use a MySQL database
 		*/
+		// database settings are configured in database.php
+		//'db'=>require(dirname(__FILE__).'/database.php'),
 		'db'=>array(
 				'connectionString' => 'mysql:host=localhost;dbname=simplebase',
 				'emulatePrepare' => true,
@@ -168,12 +165,13 @@ return array(
 		'cache'=>array(
 				'class'=>'system.caching.CFileCache',
 				//			'cacheTableName'=>'ls_cache'
-		),
-		
+		),		
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-			'errorAction'=>'site/error',
+			'errorAction'=>YII_DEBUG ? null : 'site/error',
 		),
+
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -182,16 +180,17 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-		
-				array(
-					'class'=>'CWebLogRoute',
-				),
-			
+				
+				// array(
+				// 	'class'=>'CWebLogRoute',
+				// ),
+				
 			),
 		),
+
 	),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>require_once dirname(__FILE__).'/params.php'
+	'params' =>require_once dirname(__FILE__).'/params.php'
 );
