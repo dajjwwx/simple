@@ -114,7 +114,7 @@ class UtilUploader2 extends UtilUploader
 				$model = self::setFileAttributes($name, $type, $pid, $prefix);
 
 				// $targetFile = File::model()->attributeAdapter($model)->generateFilePath($model, true, false, $folder);
-				$targetFile = File::model()->attributeAdapter($model)->getFilePath($folder, true, false);
+				// $targetFile = File::model()->attributeAdapter($model)->getFilePath($folder, true, false);
 
 
 

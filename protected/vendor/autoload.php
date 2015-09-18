@@ -48,10 +48,10 @@ class CommonLoader {
 			include_once $filename;
 			// echo "找到了，$filename ~\n";
 		}
-		// else
-		// {
-		// 	echo "客官，我们努力找到了，$filename 没有哦:~\n";
-		// }
+		else
+		{
+			// echo "客官，我们努力找到了，$filename 没有哦:~\n";
+		}
 
 		$filename = dirname(__FILE__).'/'.str_replace('\\', '/', $class).'.php';
 
@@ -59,10 +59,10 @@ class CommonLoader {
 			include_once $filename;
 			// echo "找到了，$filename ~\n";
 		}
-		// else
-		// {
-		// 	echo "客官，我们努力找到了，$filename 没有哦:~\n";
-		// }
+		else
+		{
+			// echo "客官，我们努力找到了，$filename 没有哦:~\n";
+		}
 	}
 
 	

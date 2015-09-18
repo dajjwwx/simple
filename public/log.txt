@@ -1,0 +1,28 @@
+[Datetime]15-09-13 11:23:53	[File]/home/wwwroot/www.simplebase.com/protected/vendor/Util/UtilHelper.php(363)
+Array
+(
+    [Filedata] => Array
+        (
+            [name] => 2015年语文四川卷答案.pdf
+            [type] => application/pdf
+            [tmp_name] => /tmp/phpdxkNpl
+            [error] => 0
+            [size] => 3761
+        )
+
+)
+
+[Datetime]15-09-13 11:24:16	[File]/home/wwwroot/www.simplebase.com/protected/vendor/Util/UtilHelper.php(363)
+Array
+(
+    [Filedata] => Array
+        (
+            [name] => 2015年语文四川卷答案.pdf
+            [type] => application/pdf
+            [tmp_name] => /tmp/phpOHEP1j
+            [error] => 0
+            [size] => 3761
+        )
+
+)
+
