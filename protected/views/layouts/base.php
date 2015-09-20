@@ -28,6 +28,8 @@
     <?php 	
     	$this->registerScripts();
     ?>
+
+  
     <script type="text/javascript">
     $(function(){
 

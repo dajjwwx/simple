@@ -11,7 +11,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li <?php echo ($this->id=='site'&&$this->action->id=='index')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site/index');?>"><?php echo Yii::t("basic","Home");?></a></li>
+            <li <?php echo ($this->id=='site'&&$this->action->id=='index')?'class="active"':'';?>><a href="<?php echo $this->createUrl('/site');?>"><?php echo Yii::t("basic","Home");?></a></li>
             <?php $navitems = Config::mergeConfig('nav');?>
             <?php if ($navitems):?>
 			      <?php $module = isset($this->module)?$this->module->id:'';?>
